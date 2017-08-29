@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private Button register;
-    private EditText email,password,regnum,name;
+    private EditText year,password,regnum,name;
     private TextView registered;
     private FirebaseDatabase mFirebaseInstance;
     private DatabaseReference mDatabase,mDatabase2;
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         register   = (Button)findViewById(R.id.register);
         regnum     = (EditText)findViewById(R.id.regnum);
         name       = (EditText)findViewById(username);
-        email      = (EditText)findViewById(R.id.email);
+        year      = (EditText)findViewById(R.id.year);
         password   = (EditText)findViewById(R.id.password);
         registered = (TextView)findViewById(R.id.registered);
 
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(userId)) {
                 }
                 else
-                createUser(name.getText().toString().trim(), email.getText().toString().trim(), regnum.getText().toString().trim(), password.getText().toString().trim(),userId);
+                createUser(name.getText().toString().trim(), year.getText().toString().trim(), regnum.getText().toString().trim(), password.getText().toString().trim(),userId);
 
                 finish();
                 Intent i = new Intent(MainActivity.this,Login.class);
@@ -100,15 +100,15 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Creating new user node under 'users'
      */
-    private void createUser(String name, String email,String regnum,String password,String userid) {
+    private void createUser(String name, String year,String regnum,String password,String userid) {
         // TODO
         // In real apps this userId should be fetched
         // by implementing firebase auth
         if (TextUtils.isEmpty(userid)) {
 //            userId = mDatabase.push().getKey();
         }
-        Users user = new Users(name, email,regnum,password,userid);
-        UserData userData1 = new UserData(regnum,name,"","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",1);
+        Users user = new Users(name, year,regnum,password,userid);
+        UserData userData1 = new UserData(regnum,name,"","",year,"","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",10,0,1);
         addUserChangeListener(user);
         addUserDataChangeListener(userData1);
     }
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 final String userId = mDatabase.push().getKey();
                 mDatabase.child(userId).setValue(user1);
-                Log.e(TAG, "User data is changed!" + user1.name + ", " + user1.email);
+                Log.e(TAG, "User data is changed!" + user1.name + ", " + user1.year);
             }
 
             @Override

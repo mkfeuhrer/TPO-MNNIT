@@ -9,8 +9,8 @@ public class UserData {
     public String presentadd, permanentadd,mobileno,guardianmobile,maritalstatus,state,country;
     public String school10,year10,board10,percentage10,school12,year12,board12,percentage12;
     public String spi1,spi2,spi3,spi4,spi5,spi6,spi7,spi8;
-    public String project,internship;
-    public int iseditable;
+    public String project,internship,company;
+    public int iseditable,isverified,tpocredit;
 
     public UserData() {
     }
@@ -18,7 +18,7 @@ public class UserData {
     public UserData(String regnum,String name,String branch,String batch,String course,String dob,String email,String skypeid,String linkedinid,String gender,String category,String phychal,String residentialstatus,String guardian,
                     String presentadd,String permanentadd,String mobileno,String guardianmobile,String maritalstatus,String state,String country,
                     String school10,String year10,String board10,String percentage10,String school12,String year12,String board12,String percentage12,
-                    String spi1,String spi2,String spi3,String spi4,String spi5,String spi6,String spi7,String spi8,String project,String internship,int iseditable) {
+                    String spi1,String spi2,String spi3,String spi4,String spi5,String spi6,String spi7,String spi8,String project,String internship,String company,int tpocredit,int isverified,int iseditable) {
         this.name       = name;
         this.regnum     = regnum;
         this.branch     = branch;
@@ -59,5 +59,8 @@ public class UserData {
         this.project        = project;
         this.internship     = internship;
         this.iseditable     = iseditable;
+        this.isverified     = isverified;
+        this.company        = company;
+        this.tpocredit      = tpocredit;
     }
 }

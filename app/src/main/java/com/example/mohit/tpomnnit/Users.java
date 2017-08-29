@@ -7,7 +7,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class Users {
     public String name;
-    public String email;
+    public String year;
     public String studentid;
     public String password;
     public String userid;
@@ -16,9 +16,9 @@ public class Users {
     public Users() {
     }
 
-    public Users(String name, String email,String studentid,String password,String userid) {
+    public Users(String name, String year,String studentid,String password,String userid) {
         this.name       = name;
-        this.email      = email;
+        this.year      = year;
         this.studentid  = studentid;
         this.password   = password;
         this.userid     = userid;

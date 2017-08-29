@@ -29,9 +29,9 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:id="@+id/email" />
+            android:hint="Year - eg-1,2"
+            android:inputType="number"
+            android:id="@+id/year" />
 
         <EditText
             android:layout_width="match_parent"
