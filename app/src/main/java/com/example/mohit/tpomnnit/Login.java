@@ -51,9 +51,9 @@ public class Login extends AppCompatActivity {
                                 if(passw.equals(password.getText().toString().trim()))
                                 {
                                     finish();
-//                                    Intent i = new Intent(Login.this,StudentProfile.class);
-//                                    i.putExtra("reg",regnum.getText().toString().trim());
-//                                    startActivity(i);
+                                    Intent i = new Intent(Login.this,StudentProfile.class);
+                                    i.putExtra("reg",regnum.getText().toString().trim());
+                                    startActivity(i);
                                 }
                             }
 //                            Log.d("valueName:", userDetails.child("name").getValue().toString());

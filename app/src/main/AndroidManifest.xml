@@ -20,6 +20,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".StudentProfile"
+            android:label="@string/title_activity_student_profile"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".StudentHome"
+            android:label="@string/title_activity_student_home"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
