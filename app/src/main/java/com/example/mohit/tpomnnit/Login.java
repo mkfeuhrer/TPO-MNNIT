@@ -43,22 +43,16 @@ public class Login extends AppCompatActivity {
                 ValueEventListener vel = new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        Users user= dataSnapshot.getValue(Users.class);
                         for(DataSnapshot userDetails : dataSnapshot.getChildren()) {
-
-                            Log.e("Id",dataSnapshot.getKey().toString());
-                            if(regnum.toString().trim().equals(userDetails.child("studentid").getValue().toString()))
+                            if(regnum.getText().toString().trim().equals(userDetails.child("studentid").getValue().toString()))
                             {
                                 String passw = userDetails.child("password").getValue().toString();
-                                SQLiteDatabase data=openOrCreateDatabase("users",MODE_PRIVATE,null);
-                                data.execSQL("create table if not exists hint (id varchar, regnum varchar);");
-                                String s = "select * from hint where name='" + dataSnapshot.getKey().toString() + "' and regnum='" + regnum.toString().trim() + "'";
-
-
-                                if(passw.equals(password.toString().trim()))
+                                Log.e("Pass",passw);
+                                if(passw.equals(password.getText().toString().trim()))
                                 {
                                     finish();
                                     Intent i = new Intent(Login.this,StudentProfile.class);
+                                    i.putExtra("reg",regnum.getText().toString().trim());
                                     startActivity(i);
                                 }
                             }
@@ -89,31 +83,3 @@ public class Login extends AppCompatActivity {
 
     }
 }
-
-
-                        //
-
-//                        if(s1.equals("")) {
-//                        Toast.makeText(Login.this, "Please Enter username.", Toast.LENGTH_LONG).show();
-//                        }
-//                        else if(s2.equals("")) {
-//                        Toast.makeText(Login.this, "Please Enter password.", Toast.LENGTH_LONG).show();
-//                        }
-//                        else {
-//                        Cursor cursor = data.rawQuery(s, null);
-//                        if (cursor.getCount() > 0) {
-//                        SharedPreferences settings2 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-//                        SharedPreferences.Editor editor2 = settings2.edit();
-//                        editor2.putString("username", s1).apply();
-//                        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-//                        SharedPreferences.Editor editor = settings.edit();
-//                        editor.putString("Logged","true");
-//                        editor.apply();
-//                        Intent i=new Intent(Login.this,home.class);
-//        startActivity(i);
-//        finish();
-//        //Toast.makeText(Login.this, "sjkhfdkjhafl", Toast.LENGTH_LONG).show();
-//        } else {
-//        Toast.makeText(Login.this, "Not a registered User , Kindly signup first", Toast.LENGTH_LONG).show();
-//        }
-//        }

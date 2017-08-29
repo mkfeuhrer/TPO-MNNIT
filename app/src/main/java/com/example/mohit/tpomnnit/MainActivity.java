@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText email,password,regnum,name;
     private TextView registered;
     private FirebaseDatabase mFirebaseInstance;
-    private DatabaseReference mDatabase;
-    private String userId;
+    private DatabaseReference mDatabase,mDatabase2;
+    private String userId,userId2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
         userId = mDatabase.push().getKey();
 
+        mDatabase2 = FirebaseDatabase.getInstance().getReference("userdata");
+        userId2 = mDatabase2.push().getKey();
+
         register   = (Button)findViewById(R.id.register);
         regnum     = (EditText)findViewById(R.id.regnum);
         name       = (EditText)findViewById(username);
@@ -86,6 +89,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                 createUser(name.getText().toString().trim(), email.getText().toString().trim(), regnum.getText().toString().trim(), password.getText().toString().trim(),userId);
+
+                finish();
+                Intent i = new Intent(MainActivity.this,Login.class);
+                startActivity(i);
             }
         });
     }
@@ -101,12 +108,10 @@ public class MainActivity extends AppCompatActivity {
 //            userId = mDatabase.push().getKey();
         }
         Users user = new Users(name, email,regnum,password,userid);
-        Log.e("username",name);
-        //mDatabase.child(userid).setValue(user);
-        Log.e("ID",userid);
+        UserData userData1 = new UserData(regnum,name,"","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",1);
         addUserChangeListener(user);
+        addUserDataChangeListener(userData1);
     }
-
     private void addUserChangeListener(final Users user) {
         // User data change listener
         mDatabase.child(userId).addValueEventListener(new ValueEventListener() {
@@ -131,4 +136,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    private void addUserDataChangeListener(final UserData user) {
+        // User data change listener
+        mDatabase2.child(userId2).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                UserData user1 = user;
+
+                // Check for null
+                if (user1 == null) {
+                    Log.e(TAG, "User data is null!");
+                    return;
+                }
+                final String userId1 = mDatabase2.push().getKey();
+                mDatabase2.child(userId1).setValue(user1);
+                Log.e(TAG, "Userdata data is changed!");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.e(TAG, "Failed to read user", error.toException());
+            }
+        });
+    }
+
 }

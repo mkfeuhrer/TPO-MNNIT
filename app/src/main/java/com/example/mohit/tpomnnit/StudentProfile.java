@@ -1,8 +1,10 @@
 package com.example.mohit.tpomnnit;
 
 import android.content.Intent;
+import android.support.annotation.InterpolatorRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -15,6 +17,7 @@ public class StudentProfile extends AppCompatActivity {
 
 
     private TextView name,email,regnum;
+    private String registrationnum;
     private DatabaseReference mDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +29,8 @@ public class StudentProfile extends AppCompatActivity {
         name    = (TextView)findViewById(R.id.name);
         email   = (TextView)findViewById(R.id.email);
         regnum  = (TextView)findViewById(R.id.regnum);
-
-
-
+        registrationnum = getIntent().getStringExtra("reg");
+        Log.e("reg",registrationnum);
 
         ValueEventListener vel = new ValueEventListener() {
             @Override
@@ -36,9 +38,12 @@ public class StudentProfile extends AppCompatActivity {
                 Users user= dataSnapshot.getValue(Users.class);
                 for(DataSnapshot userDetails : dataSnapshot.getChildren()) {
 
-                    if(regnum.toString().trim().equals(userDetails.child("studentid").getValue().toString()))
+                    if(registrationnum.equals(userDetails.child("studentid").getValue().toString()))
                     {
-
+                        name.setText(userDetails.child("name").getValue().toString());
+                        email.setText(userDetails.child("email").getValue().toString());
+                        regnum.setText(registrationnum);
+                        //Access all data
 
                     }
 //                            Log.d("valueName:", userDetails.child("name").getValue().toString());
