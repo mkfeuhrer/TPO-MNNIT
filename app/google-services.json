@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "818237637187",
+    "firebase_url": "https://fir-auth-5b1fc.firebaseio.com",
+    "project_id": "fir-auth-5b1fc",
+    "storage_bucket": "fir-auth-5b1fc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818237637187:android:02368e25b3a50405",
+        "android_client_info": {
+          "package_name": "com.example.mohit.firebaseauth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "818237637187-mi560pc6pub13rv8ir2bjc8bt8m970ra.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnoIr13xQo_rZtxwpc-Xo6urWXzMpEC40"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818237637187:android:bd11a108e44c159d",
+        "android_client_info": {
+          "package_name": "com.example.mohit.tpomnnit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "818237637187-mi560pc6pub13rv8ir2bjc8bt8m970ra.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnoIr13xQo_rZtxwpc-Xo6urWXzMpEC40"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
