@@ -37,7 +37,7 @@ public class TpoLogin extends AppCompatActivity {
 
         {
             if(isLogged.equals("true")){
-                Intent i=new Intent(TpoLogin.this,StudentProfile.class);
+                Intent i=new Intent(TpoLogin.this,TpoHome.class);
                 SharedPreferences settings2 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 String regn = settings2.getString("registrationnum","");
                 Log.e("regis",regn);

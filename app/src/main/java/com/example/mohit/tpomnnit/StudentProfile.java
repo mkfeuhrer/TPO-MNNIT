@@ -156,6 +156,7 @@ public class StudentProfile extends AppCompatActivity
         } else if (id == R.id.myprofile) {
             finish();
             Intent i = new Intent(StudentProfile.this,MyProfile.class);
+            i.putExtra("reg",regnum.getText().toString().trim());
             startActivity(i);
 
         } else if (id == R.id.companies) {
@@ -172,6 +173,7 @@ public class StudentProfile extends AppCompatActivity
             editor.putString("Logged","false");
             editor.apply();
             Intent i = new Intent(StudentProfile.this, Login.class);
+
             startActivity(i);
             finish();
 
