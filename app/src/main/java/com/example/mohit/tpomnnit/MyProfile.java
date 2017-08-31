@@ -9,30 +9,37 @@ public class MyProfile extends AppCompatActivity {
 
     private SectionsPageAdapter mSectionsPageAdapter;
     private ViewPager mViewPager;
-
+    private String regno;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
-
+        regno=getIntent().getStringExtra("reg");
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         setupViewPager(mViewPager);
 
+
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
     }
+    public String getRegno()
+    {
+        return regno;
+    }
 
     private void setupViewPager(ViewPager viewPager) {
+        Bundle bundle = new Bundle();
+        bundle.putString("edttext", "From Activity");
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new Tab1Fragment(), "TAB1");
-        adapter.addFragment(new Tab2Fragment(), "TAB2");
-        adapter.addFragment(new Tab3Fragment(), "TAB3");
-        adapter.addFragment(new Tab4Fragment(), "TAB4");
-        adapter.addFragment(new Tab5Fragment(), "TAB5");
+        adapter.addFragment(new Tab1Fragment(), "Personal");
+        adapter.addFragment(new Tab2Fragment(), "Academic");
+        adapter.addFragment(new Tab3Fragment(), "Project & Intern");
+        adapter.addFragment(new Tab4Fragment(), "Photo & Resume");
+        adapter.addFragment(new Tab5Fragment(), "Password");
         viewPager.setAdapter(adapter);
     }
 }
