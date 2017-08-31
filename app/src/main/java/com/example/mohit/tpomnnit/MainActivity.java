@@ -1,6 +1,8 @@
 package com.example.mohit.tpomnnit;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -83,6 +86,21 @@ public class MainActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                String s1 = regnum.getText().toString();
+                String s2 = password.getText().toString();
+                //database in android
+                SQLiteDatabase data = openOrCreateDatabase("tpo", MODE_PRIVATE, null); //nobody other can access
+                //it is stored in our phone only
+                data.execSQL("create table if not exists student (name varchar, password varchar);");
+                String s = "select * from student where name='" + s1 + "' and password='" + s2 + "'";
+                Cursor cursor = data.rawQuery(s, null); // whatever query i run i can store something in cursor it is a class
+                if (cursor.getCount() > 0) {
+                    Toast.makeText(MainActivity.this, "User Already Exist", Toast.LENGTH_LONG).show();
+                } else {
+                    data.execSQL("insert into student values ('" + s1 + "','" + s2 + "');");
+                    Toast.makeText(MainActivity.this, "Signup Successful", Toast.LENGTH_SHORT).show();
+                }
 
                 // Check for already existed userId
                 if (TextUtils.isEmpty(userId)) {

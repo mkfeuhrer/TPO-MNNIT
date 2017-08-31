@@ -1,6 +1,10 @@
 package com.example.mohit.tpomnnit;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +30,24 @@ public class TpoLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tpo_login);
+
+        SharedPreferences preferences1 = PreferenceManager.getDefaultSharedPreferences(this);
+        String isLogged = preferences1.getString("Logged", "");
+        if(!isLogged.equalsIgnoreCase(""))
+
+        {
+            if(isLogged.equals("true")){
+                Intent i=new Intent(TpoLogin.this,StudentProfile.class);
+                SharedPreferences settings2 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                String regn = settings2.getString("registrationnum","");
+                Log.e("regis",regn);
+                i.putExtra("reg",regn);
+                startActivity(i);
+                finish();
+            }
+        }
+
+
         regnum = (EditText) findViewById(R.id.regnum);
         password = (EditText)findViewById(R.id.loginpassword);
         signin = (Button)findViewById(R.id.signin);
@@ -34,6 +56,7 @@ public class TpoLogin extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 ValueEventListener val=new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -44,6 +67,23 @@ public class TpoLogin extends AppCompatActivity {
                                 String passwd=tpoDetails.child("password").getValue().toString();
                                 if(passwd.equals(password.getText().toString().trim()))
                                 {
+                                    SQLiteDatabase data=openOrCreateDatabase("tpo",MODE_PRIVATE,null); //nobody other can access
+                                    //it is stored in our phone only
+                                    data.execSQL("create table if not exists student(name varchar, password varchar);");
+                                    //
+                                    String s1 = regnum.getText().toString().trim();
+                                    String s2 = password.getText().toString().trim();
+                                    String s = "select * from student where name='" + s1 + "' and password='" + s2 + "'";
+
+                                    Cursor cursor = data.rawQuery(s, null);
+                                    if (cursor.getCount() > 0) {
+                                        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                                        SharedPreferences.Editor editor = settings.edit();
+                                        editor.putString("registrationnum", s1).apply();
+                                        editor.putString("Logged","true");
+                                        editor.apply();
+                                        //Toast.makeText(Login.this, "sjkhfdkjhafl", Toast.LENGTH_LONG).show();
+                                    }
                                     //Log.e("sa","password matched");
                                     Toast.makeText(TpoLogin.this,"Logged in...:-)",Toast.LENGTH_LONG).show();
                                     finish();
@@ -66,9 +106,9 @@ public class TpoLogin extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
-                Intent i = new Intent(TpoLogin.this, TpoSignup.class);
+                Intent i = new Intent(TpoLogin.this,TpoSignup.class);
                 startActivity(i);
+                finish();
             }
         });
 

@@ -18,6 +18,10 @@
             android:id="@+id/interviewexperience"
             android:icon="@drawable/ic_menu_manage"
             android:title="Interview Experience" />
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Logout" />
     </group>
 
     <item android:title="Communicate">
