@@ -1,5 +1,6 @@
 package com.example.mohit.tpomnnit;
 
+import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -21,7 +22,7 @@ public class MyProfile extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.container);
         setupViewPager(mViewPager);
 
-
+        contextOfApplication = getApplicationContext();
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
@@ -41,5 +42,10 @@ public class MyProfile extends AppCompatActivity {
         adapter.addFragment(new Tab4Fragment(), "Photo & Resume");
         adapter.addFragment(new Tab5Fragment(), "Password");
         viewPager.setAdapter(adapter);
+    }
+    public static Context contextOfApplication;
+    public static Context getContextOfApplication()
+    {
+        return contextOfApplication;
     }
 }
