@@ -22,20 +22,19 @@ public class TpoSignup extends AppCompatActivity {
     private Button register;
     private EditText year,password,regnum,name;
     private TextView registered;
-    private FirebaseDatabase mFirebaseInstance;
-    private DatabaseReference mDatabase,mDatabase2;
-    private String userId,userId2;
+    private DatabaseReference mDatabase;
+    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tpo_signup);
         mDatabase=FirebaseDatabase.getInstance().getReference("tpouser");
-        userId=mDatabase.push().getKey();
+        userId     = mDatabase.push().getKey();
         register   = (Button)findViewById(R.id.register);
         regnum     = (EditText)findViewById(R.id.regnum);
         name       = (EditText)findViewById(username);
-        year      = (EditText)findViewById(R.id.year);
+        year       = (EditText)findViewById(R.id.year);
         password   = (EditText)findViewById(R.id.password);
         registered = (TextView)findViewById(R.id.registered);
         registered.setOnClickListener(new View.OnClickListener() {
