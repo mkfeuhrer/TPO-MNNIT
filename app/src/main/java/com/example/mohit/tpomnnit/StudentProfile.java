@@ -64,6 +64,7 @@ public class StudentProfile extends AppCompatActivity
         tpocredit=(EditText)findViewById(R.id.tpocredit);
         company=(EditText)findViewById(R.id.company);
         registrationnum = getIntent().getStringExtra("reg");
+        Log.e("reg",registrationnum);
 
         ValueEventListener vel = new ValueEventListener() {
             @Override
@@ -82,6 +83,10 @@ public class StudentProfile extends AppCompatActivity
                         //Access all data
 
                     }
+//                            Log.d("valueName:", userDetails.child("name").getValue().toString());
+//                            Log.d("valueEmail:", userDetails.child("email").getValue().toString());
+//                            Log.d("valueuserid:", userDetails.child("studentid").getValue().toString());
+//                            Log.d("password:", userDetails.child("password").getValue().toString());
                 }
             }
 
@@ -91,6 +96,8 @@ public class StudentProfile extends AppCompatActivity
             }
         };
         mDatabase.addValueEventListener(vel);
+
+
 
     }
 
@@ -142,6 +149,7 @@ public class StudentProfile extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.studentprofile) {
+            finish();
             Intent i = new Intent(StudentProfile.this,StudentProfile.class);
             startActivity(i);
             // Handle the camera action
