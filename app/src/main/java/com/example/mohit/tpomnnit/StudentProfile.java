@@ -1,5 +1,6 @@
 package com.example.mohit.tpomnnit;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,7 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -135,17 +135,23 @@ public class StudentProfile extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.studentprofile) {
+            finish();
+            Intent i = new Intent(StudentProfile.this,StudentProfile.class);
+            startActivity(i);
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.myprofile) {
+            finish();
+            Intent i = new Intent(StudentProfile.this,MyProfile.class);
+            startActivity(i);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.companies) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.interviewexperience) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.contact) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.rate) {
 
         }
 

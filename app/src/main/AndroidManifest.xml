@@ -28,6 +28,11 @@
             android:name=".StudentHome"
             android:label="@string/title_activity_student_home"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MyProfile" />
+        <activity android:name=".SectionsPageAdapter" />
+        <activity android:name=".Tab1Fragment" />
+        <activity android:name=".Tab2Fragment" />
+        <activity android:name=".Tab3Fragment"></activity>
     </application>
 
 </manifest>
