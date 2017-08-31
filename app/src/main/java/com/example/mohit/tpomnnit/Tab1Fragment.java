@@ -28,12 +28,12 @@ public class Tab1Fragment extends Fragment {
             category,pwd,residential,guardian,presentaddress,permanentaddress,
             marital,state,country,parentcontact,personalcontact;
     Button save;
-    private String registrationnum,userId;
+    private String registrationnum,userId,key;
     private DatabaseReference mDatabase;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.tab1_fragment,container,false);
+        View view = inflater.inflate(R.layout.tab1_fragment, container, false);
         regno = (EditText) view.findViewById(R.id.regno);
         name = (EditText) view.findViewById(R.id.name);
         course = (EditText) view.findViewById(R.id.course);
@@ -54,19 +54,20 @@ public class Tab1Fragment extends Fragment {
         country = (EditText) view.findViewById(R.id.country);
         parentcontact = (EditText) view.findViewById(R.id.parentcontact);
         personalcontact = (EditText) view.findViewById(R.id.personalcontact);
-        save=(Button)view.findViewById(R.id.save);
+        save = (Button) view.findViewById(R.id.save);
         mDatabase = FirebaseDatabase.getInstance().getReference("userdata");
-        userId=mDatabase.push().getKey();
-        MyProfile myProfile=(MyProfile)getActivity();
-        registrationnum=myProfile.getRegno();
+        userId = mDatabase.push().getKey();
+        MyProfile myProfile = (MyProfile) getActivity();
+        registrationnum = myProfile.getRegno();
+        regno.setEnabled(false);
+        name.setEnabled(false);
         ValueEventListener vel = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                UserData user= dataSnapshot.getValue(UserData.class);
-                for(DataSnapshot userDetails : dataSnapshot.getChildren()) {
+                UserData user = dataSnapshot.getValue(UserData.class);
+                for (DataSnapshot userDetails : dataSnapshot.getChildren()) {
                     System.out.println(userDetails.child("regnum").getValue().toString());
-                    if(registrationnum.equals(userDetails.child("regnum").getValue().toString()))
-                    {
+                    if (registrationnum.equals(userDetails.child("regnum").getValue().toString())) {
                         System.out.println("in in in ini ni nin in in ");
                         name.setText(userDetails.child("name").getValue().toString());
                         branch.setText(userDetails.child("branch").getValue().toString());
@@ -78,7 +79,8 @@ public class Tab1Fragment extends Fragment {
                         linkedin.setText(userDetails.child("linkedinid").getValue().toString());
                         gender.setText(userDetails.child("gender").getValue().toString());
                         category.setText(userDetails.child("category").getValue().toString());
-                        pwd.setText(userDetails.child("phychal").getValue().toString());name.setText(userDetails.child("name").getValue().toString());
+                        pwd.setText(userDetails.child("phychal").getValue().toString());
+                        name.setText(userDetails.child("name").getValue().toString());
                         residential.setText(userDetails.child("residentialstatus").getValue().toString());
                         guardian.setText(userDetails.child("guardian").getValue().toString());
                         permanentaddress.setText(userDetails.child("permanentadd").getValue().toString());
@@ -87,7 +89,8 @@ public class Tab1Fragment extends Fragment {
                         country.setText(userDetails.child("country").getValue().toString());
                         parentcontact.setText(userDetails.child("guardianmobile").getValue().toString());
                         personalcontact.setText(userDetails.child("mobileno").getValue().toString());
-
+                        marital.setText(userDetails.child("maritalstatus").getValue().toString());
+                        key=userDetails.getKey();
                         //Access all data
 
                     }
@@ -113,7 +116,29 @@ public class Tab1Fragment extends Fragment {
                 Toast.makeText(getActivity(), "TESTING BUTTON CLICK 1",Toast.LENGTH_SHORT).show();
             }
         });*/
-
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDatabase.child(key).child("branch").setValue(branch.getText().toString().trim());
+                mDatabase.child(key).child("dob").setValue(dob.getText().toString().trim());
+                mDatabase.child(key).child("email").setValue(email.getText().toString().trim());
+                mDatabase.child(key).child("skypeid").setValue(skype.getText().toString().trim());
+                mDatabase.child(key).child("linkedinid").setValue(linkedin.getText().toString().trim());
+                mDatabase.child(key).child("gender").setValue(gender.getText().toString().trim());
+                mDatabase.child(key).child("category").setValue(category.getText().toString().trim());
+                mDatabase.child(key).child("phychal").setValue(pwd.getText().toString().trim());
+                mDatabase.child(key).child("residentialstatus").setValue(residential.getText().toString().trim());
+                mDatabase.child(key).child("guardian").setValue(guardian.getText().toString().trim());
+                mDatabase.child(key).child("presentadd").setValue(presentaddress.getText().toString().trim());
+                mDatabase.child(key).child("permanentadd").setValue(permanentaddress.getText().toString().trim());
+                mDatabase.child(key).child("maritalstatus").setValue(marital.getText().toString().trim());
+                mDatabase.child(key).child("state").setValue(state.getText().toString().trim());
+                mDatabase.child(key).child("country").setValue(country.getText().toString().trim());
+                mDatabase.child(key).child("mobileno").setValue(personalcontact.getText().toString().trim());
+                mDatabase.child(key).child("guardianmobile").setValue(parentcontact.getText().toString().trim());
+               // mDatabase.child(key).child("state").setValue(state.getText().toString().trim());
+            }
+        });
         return view;
     }
 } 
