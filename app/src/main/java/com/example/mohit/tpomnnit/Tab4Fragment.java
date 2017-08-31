@@ -32,12 +32,13 @@ import static android.app.Activity.RESULT_OK;
 
 public class Tab4Fragment extends Fragment {
     private static final String TAG = "Tab4Fragment";
-    Uri filePath;
+    Uri filePath,resumePath;
     ImageView image;
     int PICK_IMAGE_REQUEST=111;
-    Button upload,choose;
+    Button upload,choose,uploadresume,chooseresume;
     FirebaseStorage storage=FirebaseStorage.getInstance();
     StorageReference storageref=storage.getReference("userimage");
+    StorageReference storageref1=storage.getReference("userresume");
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -45,6 +46,8 @@ public class Tab4Fragment extends Fragment {
         upload=(Button)view.findViewById(R.id.upload);
         image=(ImageView)view.findViewById(R.id.image);
         choose=(Button) view.findViewById(R.id.choose);
+        uploadresume = (Button)view.findViewById(R.id.uploadresume);
+        chooseresume = (Button)view.findViewById(R.id.chooseresume);
         choose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,7 +62,10 @@ public class Tab4Fragment extends Fragment {
             public void onClick(View view) {
                 if(filePath!=null)
                 {
-                    StorageReference childref=storageref.child("20154076.jpg");
+                    String regnum ;
+                    MyProfile obj = (MyProfile)getActivity();
+                    regnum = obj.getRegno();
+                    StorageReference childref=storageref.child(regnum+".jpg");
                     UploadTask uploadTask=childref.putFile(filePath);
                     uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -79,6 +85,46 @@ public class Tab4Fragment extends Fragment {
                 {
                     Context applicationContext = MyProfile.getContextOfApplication();
                     Toast.makeText(applicationContext, "Select an image", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        chooseresume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent();
+                intent.setType("application/pdf");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent,"Select Resume"),PICK_IMAGE_REQUEST);
+            }
+        });
+        uploadresume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(filePath!=null)
+                {
+                    String regnum ;
+                    MyProfile obj = (MyProfile)getActivity();
+                    regnum = obj.getRegno();
+                    StorageReference childref=storageref1.child(regnum+".pdf");
+                    UploadTask uploadTask=childref.putFile(filePath);
+                    uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Context applicationContext = MyProfile.getContextOfApplication();
+                            Toast.makeText(applicationContext, "Upload Successful", Toast.LENGTH_LONG).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Context applicationContext = MyProfile.getContextOfApplication();
+                            Toast.makeText(applicationContext, "Upload fail -> "+e, Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+                else
+                {
+                    Context applicationContext = MyProfile.getContextOfApplication();
+                    Toast.makeText(applicationContext, "Select an resume", Toast.LENGTH_LONG).show();
                 }
             }
         });
