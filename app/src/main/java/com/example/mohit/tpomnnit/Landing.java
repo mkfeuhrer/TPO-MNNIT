@@ -22,7 +22,10 @@ public class Landing extends AppCompatActivity {
         tpoadmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Landing.this,"TPO Register",Toast.LENGTH_LONG).show();
+                finish();
+                Intent i = new Intent(Landing.this, TpoLogin.class);
+                startActivity(i);
+                //Toast.makeText(Landing.this,"TPO Register",Toast.LENGTH_LONG).show();
             }
         });
 
