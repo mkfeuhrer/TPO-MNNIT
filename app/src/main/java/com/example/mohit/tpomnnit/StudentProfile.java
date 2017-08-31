@@ -60,12 +60,6 @@ public class StudentProfile extends AppCompatActivity
         tpocredit=(EditText)findViewById(R.id.tpocredit);
         company=(EditText)findViewById(R.id.company);
         registrationnum = getIntent().getStringExtra("reg");
-        name.setEnabled(false);
-        regnum.setEnabled(false);
-        branch.setEnabled(false);
-        verified.setEnabled(false);
-        tpocredit.setEnabled(false);
-        company.setEnabled(false);
         Log.e("reg",registrationnum);
 
         ValueEventListener vel = new ValueEventListener() {
@@ -149,7 +143,6 @@ public class StudentProfile extends AppCompatActivity
         } else if (id == R.id.myprofile) {
             finish();
             Intent i = new Intent(StudentProfile.this,MyProfile.class);
-            i.putExtra("reg",regnum.getText().toString().trim());
             startActivity(i);
 
         } else if (id == R.id.companies) {
