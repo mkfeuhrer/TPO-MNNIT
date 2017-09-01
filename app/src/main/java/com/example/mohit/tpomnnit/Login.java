@@ -70,7 +70,7 @@ public class Login extends AppCompatActivity {
                                 if(passw.equals(password.getText().toString().trim()))
                                 {
                                     SQLiteDatabase data=openOrCreateDatabase("tpo",MODE_PRIVATE,null); //nobody other can access
-                                    //it is stored in our phone only
+                                    //it is stored in ouFtoaFr phone only
                                     data.execSQL("create table if not exists student(name varchar, password varchar);");
                                     //
                                     String s1 = regnum.getText().toString().trim();
