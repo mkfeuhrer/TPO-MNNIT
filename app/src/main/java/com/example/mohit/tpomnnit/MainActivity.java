@@ -73,15 +73,6 @@ public class MainActivity extends AppCompatActivity {
         name       = (EditText)findViewById(username);
         year      = (EditText)findViewById(R.id.year);
         password   = (EditText)findViewById(R.id.password);
-        registered = (TextView)findViewById(R.id.registered);
-
-        registered.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                startActivity(new Intent(MainActivity.this,Login.class));
-            }
-        });
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override

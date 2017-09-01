@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,11 +27,15 @@ public class Login extends AppCompatActivity {
     private EditText regnum,password;
     private TextView signup;
     private DatabaseReference mDatabase;
+    private ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        imageView = (ImageView) findViewById(R.id.code);
+        imageView.setImageResource(R.drawable.loginback);
 
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
 
