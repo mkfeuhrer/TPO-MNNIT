@@ -4,6 +4,7 @@ package com.example.mohit.tpomnnit;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -38,8 +39,10 @@ import static android.app.Activity.RESULT_OK;
 
 public class Tab4Fragment extends Fragment {
     private static final String TAG = "Tab4Fragment";
+    private StorageReference imageref,str;
     Uri filePath,resumePath;
     ImageView image;
+    private  String registrationnum;
     int PICK_IMAGE_REQUEST=111;
     Button upload,choose,uploadresume,chooseresume;
     FirebaseStorage storage=FirebaseStorage.getInstance();
@@ -66,6 +69,34 @@ public class Tab4Fragment extends Fragment {
                 startActivityForResult(Intent.createChooser(intent,"Select Image"),PICK_IMAGE_REQUEST);
             }
         });
+        MyProfile myProfile = (MyProfile) getActivity();
+        registrationnum = myProfile.getRegno();
+
+        str = FirebaseStorage.getInstance().getReference("userimage/"+registrationnum+".jpg");
+
+        imageref = str;
+        File localFile = null;
+        try {
+            localFile = File.createTempFile("images", "jpg");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        final File finalLocalFile = localFile;
+        imageref.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                // Local temp file has been created
+                Toast.makeText(getActivity(),"File Download",Toast.LENGTH_LONG);
+                Bitmap bitmap = BitmapFactory.decodeFile(finalLocalFile.getAbsolutePath());
+                image.setImageBitmap(bitmap);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
