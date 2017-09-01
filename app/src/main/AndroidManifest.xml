@@ -41,7 +41,8 @@
         <activity android:name=".Tab1Fragment" />
         <activity android:name=".Tab2Fragment" />
         <activity android:name=".Tab3Fragment" />
-        <activity android:name=".AddCompany"></activity>
+        <activity android:name=".AddCompany" />
+
     </application>
 
 </manifest>

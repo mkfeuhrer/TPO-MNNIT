@@ -94,10 +94,6 @@ public class Tab1Fragment extends Fragment {
                         //Access all data
 
                     }
-//                            Log.d("valueName:", userDetails.child("name").getValue().toString());
-//                            Log.d("valueEmail:", userDetails.child("email").getValue().toString());
-//                            Log.d("valueuserid:", userDetails.child("studentid").getValue().toString());
-//                            Log.d("password:", userDetails.child("password").getValue().toString());
                 }
             }
 

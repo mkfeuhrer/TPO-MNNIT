@@ -45,6 +45,8 @@
             android:inputType="text"
             android:text="Location" />
 
+
+
     </LinearLayout>
 
 </RelativeLayout>
