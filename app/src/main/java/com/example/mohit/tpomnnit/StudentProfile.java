@@ -3,8 +3,11 @@ package com.example.mohit.tpomnnit;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -19,33 +22,37 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.io.File;
+import java.io.IOException;
+
 
 public class StudentProfile extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private EditText name,regnum,branch,verified,tpocredit,company;
     private String registrationnum,userId;
     private DatabaseReference mDatabase;
+    private StorageReference storage,imageref;
+    private ImageView imageview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -63,8 +70,35 @@ public class StudentProfile extends AppCompatActivity
         verified=(EditText)findViewById(R.id.verified);
         tpocredit=(EditText)findViewById(R.id.tpocredit);
         company=(EditText)findViewById(R.id.company);
+        imageview = (ImageView)findViewById(R.id.imageView3);
         registrationnum = getIntent().getStringExtra("reg");
-        Log.e("reg",registrationnum);
+//        Log.e("reg",registrationnum);
+
+        storage = FirebaseStorage.getInstance().getReference("userimage/"+registrationnum+".jpg");
+
+        imageref = storage;
+        File localFile = null;
+        try {
+            localFile = File.createTempFile("images", "jpg");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        final File finalLocalFile = localFile;
+        imageref.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                // Local temp file has been created
+                Toast.makeText(getApplicationContext(),"File Download",Toast.LENGTH_LONG);
+                Bitmap bitmap = BitmapFactory.decodeFile(finalLocalFile.getAbsolutePath());
+                imageview.setImageBitmap(bitmap);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle any errors
+            }
+        });
+
 
         ValueEventListener vel = new ValueEventListener() {
             @Override
@@ -149,12 +183,12 @@ public class StudentProfile extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.studentprofile) {
-            finish();
-            Intent i = new Intent(StudentProfile.this,StudentProfile.class);
-            startActivity(i);
+          //  finish();
+           /* Intent i = new Intent(StudentProfile.this,StudentProfile.class);
+            startActivity(i);*/
             // Handle the camera action
         } else if (id == R.id.myprofile) {
-            finish();
+          //  finish();
             Intent i = new Intent(StudentProfile.this,MyProfile.class);
             i.putExtra("reg",regnum.getText().toString().trim());
             startActivity(i);

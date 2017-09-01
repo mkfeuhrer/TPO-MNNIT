@@ -1,19 +1,25 @@
 package com.example.mohit.tpomnnit;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.NotificationCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.ArrayList;
 
@@ -27,6 +33,7 @@ public class AddCompany extends AppCompatActivity {
     private String companyId;
     private Button addcompany;
     private EditText year,ctc,location,name;
+    private TextView tvNotificationDetails;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,14 +59,16 @@ public class AddCompany extends AppCompatActivity {
                 else
                     createCompany(name.getText().toString().trim(), year.getText().toString().trim(), ctc.getText().toString().trim(), location.getText().toString().trim(),companyId);
 
-                finish();
-                Intent i = new Intent(AddCompany.this,TpoHome.class);
-                i.putExtra("company",name.getText().toString().trim());
-                startActivity(i);
+//                finish();
+//                Intent i = new Intent(AddCompany.this,TpoHome.class);
+//                i.putExtra("company",name.getText().toString().trim());
+//                startActivity(i);
             }
         });
 
     }
+
+
 
     private void createCompany(String name, String year,String ctc,String location,String companyid) {
         // TODO
