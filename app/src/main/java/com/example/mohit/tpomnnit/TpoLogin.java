@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,10 +27,14 @@ public class TpoLogin extends AppCompatActivity {
     private EditText regnum,password;
     private TextView signup;
     private DatabaseReference mDatabase;
+    ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tpo_login);
+
+        imageView = (ImageView) findViewById(R.id.code);
+        imageView.setImageResource(R.drawable.loginback);
 
         SharedPreferences preferences1 = PreferenceManager.getDefaultSharedPreferences(this);
         String isLogged = preferences1.getString("Logged", "");
@@ -39,7 +44,7 @@ public class TpoLogin extends AppCompatActivity {
             if(isLogged.equals("true")){
                 Intent i=new Intent(TpoLogin.this,TpoHome.class);
                 SharedPreferences settings2 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                String regn = settings2.getString("registrationnum","");
+                String regn = settings2.getString("tpoadminregister","");
                 Log.e("regis",regn);
                 i.putExtra("reg",regn);
                 startActivity(i);
@@ -69,17 +74,17 @@ public class TpoLogin extends AppCompatActivity {
                                 {
                                     SQLiteDatabase data=openOrCreateDatabase("tpo",MODE_PRIVATE,null); //nobody other can access
                                     //it is stored in our phone only
-                                    data.execSQL("create table if not exists student(name varchar, password varchar);");
+                                    data.execSQL("create table if not exists tpologin(name varchar, password varchar);");
                                     //
                                     String s1 = regnum.getText().toString().trim();
                                     String s2 = password.getText().toString().trim();
-                                    String s = "select * from student where name='" + s1 + "' and password='" + s2 + "'";
+                                    String s = "select * from tpologin where name='" + s1 + "' and password='" + s2 + "'";
 
                                     Cursor cursor = data.rawQuery(s, null);
                                     if (cursor.getCount() > 0) {
                                         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                                         SharedPreferences.Editor editor = settings.edit();
-                                        editor.putString("registrationnum", s1).apply();
+                                        editor.putString("tpoadminregister", s1).apply();
                                         editor.putString("Logged","true");
                                         editor.apply();
                                         //Toast.makeText(Login.this, "sjkhfdkjhafl", Toast.LENGTH_LONG).show();

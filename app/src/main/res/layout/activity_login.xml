@@ -57,7 +57,7 @@
             android:layout_weight="90"
             android:hint="Registration No:"
             android:id="@+id/regnum"
-            android:inputType="textUri"
+            android:inputType="number"
             android:lines="1"
             android:maxLength="128"/>
 

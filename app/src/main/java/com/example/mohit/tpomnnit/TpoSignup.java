@@ -56,13 +56,13 @@ public class TpoSignup extends AppCompatActivity {
                 //database in android
                 SQLiteDatabase data = openOrCreateDatabase("tpo", MODE_PRIVATE, null); //nobody other can access
                 //it is stored in our phone only
-                data.execSQL("create table if not exists student (name varchar, password varchar);");
-                String s = "select * from student where name='" + s1 + "' and password='" + s2 + "'";
+                data.execSQL("create table if not exists tpoadmin (name varchar, password varchar);");
+                String s = "select * from tpoadmin where name='" + s1 + "' and password='" + s2 + "'";
                 Cursor cursor = data.rawQuery(s, null); // whatever query i run i can store something in cursor it is a class
                 if (cursor.getCount() > 0) {
                     Toast.makeText(TpoSignup.this, "User Already Exist", Toast.LENGTH_LONG).show();
                 } else {
-                    data.execSQL("insert into student values ('" + s1 + "','" + s2 + "');");
+                    data.execSQL("insert into tpoadmin values ('" + s1 + "','" + s2 + "');");
                     Toast.makeText(TpoSignup.this, "Signup Successful", Toast.LENGTH_SHORT).show();
                 }
                 // Check for already existed userId

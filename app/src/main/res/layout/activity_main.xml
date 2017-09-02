@@ -143,9 +143,9 @@
             android:layout_weight="90"
             android:lines="1"
             android:maxLength="128"
-            android:hint="Email:"
+            android:hint="Year:"
             android:inputType="textEmailAddress"
-            android:id="@+id/email"/>
+            android:id="@+id/year"/>
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"

@@ -23,7 +23,7 @@ public class Landing extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-                Intent i = new Intent(Landing.this, CompanyStudent.class);
+                Intent i = new Intent(Landing.this, TpoLogin.class);
                 startActivity(i);
                 //Toast.makeText(Landing.this,"TPO Register",Toast.LENGTH_LONG).show();
             }
