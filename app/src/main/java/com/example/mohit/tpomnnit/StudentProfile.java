@@ -194,6 +194,8 @@ public class StudentProfile extends AppCompatActivity
             startActivity(i);
 
         } else if (id == R.id.companies) {
+            Intent i = new Intent(StudentProfile.this, CompanyStudent.class);
+            startActivity(i);
 
         } else if (id == R.id.interviewexperience) {
 
