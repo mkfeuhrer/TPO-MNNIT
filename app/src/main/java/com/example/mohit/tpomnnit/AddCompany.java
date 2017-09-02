@@ -59,13 +59,13 @@ public class AddCompany extends AppCompatActivity {
         date = (EditText) findViewById(R.id.textDate);
         time = (EditText) findViewById(R.id.textTime);
         calendar = Calendar.getInstance();
-        year = calendar.get(Calendar.YEAR);
+        Year = calendar.get(Calendar.YEAR);
         hours = calendar.get(Calendar.HOUR_OF_DAY);
         minutes = calendar.get(Calendar.MINUTE);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
         showTime(hours,minutes);
-        showDate(year, month+1, day);
+        showDate(Year, month+1, day);
         date.setFocusable(false);
         time.setFocusable(false);
         date.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +112,7 @@ public class AddCompany extends AppCompatActivity {
         // TODO Auto-generated method stub
         if (id == 999) {
             return new DatePickerDialog(this,
-                    myDateListener, year, month, day);
+                    myDateListener, Year, month, day);
         }
         else if(id == 998)
         {
@@ -139,11 +139,11 @@ public class AddCompany extends AppCompatActivity {
             };
     private  void showTime(int hours,int minutes)
     {
-        timeView.setText(new StringBuilder().append(hours).append(":")
+        time.setText(new StringBuilder().append(hours).append(":")
                 .append(minutes));
     }
     private void showDate(int year, int month, int day) {
-        dateView.setText(new StringBuilder().append(day).append("/")
+        date.setText(new StringBuilder().append(day).append("/")
                 .append(month).append("/").append(year));
     }
 
