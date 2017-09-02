@@ -59,8 +59,8 @@ public class AddCompany extends AppCompatActivity {
         date = (EditText) findViewById(R.id.textDate);
         time = (EditText) findViewById(R.id.textTime);
         calendar = Calendar.getInstance();
-        year = calendar.get(Calendar.YEAR);
-        hours = calendar.get(Calendar.HOUR_OF_DAY);
+//        year = calendar.get(Calendar.YEAR);
+//        hours = calendar.get(Calendar.HOUR_OF_DAY);
         minutes = calendar.get(Calendar.MINUTE);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);

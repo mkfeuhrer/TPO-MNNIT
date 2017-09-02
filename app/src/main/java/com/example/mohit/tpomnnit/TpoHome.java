@@ -120,7 +120,7 @@ public class TpoHome extends AppCompatActivity
         } else if (id == R.id.logout){
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
             SharedPreferences.Editor editor = preferences.edit();
-            editor.putString("Logged","false");
+            editor.putString("LoggedTpo","false");
             editor.apply();
             Intent i = new Intent(TpoHome.this, TpoLogin.class);
             startActivity(i);

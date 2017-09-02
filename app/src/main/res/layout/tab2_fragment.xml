@@ -18,8 +18,8 @@
 
             <TextView
                 android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="100"
                 android:textSize="20dp"
                 android:text="Class 10:-"
@@ -37,16 +37,16 @@
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="70"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:text="10th School"
                 android:textSize="20dp"/>
 
             <EditText
                 android:id="@+id/school10"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="30"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:ems="10"
                 />
 
@@ -59,16 +59,16 @@
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="10th Board"
                 android:textSize="20dp"/>
 
             <EditText
                 android:id="@+id/board10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"
                 />
@@ -82,16 +82,16 @@
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="10th Year"
                 android:textSize="20dp"/>
 
             <EditText
                 android:id="@+id/year10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10" />
 
@@ -104,16 +104,16 @@
 
             <TextView
                 android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="10th %"
                 android:textSize="20dp"/>
 
             <EditText
                 android:id="@+id/percentage10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10" />
 
@@ -126,8 +126,8 @@
 
             <TextView
                 android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:text="Class 12th:-"
                 android:textSize="20dp"
                 android:textStyle="bold"/>
@@ -141,16 +141,16 @@
 
             <TextView
                 android:id="@+id/textView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="12th School"
                 android:textSize="20dp"/>
 
             <EditText
                 android:id="@+id/school12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10" />
 
@@ -163,16 +163,16 @@
 
             <TextView
                 android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="12th Board"
                 android:textSize="20dp"/>
 
             <EditText
                 android:id="@+id/board12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10" />
 
@@ -185,16 +185,16 @@
 
             <TextView
                 android:id="@+id/textView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="12th Year"
                 android:textSize="20dp"/>
 
             <EditText
                 android:id="@+id/year12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10" />
 
@@ -207,16 +207,16 @@
 
             <TextView
                 android:id="@+id/textView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="12th %"
                 android:textSize="20dp"/>
 
             <EditText
                 android:id="@+id/percentage12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"/>
 
@@ -231,8 +231,8 @@
 
             <TextView
                 android:id="@+id/textView20"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="100"
                 android:textSize="20dp"
                 android:text="Btech:-"
@@ -242,7 +242,7 @@
         </LinearLayout>
         <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -256,72 +256,72 @@
 
                 <TextView
                     android:id="@+id/textView29"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="Semester"
                     android:layout_weight="20"
                     android:textSize="20dp"/>
 
                 <TextView
                     android:id="@+id/textView28"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="1"
                     android:layout_weight="10"
                     android:textSize="20dp"/>
 
                 <TextView
                     android:id="@+id/textView27"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="2"
                     android:layout_weight="10"
                     android:textSize="20dp"/>
 
                 <TextView
                     android:id="@+id/textView26"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="3"
                     android:textSize="20dp"
                     android:layout_weight="10"/>
 
                 <TextView
                     android:id="@+id/textView25"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="4"
                     android:textSize="20dp"
                     android:layout_weight="10"/>
 
                 <TextView
                     android:id="@+id/textView24"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="5"
                     android:textSize="20dp"
                     android:layout_weight="10"/>
 
                 <TextView
                     android:id="@+id/textView23"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="6"
                     android:textSize="20dp"
                     android:layout_weight="10"/>
 
                 <TextView
                     android:id="@+id/textView22"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="7"
                     android:textSize="20dp"
                     android:layout_weight="10"/>
 
                 <TextView
                     android:id="@+id/textView21"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="8"
                     android:textSize="20dp"
                     android:layout_weight="10"/>
@@ -333,66 +333,66 @@
 
                 <TextView
                     android:id="@+id/textView291"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="SPI"
                     android:textSize="20dp"
                     android:layout_weight="20"/>
 
                 <EditText
                     android:id="@+id/spi1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:textSize="20dp"
                     android:layout_weight="10"/>
 
                 <EditText
                     android:id="@+id/spi2"
                     android:textSize="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="10"/>
 
                 <EditText
                     android:id="@+id/spi3"
                     android:textSize="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="10"/>
 
                 <EditText
                     android:id="@+id/spi4"
                     android:textSize="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="10"/>
 
                 <EditText
                     android:id="@+id/spi5"
                     android:textSize="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="10"/>
 
                 <EditText
                     android:id="@+id/spi6"
                     android:textSize="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="10"/>
 
                 <EditText
                     android:id="@+id/spi7"
                     android:textSize="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="10"/>
 
                 <EditText
                     android:id="@+id/spi8"
                     android:textSize="20dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="10"/>
             </TableRow>
         </TableLayout>
@@ -404,16 +404,16 @@
 
             <TextView
                 android:id="@+id/textView100"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="CPI"
                 android:textSize="20dp"/>
 
             <EditText
                 android:id="@+id/cpi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:ems="10"/>
 
@@ -427,8 +427,8 @@
 
             <Button
                 android:id="@+id/save"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="Save and Continue" />
         </LinearLayout>

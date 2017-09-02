@@ -37,14 +37,15 @@ public class TpoLogin extends AppCompatActivity {
         imageView.setImageResource(R.drawable.loginback);
 
         SharedPreferences preferences1 = PreferenceManager.getDefaultSharedPreferences(this);
-        String isLogged = preferences1.getString("Logged", "");
+        String isLogged = preferences1.getString("LoggedTpo", "");
+        Log.e("islogged",isLogged);
         if(!isLogged.equalsIgnoreCase(""))
-
         {
             if(isLogged.equals("true")){
                 Intent i=new Intent(TpoLogin.this,TpoHome.class);
                 SharedPreferences settings2 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 String regn = settings2.getString("tpoadminregister","");
+                Toast.makeText(getApplicationContext(),"Already Logged in!",Toast.LENGTH_LONG);
                 Log.e("regis",regn);
                 i.putExtra("reg",regn);
                 startActivity(i);
@@ -74,18 +75,18 @@ public class TpoLogin extends AppCompatActivity {
                                 {
                                     SQLiteDatabase data=openOrCreateDatabase("tpo",MODE_PRIVATE,null); //nobody other can access
                                     //it is stored in our phone only
-                                    data.execSQL("create table if not exists tpologin(name varchar, password varchar);");
+                                    data.execSQL("create table if not exists tpoadmin(name varchar, password varchar);");
                                     //
                                     String s1 = regnum.getText().toString().trim();
                                     String s2 = password.getText().toString().trim();
-                                    String s = "select * from tpologin where name='" + s1 + "' and password='" + s2 + "'";
+                                    String s = "select * from tpoadmin where name='" + s1 + "' and password='" + s2 + "'";
 
                                     Cursor cursor = data.rawQuery(s, null);
                                     if (cursor.getCount() > 0) {
                                         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                                         SharedPreferences.Editor editor = settings.edit();
                                         editor.putString("tpoadminregister", s1).apply();
-                                        editor.putString("Logged","true");
+                                        editor.putString("LoggedTpo","true");
                                         editor.apply();
                                         //Toast.makeText(Login.this, "sjkhfdkjhafl", Toast.LENGTH_LONG).show();
                                     }

@@ -39,14 +39,6 @@ public class TpoSignup extends AppCompatActivity {
         name       = (EditText)findViewById(username);
         year       = (EditText)findViewById(R.id.year);
         password   = (EditText)findViewById(R.id.password);
-        registered = (TextView)findViewById(R.id.registered);
-        registered.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                startActivity(new Intent(TpoSignup.this,TpoLogin.class));
-            }
-        });
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

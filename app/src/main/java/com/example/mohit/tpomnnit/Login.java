@@ -47,7 +47,6 @@ public class Login extends AppCompatActivity {
         SharedPreferences preferences1 = PreferenceManager.getDefaultSharedPreferences(this);
         String isLogged = preferences1.getString("Logged", "");
         if(!isLogged.equalsIgnoreCase(""))
-
         {
             if(isLogged.equals("true")){
                 Intent i=new Intent(Login.this,StudentProfile.class);
