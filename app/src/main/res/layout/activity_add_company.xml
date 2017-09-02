@@ -36,33 +36,59 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="Provision of PPO"
+            android:inputType="text"
+            android:id="@+id/ppo" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Profile"
+            android:inputType="text"
+            android:id="@+id/profile" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="CTC"
             android:inputType="text"
             android:id="@+id/ctc" />
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="90"
+            tools:context=".MainActivity" >
+            <TextView
+                android:id="@+id/textDsdf"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="20"
+                android:textSize="20dp"
+                android:editable="false"
+                android:text="Deadline" />
+            <EditText
+                android:id="@+id/textDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="35"
+                android:editable="false"
+                android:hint="date"
+                android:inputType="date" />
 
+            <EditText
+                android:id="@+id/textTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="35"
+                android:editable="false"
+                android:hint="time"
+                android:inputType="time" />
+        </LinearLayout>
         <Button
             android:id="@+id/addcompany"
             android:layout_width="109dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="125dp"
             android:text="Add" />
-
-        <TextView
-            android:id="@+id/txt_push_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
-            android:gravity="center_horizontal"
-            android:textColor="@color/colorPrimary"
-            android:textSize="26dp" />
-
-        <TextView
-            android:id="@+id/txt_reg_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true" />
 
     </LinearLayout>
 
