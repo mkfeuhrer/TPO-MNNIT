@@ -45,6 +45,14 @@
             android:hint="Profile"
             android:inputType="text"
             android:id="@+id/profile" />
+
+        <EditText
+            android:id="@+id/link"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Company Link"
+            android:inputType="textPersonName" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -83,6 +91,8 @@
                 android:hint="time"
                 android:inputType="time" />
         </LinearLayout>
+
+
         <Button
             android:id="@+id/addcompany"
             android:layout_width="109dp"

@@ -38,7 +38,7 @@ public class AddCompany extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private String companyId;
     private Button addcompany;
-    private EditText year,ctc,location,name,time,date;
+    private EditText year,ctc,location,name,time,date,ppo,profile,link;
     private int Year, month, day,hours,minutes;
     Calendar calendar;
     private TextView tvNotificationDetails;
@@ -56,6 +56,9 @@ public class AddCompany extends AppCompatActivity {
         name     = (EditText)findViewById(R.id.companyname);
         ctc      = (EditText)findViewById(R.id.ctc);
         location   = (EditText)findViewById(R.id.location);
+        ppo      = (EditText)findViewById(R.id.ppo);
+        profile   = (EditText)findViewById(R.id.profile);
+        //link=(EditText)findViewById(R.id.link);
         date = (EditText) findViewById(R.id.textDate);
         time = (EditText) findViewById(R.id.textTime);
         calendar = Calendar.getInstance();
@@ -88,7 +91,15 @@ public class AddCompany extends AppCompatActivity {
                 if (TextUtils.isEmpty(companyId)) {
                 }
                 else
-                    createCompany(name.getText().toString().trim(), year.getText().toString().trim(), ctc.getText().toString().trim(), location.getText().toString().trim(),companyId);
+                {
+                    ArrayList<String> branch = new ArrayList<String>();
+                    ArrayList<String> registeredstudents = new ArrayList<String>();
+                    ArrayList<String> selectedstudents = new ArrayList<String>();
+                    String deadline=time.getText().toString()+" "+date.getText().toString();
+                    Companies company = new Companies(name.getText().toString().trim(),ctc.getText().toString().trim(),location.getText().toString().trim(),profile.getText().toString().trim(),year.getText().toString().trim(),ppo.getText().toString().trim(),companyId,deadline,"www.google.com",null,null,null);
+                    addCompanyChangeListener(company);
+                }
+                    //createCompany(name.getText().toString().trim(), year.getText().toString().trim(), ctc.getText().toString().trim(), location.getText().toString().trim(),companyId);
 
 //                finish();
 //                Intent i = new Intent(AddCompany.this,TpoHome.class);
@@ -98,6 +109,32 @@ public class AddCompany extends AppCompatActivity {
         });
 
     }
+
+    private void addCompanyChangeListener(final Companies company) {
+        // User data change listener
+        mDatabase.child(companyId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Companies company1 = company;
+
+                // Check for null
+                if (company1 == null) {
+                    Log.e(TAG, "User data is null!");
+                    return;
+                }
+                final String companyId = mDatabase.push().getKey();
+                mDatabase.child(companyId).setValue(company1);
+                Log.e(TAG, "User data is changed!" + company1.name + ", " + company1.year);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.e(TAG, "Failed to read user", error.toException());
+            }
+        });
+    }
+
     @SuppressWarnings("deprecation")
     public void setDate(View view) {
         showDialog(999);
@@ -149,42 +186,5 @@ public class AddCompany extends AppCompatActivity {
 
 
 
-    private void createCompany(String name, String year,String ctc,String location,String companyid) {
-        // TODO
-        // In real apps this userId should be fetched
-        // by implementing firebase auth
-        if (TextUtils.isEmpty(companyid)) {
-//            userId = mDatabase.push().getKey();
-        }
-        ArrayList<String> branch = new ArrayList<String>();
-        ArrayList<String> registeredstudents = new ArrayList<String>();
-        ArrayList<String> selectedstudents = new ArrayList<String>();
-        Companies company = new Companies(name,ctc,location,"",year,"",companyId,"","",branch,registeredstudents,selectedstudents);
-        addCompanyChangeListener(company);
-    }
-    private void addCompanyChangeListener(final Companies company) {
-        // User data change listener
-        mDatabase.child(companyId).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Companies company1 = company;
-
-                // Check for null
-                if (company1 == null) {
-                    Log.e(TAG, "User data is null!");
-                    return;
-                }
-                final String companyId = mDatabase.push().getKey();
-                mDatabase.child(companyId).setValue(company1);
-                Log.e(TAG, "User data is changed!" + company1.name + ", " + company1.year);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.e(TAG, "Failed to read user", error.toException());
-            }
-        });
-    }
 
 }
