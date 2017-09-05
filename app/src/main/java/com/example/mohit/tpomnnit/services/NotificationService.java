@@ -44,6 +44,10 @@ public class NotificationService extends IntentService{
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     n= (int) dataSnapshot.getChildrenCount();
+                    if(i==-10)
+                    {
+                        i=n;
+                    }
                 }
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
@@ -51,12 +55,8 @@ public class NotificationService extends IntentService{
                 }
             };
             mDatabase.addValueEventListener(vel);
-            if(i==-10)
-            {
-                i=n;
-                continue;
-            }
-            if(i!=n)
+
+            if(i!=n&&i!=-10)
             {
                 //Log.i("service", "In while loop");
                 i=n;
