@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.mohit.tpomnnit.services.NotificationService;
+
 public class Landing extends AppCompatActivity {
 
     private Button tpoadmin,student;
@@ -15,6 +17,8 @@ public class Landing extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
+        Intent serviceIntent =new Intent(Landing.this, NotificationService.class);
+        startService(serviceIntent);
 
         tpoadmin = (Button)findViewById(R.id.tpoadmin);
         student  = (Button)findViewById(R.id.student);
