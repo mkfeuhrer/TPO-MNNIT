@@ -24,6 +24,12 @@
     <string name="title_activity_tpo_home">TpoHome</string>
     <string name="title_activity_company_student">CompanyStudent</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="spinner_title_branch">Select Branch</string>
+    <string name="spinner_title_course">Select Course</string>
+    <string name="radio_male">Male</string>
+    <string name="radio_female">Female</string>
+    <string name="radio_yes">Yes</string>
+    <string name="radio_no">No</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

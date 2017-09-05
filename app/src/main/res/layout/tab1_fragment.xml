@@ -30,6 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="40"
+            android:inputType="number"
             android:ems="10"
             />
 
@@ -54,6 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="40"
+            android:inputType="textPersonName"
             android:ems="10"
             />
 
@@ -62,7 +64,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:layout_weight="10">
+        android:layout_weight="10"
+        android:weightSum="100">
 
         <TextView
             android:id="@+id/textView3"
@@ -72,14 +75,12 @@
             android:text="Course"
             android:textSize="20dp"/>
 
-        <EditText
-            android:id="@+id/course"
+        <Spinner
+            android:id="@+id/spinnercourse"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="40"
-            android:ems="10"
-            />
-
+            android:prompt="@string/spinner_title_course" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -95,12 +96,13 @@
             android:text="Branch"
             android:textSize="20dp"/>
 
-        <EditText
-            android:id="@+id/branch"
+        <Spinner
+            android:id="@+id/spinnerbranch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:prompt="@string/spinner_title_branch"
             android:layout_weight="40"
-            android:ems="10" />
+            />
 
     </LinearLayout>
     <LinearLayout
@@ -122,6 +124,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="40"
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="Choose a Date"
             android:ems="10" />
 
     </LinearLayout>
@@ -144,6 +149,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="40"
+            android:inputType="textEmailAddress"
             android:ems="10" />
 
     </LinearLayout>
@@ -166,6 +172,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="40"
+            android:inputType="text"
             android:ems="10" />
 
     </LinearLayout>
@@ -188,6 +195,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="40"
+            android:inputType="text"
             android:ems="10" />
 
     </LinearLayout>
@@ -205,13 +213,32 @@
             android:text="Gender"
             android:textSize="20dp"/>
 
-        <EditText
-            android:id="@+id/gender"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="20dp"
-            android:layout_weight="40"
-            android:ems="10" />
+            android:orientation="horizontal"
+            android:layout_weight="40">
+        <RadioGroup
+            android:id="@+id/radioSex"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="100">
+            <RadioButton
+                android:id="@+id/radioMale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radio_male"
+                android:checked="true"
+                android:layout_weight="50"/>
+
+            <RadioButton
+                android:id="@+id/radioFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radio_female"
+                android:layout_weight="50"/>
+        </RadioGroup>
+    </LinearLayout>
 
     </LinearLayout>
     <LinearLayout
@@ -250,13 +277,36 @@
             android:text="Physically Challenged"
             android:textSize="20dp"/>
 
-        <EditText
-            android:id="@+id/pwd"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="20dp"
-            android:layout_weight="40"
-            android:ems="10" />
+            android:orientation="horizontal"
+            android:layout_weight="40">
+
+        <RadioGroup
+            android:id="@+id/radiophy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="100">
+
+            <RadioButton
+                android:id="@+id/radioYes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radio_yes"
+                android:checked="true"
+                android:layout_weight="50"/>
+
+            <RadioButton
+                android:id="@+id/radioNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radio_no"
+                android:layout_weight="50"/>
+
+        </RadioGroup>
+
+        </LinearLayout>
 
     </LinearLayout>
     <LinearLayout
@@ -432,6 +482,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="40"
+            android:inputType="number"
             android:ems="10" />
 
     </LinearLayout>
@@ -454,6 +505,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="40"
+            android:inputType="number"
             android:ems="10"/>
 
     </LinearLayout>
