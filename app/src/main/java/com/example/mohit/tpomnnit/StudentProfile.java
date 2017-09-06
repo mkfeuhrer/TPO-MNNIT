@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -42,11 +43,11 @@ import java.io.IOException;
 
 public class StudentProfile extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private EditText name,regnum,branch,verified,tpocredit,company;
+    private EditText name,regnum,branch,tpocredit,company;
     private String registrationnum,userId;
     private DatabaseReference mDatabase;
     private StorageReference storage,imageref;
-    private ImageView imageview;
+    private ImageView imageview,verified;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +68,7 @@ public class StudentProfile extends AppCompatActivity
         name=(EditText)findViewById(R.id.name);
         regnum=(EditText)findViewById(R.id.regnum);
         branch=(EditText)findViewById(R.id.branch);
-        verified=(EditText)findViewById(R.id.verified);
+        verified=(ImageView)findViewById(R.id.verified);
         tpocredit=(EditText)findViewById(R.id.tpocredit);
         company=(EditText)findViewById(R.id.company);
         imageview = (ImageView)findViewById(R.id.imageView3);
@@ -113,7 +114,12 @@ public class StudentProfile extends AppCompatActivity
                         regnum.setText(registrationnum);
                         tpocredit.setText(userDetails.child("tpocredit").getValue().toString());
                         company.setText(userDetails.child("company").getValue().toString());
-                        verified.setText(userDetails.child("isverified").getValue().toString());
+                        int val=Integer.parseInt(userDetails.child("isverified").getValue().toString());
+                        if(val==1)
+                        {
+                            //Drawable d=R.drawable.tick;
+                            verified.setImageResource(R.drawable.tick);
+                        }
                         //Access all data
 
                     }

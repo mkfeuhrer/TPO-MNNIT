@@ -69,8 +69,8 @@ public class Tab3Fragment extends Fragment {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDatabase.child(key).child("branch").setValue(project.getText().toString().trim());
-                mDatabase.child(key).child("dob").setValue(internship.getText().toString().trim());
+                mDatabase.child(key).child("project").setValue(project.getText().toString().trim());
+                mDatabase.child(key).child("internship").setValue(internship.getText().toString().trim());
                 // mDatabase.child(key).child("state").setValue(state.getText().toString().trim());
             }
         });
