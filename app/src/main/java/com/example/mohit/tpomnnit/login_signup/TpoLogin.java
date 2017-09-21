@@ -1,4 +1,4 @@
-package com.example.mohit.tpomnnit;
+package com.example.mohit.tpomnnit.login_signup;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,43 +15,39 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mohit.tpomnnit.R;
+import com.example.mohit.tpomnnit.tpo.TpoHome;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Login extends AppCompatActivity {
+public class TpoLogin extends AppCompatActivity {
 
     private Button signin;
     private EditText regnum,password;
     private TextView signup;
     private DatabaseReference mDatabase;
-    private ImageView imageView;
-
+    ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_tpo_login);
 
         imageView = (ImageView) findViewById(R.id.code);
         imageView.setImageResource(R.drawable.loginback);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("users");
-
-        regnum = (EditText) findViewById(R.id.regnum);
-        password = (EditText)findViewById(R.id.loginpassword);
-        signin = (Button)findViewById(R.id.signin);
-        signup = (TextView)findViewById(R.id.signup);
-
         SharedPreferences preferences1 = PreferenceManager.getDefaultSharedPreferences(this);
-        String isLogged = preferences1.getString("Logged", "");
+        String isLogged = preferences1.getString("LoggedTpo", "");
+        Log.e("islogged",isLogged);
         if(!isLogged.equalsIgnoreCase(""))
         {
             if(isLogged.equals("true")){
-                Intent i=new Intent(Login.this,StudentProfile.class);
+                Intent i=new Intent(TpoLogin.this,TpoHome.class);
                 SharedPreferences settings2 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                String regn = settings2.getString("registrationnum","");
+                String regn = settings2.getString("tpoadminregister","");
+                Toast.makeText(getApplicationContext(),"Already Logged in!",Toast.LENGTH_LONG);
                 Log.e("regis",regn);
                 i.putExtra("reg",regn);
                 startActivity(i);
@@ -59,60 +55,66 @@ public class Login extends AppCompatActivity {
             }
         }
 
+
+        regnum = (EditText) findViewById(R.id.regnum);
+        password = (EditText)findViewById(R.id.loginpassword);
+        signin = (Button)findViewById(R.id.signin);
+        signup = (TextView)findViewById(R.id.signup);
+        mDatabase = FirebaseDatabase.getInstance().getReference("tpouser");
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                ValueEventListener vel = new ValueEventListener() {
+                ValueEventListener val=new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        for(DataSnapshot userDetails : dataSnapshot.getChildren()) {
-                            if(regnum.getText().toString().trim().equals(userDetails.child("studentid").getValue().toString()))
+                        for(DataSnapshot tpoDetails : dataSnapshot.getChildren())
+                        {
+                            if(regnum.getText().toString().trim().equals(tpoDetails.child("studentid").getValue().toString()))
                             {
-                                String passw = userDetails.child("password").getValue().toString();
-                                Log.e("Pass",passw);
-                                if(passw.equals(password.getText().toString().trim()))
+                                String passwd=tpoDetails.child("password").getValue().toString();
+                                if(passwd.equals(password.getText().toString().trim()))
                                 {
                                     SQLiteDatabase data=openOrCreateDatabase("tpo",MODE_PRIVATE,null); //nobody other can access
-                                    //it is stored in ouFtoaFr phone only
-                                    data.execSQL("create table if not exists student(name varchar, password varchar);");
+                                    //it is stored in our phone only
+                                    data.execSQL("create table if not exists tpoadmin(name varchar, password varchar);");
                                     //
                                     String s1 = regnum.getText().toString().trim();
                                     String s2 = password.getText().toString().trim();
-                                    String s = "select * from student where name='" + s1 + "' and password='" + s2 + "'";
+                                    String s = "select * from tpoadmin where name='" + s1 + "' and password='" + s2 + "'";
 
                                     Cursor cursor = data.rawQuery(s, null);
                                     if (cursor.getCount() > 0) {
                                         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                                         SharedPreferences.Editor editor = settings.edit();
-                                        editor.putString("registrationnum", s1).apply();
-                                        editor.putString("Logged","true");
+                                        editor.putString("tpoadminregister", s1).apply();
+                                        editor.putString("LoggedTpo","true");
                                         editor.apply();
                                         //Toast.makeText(Login.this, "sjkhfdkjhafl", Toast.LENGTH_LONG).show();
                                     }
+                                    //Log.e("sa","password matched");
+                                    Toast.makeText(TpoLogin.this,"Logged in...:-)",Toast.LENGTH_LONG).show();
                                     finish();
-                                    Intent i = new Intent(Login.this,StudentProfile.class);
+                                    Intent i = new Intent(TpoLogin.this,TpoHome.class);
                                     i.putExtra("reg",regnum.getText().toString().trim());
                                     startActivity(i);
                                 }
                             }
                         }
                     }
-
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
 
                     }
                 };
-                mDatabase.addValueEventListener(vel);
+                mDatabase.addValueEventListener(val);
+
             }
         });
-
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent i = new Intent(Login.this,MainActivity.class);
+                Intent i = new Intent(TpoLogin.this,TpoSignup.class);
                 startActivity(i);
                 finish();
             }

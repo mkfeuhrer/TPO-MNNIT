@@ -1,4 +1,4 @@
-package com.example.mohit.tpomnnit;
+package com.example.mohit.tpomnnit.student.profile;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

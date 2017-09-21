@@ -9,10 +9,7 @@ import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 
-import android.support.v4.app.NotificationCompat;
-
-import com.example.mohit.tpomnnit.Companies;
-import com.example.mohit.tpomnnit.CompanyStudent;
+import com.example.mohit.tpomnnit.student.company.CompanyStudent;
 
 /**
  * Created by neera on 9/5/2017.

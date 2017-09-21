@@ -1,15 +1,10 @@
-package com.example.mohit.tpomnnit;
+package com.example.mohit.tpomnnit.tpo;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.TimePickerDialog;
-import android.content.Context;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.app.NotificationCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -19,17 +14,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.example.mohit.tpomnnit.R;
+import com.example.mohit.tpomnnit.student.company.Companies;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import static com.example.mohit.tpomnnit.R.id.companyname;
 
 
 public class AddCompany extends AppCompatActivity {

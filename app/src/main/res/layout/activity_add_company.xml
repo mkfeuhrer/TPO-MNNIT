@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.mohit.tpomnnit.AddCompany">
+    tools:context="com.example.mohit.tpomnnit.tpo.AddCompany">
 
     <LinearLayout
         android:layout_marginTop="50dp"
@@ -64,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="90"
-            tools:context=".MainActivity" >
+            tools:context=".login_signup.MainActivity" >
             <TextView
                 android:id="@+id/textDsdf"
                 android:layout_width="0dp"

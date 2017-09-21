@@ -1,4 +1,4 @@
-package com.example.mohit.tpomnnit;
+package com.example.mohit.tpomnnit.login_signup;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -13,13 +13,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mohit.tpomnnit.R;
+import com.example.mohit.tpomnnit.student.profile.UserData;
+import com.example.mohit.tpomnnit.student.profile.Users;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import static android.R.attr.name;
 import static com.example.mohit.tpomnnit.R.id.username;
 
 public class MainActivity extends AppCompatActivity {

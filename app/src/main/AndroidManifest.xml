@@ -10,13 +10,12 @@
         android:label="TPOMNNIT"
         android:roundIcon="@drawable/mnnit"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Login" />
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".login_signup.MainActivity" />
+        <activity android:name=".login_signup.Login" />
         <activity android:name=".Landing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -24,29 +23,29 @@
             android:name=".services.NotificationService"
             android:enabled="true" />
         <activity
-            android:name=".StudentProfile"
+            android:name=".student.StudentProfile"
             android:label="@string/title_activity_student_profile"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".TpoLogin"
+            android:name=".login_signup.TpoLogin"
             android:label="@string/title_activity_tpo_login"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".TpoSignup"
+            android:name=".login_signup.TpoSignup"
             android:label="Tpo Signup"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".TpoHome"
+            android:name=".tpo.TpoHome"
             android:label="@string/title_activity_tpo_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".MyProfile" />
-        <activity android:name=".SectionsPageAdapter" />
-        <activity android:name=".Tab1Fragment" />
-        <activity android:name=".Tab2Fragment" />
-        <activity android:name=".Tab3Fragment" />
-        <activity android:name=".AddCompany" />
+        <activity android:name=".student.profile.MyProfile" />
+        <activity android:name=".student.profile.SectionsPageAdapter" />
+        <activity android:name=".student.profile.Tab1Fragment" />
+        <activity android:name=".student.profile.Tab2Fragment" />
+        <activity android:name=".student.profile.Tab3Fragment" />
+        <activity android:name=".tpo.AddCompany" />
         <activity
-            android:name=".CompanyStudent"
+            android:name=".student.company.CompanyStudent"
             android:label="@string/title_activity_company_student"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

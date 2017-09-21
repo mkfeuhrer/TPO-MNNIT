@@ -1,4 +1,4 @@
-package com.example.mohit.tpomnnit;
+package com.example.mohit.tpomnnit.student.company;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

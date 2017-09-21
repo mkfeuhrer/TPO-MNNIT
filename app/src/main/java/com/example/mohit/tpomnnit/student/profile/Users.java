@@ -1,4 +1,4 @@
-package com.example.mohit.tpomnnit;
+package com.example.mohit.tpomnnit.student.profile;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 /**

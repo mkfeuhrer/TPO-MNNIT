@@ -1,4 +1,4 @@
-package com.example.mohit.tpomnnit;
+package com.example.mohit.tpomnnit.student.company;
 
 import android.content.Context;
 import android.net.Uri;
@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.mohit.tpomnnit.R;
 
 
 public class CompanyTab2 extends Fragment {

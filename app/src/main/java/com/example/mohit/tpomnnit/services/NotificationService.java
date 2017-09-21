@@ -2,11 +2,9 @@ package com.example.mohit.tpomnnit.services;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.example.mohit.tpomnnit.Companies;
 import com.example.mohit.tpomnnit.R;
 import com.example.mohit.tpomnnit.notification.NotificationHandler;
 import com.google.firebase.database.DataSnapshot;

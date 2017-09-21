@@ -1,4 +1,4 @@
-package com.example.mohit.tpomnnit;
+package com.example.mohit.tpomnnit.student.profile;
 
 /**
  * Created by mohit on 29/8/17.

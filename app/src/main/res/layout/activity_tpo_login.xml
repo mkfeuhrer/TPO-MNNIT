@@ -8,7 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.mohit.tpomnnit.TpoLogin"
+    android:background="@drawable/land1"
+    tools:context="com.example.mohit.tpomnnit.login_signup.TpoLogin"
     android:orientation="vertical"
     android:weightSum="100">
 
@@ -56,6 +57,8 @@
             android:layout_height="match_parent"
             android:layout_weight="90"
             android:hint="Registration No:"
+            android:textColor="#f4a302"
+            android:textColorHint="#f4a302"
             android:id="@+id/regnum"
             android:inputType="number"
             android:lines="1"
@@ -92,6 +95,8 @@
             android:hint="Password:"
             android:lines="1"
             android:maxLength="128"
+            android:textColor="#f4a302"
+            android:textColorHint="#f4a302"
             android:inputType="textPassword"
             android:id="@+id/loginpassword" />
 
@@ -159,7 +164,7 @@
             android:background="@android:color/transparent"
             android:gravity="center_horizontal|center_vertical"
             android:text="Signup"
-            android:textColor="#963030"
+            android:textColor="#f4a302"
             android:textSize="20sp" />
 
         <View
