@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+       // getSupportActionBar().setDisplayShowHomeEnabled(true);
 //        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         mFirebaseInstance = FirebaseDatabase.getInstance();
@@ -49,12 +49,12 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseInstance.getReference("app_title").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.e("Title", "App title updated");
+                //Log.e("Title", "App title updated");
 
                 String appTitle = dataSnapshot.getValue(String.class);
 
                 // update toolbar title
-                getSupportActionBar().setTitle(appTitle);
+                //getSupportActionBar().setTitle(appTitle);
             }
 
             @Override
