@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.mohit.tpomnnit.student.InterviewExperience.interviewexperience;
 import com.example.mohit.tpomnnit.student.company.CompanyStudent;
 import com.example.mohit.tpomnnit.student.profile.MyProfile;
 import com.example.mohit.tpomnnit.R;
@@ -204,6 +205,8 @@ public class StudentProfile extends AppCompatActivity
             startActivity(i);
 
         } else if (id == R.id.interviewexperience) {
+            Intent i = new Intent(StudentProfile.this,interviewexperience.class);
+            startActivity(i);
 
         } else if (id == R.id.contact) {
 

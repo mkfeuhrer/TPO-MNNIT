@@ -16,12 +16,15 @@
         <activity android:name=".Landing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service
             android:name=".services.NotificationService"
             android:enabled="true" />
+
         <activity
             android:name=".student.StudentProfile"
             android:label="@string/title_activity_student_profile"
@@ -47,7 +50,9 @@
         <activity
             android:name=".student.company.CompanyStudent"
             android:label="@string/title_activity_company_student"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".student.InterviewExperience.interviewexperience" />
+        <activity android:name=".student.InterviewExperience.AddInterviewExperience"></activity>
     </application>
 
 </manifest>

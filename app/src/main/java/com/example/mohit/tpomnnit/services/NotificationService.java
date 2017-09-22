@@ -62,7 +62,7 @@ public class NotificationService extends IntentService{
                 NotificationHandler.showNotification(this, R.drawable.company4, "Company added","a new company is added click here to check");
             }
             try {
-                Thread.sleep(1000);
+                Thread.sleep(10000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mohit.tpomnnit.tpo.AddCompany">
+
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            android:id="@+id/name" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Registration No."
+            android:inputType="textPersonName"
+            android:id="@+id/regno" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Company Name"
+            android:inputType="textPersonName"
+            android:id="@+id/company" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Year - eg-1,2"
+            android:inputType="number"
+            android:id="@+id/year" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Add Experience"
+            android:inputType="text"
+            android:id="@+id/experience" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="90"
+            tools:context=".login_signup.MainActivity" >
+            <TextView
+                android:id="@+id/textDsdf"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="20"
+                android:textSize="20dp"
+                android:editable="false"
+                android:text="Deadline" />
+            <EditText
+                android:id="@+id/textDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="35"
+                android:editable="false"
+                android:hint="date"
+                android:inputType="date" />
+
+            <EditText
+                android:id="@+id/textTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="35"
+                android:editable="false"
+                android:hint="time"
+                android:inputType="time" />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/addinterview"
+            android:layout_width="109dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="125dp"
+            android:text="Add" />
+
+    </LinearLayout>
+
+</LinearLayout>
