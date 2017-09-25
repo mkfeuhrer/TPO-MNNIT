@@ -32,7 +32,7 @@ import java.util.Locale;
  * Created by User on 2/28/2017.
  */
 
-public class Tab1Fragment extends Fragment {
+public class    Tab1Fragment extends Fragment {
     private static final String TAG = "Tab1Fragment";
     EditText regno,name,dob,email,skype,linkedin,
             category,residential,guardian,presentaddress,permanentaddress,

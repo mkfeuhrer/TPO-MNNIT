@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.mohit.tpomnnit.R;
+import com.example.mohit.tpomnnit.VerifyUser;
 import com.example.mohit.tpomnnit.login_signup.TpoLogin;
 
 public class TpoHome extends AppCompatActivity
@@ -98,7 +99,7 @@ public class TpoHome extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent i = new Intent(TpoHome.this,TpoHome.class);
+            Intent i = new Intent(TpoHome.this,VerifyUser.class);
             startActivity(i);
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {

@@ -52,7 +52,8 @@
             android:label="@string/title_activity_company_student"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".student.InterviewExperience.interviewexperience" />
-        <activity android:name=".student.InterviewExperience.AddInterviewExperience"></activity>
+        <activity android:name=".student.InterviewExperience.AddInterviewExperience" />
+        <activity android:name=".VerifyUser"></activity>
     </application>
 
 </manifest>
