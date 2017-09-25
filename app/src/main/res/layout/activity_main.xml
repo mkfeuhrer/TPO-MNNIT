@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/land1"
     android:weightSum="100">
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,6 +45,8 @@
             android:layout_height="match_parent"
             android:layout_weight="90"
             android:lines="1"
+            android:textColor="#f4a302"
+            android:textColorHint="#f4a302"
             android:inputType="textPersonName"
             android:maxLength="128"
             android:hint="Name:" />
@@ -69,6 +72,8 @@
             android:layout_height="match_parent"
             android:layout_weight="90"
             android:lines="1"
+            android:textColor="#f4a302"
+            android:textColorHint="#f4a302"
             android:inputType="number"
             android:maxLength="128"
             android:hint="Registration No:" />
@@ -92,6 +97,8 @@
             android:layout_height="match_parent"
             android:layout_weight="90"
             android:lines="1"
+            android:textColor="#f4a302"
+            android:textColorHint="#f4a302"
             android:maxLength="128"
             android:hint="Password:"
             android:inputType="textPassword"
@@ -117,10 +124,12 @@
             android:layout_height="match_parent"
             android:layout_weight="90"
             android:lines="1"
+            android:textColor="#f4a302"
+            android:textColorHint="#f4a302"
             android:maxLength="128"
             android:hint="Confirm Password:"
             android:inputType="textPassword"
-            android:id="@+id/txt3"/>
+            android:id="@+id/confirmpassword"/>
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -142,6 +151,8 @@
             android:layout_height="match_parent"
             android:layout_weight="90"
             android:lines="1"
+            android:textColor="#f4a302"
+            android:textColorHint="#f4a302"
             android:maxLength="128"
             android:hint="Year:"
             android:inputType="textEmailAddress"
@@ -168,9 +179,11 @@
             android:layout_weight="90"
             android:hint="Mobile:"
             android:lines="1"
+            android:textColor="#f4a302"
+            android:textColorHint="#f4a302"
             android:maxLength="128"
             android:inputType="number"
-            android:id="@+id/txt6"/>
+            android:id="@+id/mobile"/>
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"

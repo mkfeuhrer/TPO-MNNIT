@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mohit.tpomnnit.R;
 import com.example.mohit.tpomnnit.student.StudentProfile;
@@ -67,11 +68,24 @@ public class Login extends AppCompatActivity {
                 ValueEventListener vel = new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
+                        int f = 0;
                         for(DataSnapshot userDetails : dataSnapshot.getChildren()) {
+                            if(regnum.getText().toString().trim().length() == 0)
+                            {
+                                Toast.makeText(Login.this,"Enter Username",Toast.LENGTH_LONG).show();
+                                f = 1;
+                                break;
+                            }
                             if(regnum.getText().toString().trim().equals(userDetails.child("studentid").getValue().toString()))
                             {
+                                f = 1;
                                 String passw = userDetails.child("password").getValue().toString();
                                 Log.e("Pass",passw);
+                                if(password.getText().toString().trim().length() == 0)
+                                {
+                                    Toast.makeText(Login.this,"Enter Password",Toast.LENGTH_LONG).show();
+                                    break;
+                                }
                                 if(passw.equals(password.getText().toString().trim()))
                                 {
                                     SQLiteDatabase data=openOrCreateDatabase("tpo",MODE_PRIVATE,null); //nobody other can access
@@ -96,7 +110,16 @@ public class Login extends AppCompatActivity {
                                     i.putExtra("reg",regnum.getText().toString().trim());
                                     startActivity(i);
                                 }
+                                else
+                                {
+                                    Toast.makeText(Login.this,"Invalid Password",Toast.LENGTH_LONG).show();
+                                    break;
+                                }
                             }
+                        }
+                        if(f==0)
+                        {
+                            Toast.makeText(Login.this,"User Not Registered",Toast.LENGTH_LONG).show();
                         }
                     }
 

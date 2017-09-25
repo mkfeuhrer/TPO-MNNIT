@@ -68,11 +68,24 @@ public class TpoLogin extends AppCompatActivity {
                 ValueEventListener val=new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
+                        int f = 0;
                         for(DataSnapshot tpoDetails : dataSnapshot.getChildren())
                         {
+                            if(regnum.getText().toString().trim().length() == 0)
+                            {
+                                Toast.makeText(TpoLogin.this,"Enter Username",Toast.LENGTH_LONG).show();
+                                f = 1;
+                                break;
+                            }
                             if(regnum.getText().toString().trim().equals(tpoDetails.child("studentid").getValue().toString()))
                             {
+                                f = 1;
                                 String passwd=tpoDetails.child("password").getValue().toString();
+                                if(password.getText().toString().trim().length() == 0)
+                                {
+                                    Toast.makeText(TpoLogin.this,"Enter Password",Toast.LENGTH_LONG).show();
+                                    break;
+                                }
                                 if(passwd.equals(password.getText().toString().trim()))
                                 {
                                     SQLiteDatabase data=openOrCreateDatabase("tpo",MODE_PRIVATE,null); //nobody other can access
@@ -93,13 +106,22 @@ public class TpoLogin extends AppCompatActivity {
                                         //Toast.makeText(Login.this, "sjkhfdkjhafl", Toast.LENGTH_LONG).show();
                                     }
                                     //Log.e("sa","password matched");
-                                    Toast.makeText(TpoLogin.this,"Logged in...:-)",Toast.LENGTH_LONG).show();
+//                                    Toast.makeText(TpoLogin.this,"Logged in...:-)",Toast.LENGTH_LONG).show();
                                     finish();
                                     Intent i = new Intent(TpoLogin.this,TpoHome.class);
                                     i.putExtra("reg",regnum.getText().toString().trim());
                                     startActivity(i);
                                 }
+                                else
+                                {
+                                    Toast.makeText(TpoLogin.this,"Invalid Password",Toast.LENGTH_LONG).show();
+                                    break;
+                                }
                             }
+                        }
+                        if(f==0)
+                        {
+                            Toast.makeText(TpoLogin.this,"User Not Registered",Toast.LENGTH_LONG).show();
                         }
                     }
                     @Override
@@ -116,7 +138,6 @@ public class TpoLogin extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(TpoLogin.this,TpoSignup.class);
                 startActivity(i);
-                finish();
             }
         });
 

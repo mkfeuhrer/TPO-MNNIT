@@ -22,15 +22,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static com.example.mohit.tpomnnit.R.id.confirmpass;
 import static com.example.mohit.tpomnnit.R.id.username;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private Button register;
-    private EditText year,password,regnum,name;
-    private TextView registered;
-    private FirebaseDatabase mFirebaseInstance;
+    private EditText year,password,regnum,name,confirmpassword,mobile;
     private DatabaseReference mDatabase,mDatabase2;
     private String userId,userId2;
 
@@ -40,29 +39,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       // getSupportActionBar().setDisplayShowHomeEnabled(true);
-//        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-
-        mFirebaseInstance = FirebaseDatabase.getInstance();
-        mFirebaseInstance.getReference("app_title").setValue("TPO MNNIT");
-
-        mFirebaseInstance.getReference("app_title").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //Log.e("Title", "App title updated");
-
-                String appTitle = dataSnapshot.getValue(String.class);
-
-                // update toolbar title
-                //getSupportActionBar().setTitle(appTitle);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.e("Error", "Failed to read app title value.", error.toException());
-            }
-        });
 
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
         userId = mDatabase.push().getKey();
@@ -73,37 +49,51 @@ public class MainActivity extends AppCompatActivity {
         register   = (Button)findViewById(R.id.register);
         regnum     = (EditText)findViewById(R.id.regnum);
         name       = (EditText)findViewById(username);
-        year      = (EditText)findViewById(R.id.year);
+        year       = (EditText)findViewById(R.id.year);
         password   = (EditText)findViewById(R.id.password);
+        confirmpassword = (EditText)findViewById(R.id.confirmpassword);
+        mobile     = (EditText)findViewById(R.id.mobile);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                String s1 = regnum.getText().toString();
-                String s2 = password.getText().toString();
-                //database in android
-                SQLiteDatabase data = openOrCreateDatabase("tpo", MODE_PRIVATE, null); //nobody other can access
-                //it is stored in our phone only
-                data.execSQL("create table if not exists student (name varchar, password varchar);");
-                String s = "select * from student where name='" + s1 + "' and password='" + s2 + "'";
-                Cursor cursor = data.rawQuery(s, null); // whatever query i run i can store something in cursor it is a class
-                if (cursor.getCount() > 0) {
-                    Toast.makeText(MainActivity.this, "User Already Exist", Toast.LENGTH_LONG).show();
-                } else {
-                    data.execSQL("insert into student values ('" + s1 + "','" + s2 + "');");
-                    Toast.makeText(MainActivity.this, "Signup Successful", Toast.LENGTH_SHORT).show();
-                }
-
-                // Check for already existed userId
-                if (TextUtils.isEmpty(userId)) {
+                String s1 = regnum.getText().toString().trim();
+                String s2 = password.getText().toString().trim();
+                String nam = name.getText().toString().trim();
+                String confirmpass = confirmpassword.getText().toString().trim();
+                String mob  = mobile.getText().toString().trim();
+                String years = year.getText().toString().trim();
+                Log.e("regnum",s1+"adf");
+                Log.e("year",years);
+                if(confirmpass.length() == 0 || mob.length() == 0 || years.length() == 0 || s1.length() == 0 || s2.length() == 0 || nam.length() == 0)
+                {
+                    Toast.makeText(MainActivity.this,"Fill all entries",Toast.LENGTH_LONG).show();
                 }
                 else
-                createUser(name.getText().toString().trim(), year.getText().toString().trim(), regnum.getText().toString().trim(), password.getText().toString().trim(),userId);
+                {
+                    //database in android
+                    SQLiteDatabase data = openOrCreateDatabase("tpo", MODE_PRIVATE, null); //nobody other can access
+                    //it is stored in our phone only
+                    data.execSQL("create table if not exists student (name varchar, password varchar);");
+                    String s = "select * from student where name='" + s1 + "' and password='" + s2 + "'";
+                    Cursor cursor = data.rawQuery(s, null); // whatever query i run i can store something in cursor it is a class
+                    if (cursor.getCount() > 0) {
+                        Toast.makeText(MainActivity.this, "User Already Exist", Toast.LENGTH_LONG).show();
+                    } else {
+                        data.execSQL("insert into student values ('" + s1 + "','" + s2 + "');");
+                        Toast.makeText(MainActivity.this, "Signup Successful", Toast.LENGTH_SHORT).show();
+                    }
 
-                finish();
-                Intent i = new Intent(MainActivity.this,Login.class);
-                startActivity(i);
+                    // Check for already existed userId
+                    if (TextUtils.isEmpty(userId)) {
+                    } else
+                        createUser(name.getText().toString().trim(), year.getText().toString().trim(), regnum.getText().toString().trim(), password.getText().toString().trim(), userId);
+
+                    finish();
+                    Intent i = new Intent(MainActivity.this, Login.class);
+                    startActivity(i);
+                }
             }
         });
     }

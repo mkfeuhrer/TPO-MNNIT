@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +25,7 @@ import static com.example.mohit.tpomnnit.R.id.username;
 
 public class TpoSignup extends AppCompatActivity {
     private Button register;
-    private EditText year,password,regnum,name;
+    private EditText year,password,regnum,name,confirmpassword,mobile;
     private TextView registered;
     private DatabaseReference mDatabase;
     private String userId;
@@ -40,33 +41,47 @@ public class TpoSignup extends AppCompatActivity {
         name       = (EditText)findViewById(username);
         year       = (EditText)findViewById(R.id.year);
         password   = (EditText)findViewById(R.id.password);
+        confirmpassword = (EditText)findViewById(R.id.confirmpassword);
+        mobile     = (EditText)findViewById(R.id.mobile);
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 String s1 = regnum.getText().toString();
                 String s2 = password.getText().toString();
-                //database in android
-                SQLiteDatabase data = openOrCreateDatabase("tpo", MODE_PRIVATE, null); //nobody other can access
-                //it is stored in our phone only
-                data.execSQL("create table if not exists tpoadmin (name varchar, password varchar);");
-                String s = "select * from tpoadmin where name='" + s1 + "' and password='" + s2 + "'";
-                Cursor cursor = data.rawQuery(s, null); // whatever query i run i can store something in cursor it is a class
-                if (cursor.getCount() > 0) {
-                    Toast.makeText(TpoSignup.this, "User Already Exist", Toast.LENGTH_LONG).show();
-                } else {
-                    data.execSQL("insert into tpoadmin values ('" + s1 + "','" + s2 + "');");
-                    Toast.makeText(TpoSignup.this, "Signup Successful", Toast.LENGTH_SHORT).show();
-                }
-                // Check for already existed userId
-                if (TextUtils.isEmpty(userId)) {
+                String nam = name.getText().toString().trim();
+                String confirmpass = confirmpassword.getText().toString().trim();
+                String mob  = mobile.getText().toString().trim();
+                String years = year.getText().toString().trim();
+                if(confirmpass.length() == 0 || mob.length() == 0 || years.length() == 0 || s1.length() == 0 || s2.length() == 0 || nam.length() == 0)
+                {
+                    Toast.makeText(TpoSignup.this,"Fill all entries",Toast.LENGTH_LONG).show();
                 }
                 else
-                    createUser(name.getText().toString().trim(), year.getText().toString().trim(), regnum.getText().toString().trim(), password.getText().toString().trim(),userId);
+                {
+                    //database in android
+                    SQLiteDatabase data = openOrCreateDatabase("tpo", MODE_PRIVATE, null); //nobody other can access
+                    //it is stored in our phone only
+                    data.execSQL("create table if not exists tpoadmin (name varchar, password varchar);");
+                    String s = "select * from tpoadmin where name='" + s1 + "' and password='" + s2 + "'";
+                    Log.e("regnum",s1);
+                    Cursor cursor = data.rawQuery(s, null); // whatever query i run i can store something in cursor it is a class
+                    if (cursor.getCount() > 0) {
+                        Toast.makeText(TpoSignup.this, "User Already Exist", Toast.LENGTH_LONG).show();
+                    } else {
+                        data.execSQL("insert into tpoadmin values ('" + s1 + "','" + s2 + "');");
+                        Toast.makeText(TpoSignup.this, "Signup Successful", Toast.LENGTH_SHORT).show();
+                    }
+                    // Check for already existed userId
+                    if (TextUtils.isEmpty(userId)) {
+                    } else
+                        createUser(name.getText().toString().trim(), year.getText().toString().trim(), regnum.getText().toString().trim(), password.getText().toString().trim(), userId);
 
-                finish();
-                Intent i = new Intent(TpoSignup.this,TpoLogin.class);
-                startActivity(i);
+                    finish();
+                    Intent i = new Intent(TpoSignup.this, TpoLogin.class);
+                    startActivity(i);
+                }
             }
         });
     }
