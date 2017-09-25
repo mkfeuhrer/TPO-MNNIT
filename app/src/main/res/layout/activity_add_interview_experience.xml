@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Registration No."
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:id="@+id/regno" />
 
         <EditText
@@ -44,7 +44,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Add Experience"
-            android:inputType="text"
+            android:layout_weight="70"
+            android:inputType="textMultiLine"
+            android:background="@drawable/edittextstyle"
+            android:maxLines="6"
+            android:lines="6"
+            android:ems="10"
             android:id="@+id/experience" />
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

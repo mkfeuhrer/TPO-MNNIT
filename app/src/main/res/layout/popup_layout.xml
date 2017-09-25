@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_custom_layout"
+    android:layout_width="300dp"
+    android:layout_height="400dp"
+    android:layout_margin="100dp"
+    android:background="@android:color/holo_green_light"
+    >
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is a sample popup window."
+        android:layout_centerInParent="true"
+        android:padding="25sp"
+        />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:text="Close"
+        android:id="@+id/ib_close"
+        android:layout_below="@id/tv"
+        android:layout_centerHorizontal="true"/>
+</RelativeLayout>

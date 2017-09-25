@@ -97,7 +97,7 @@ public class interviewexperience extends AppCompatActivity {
             @Override
             public void onClick(View view, int position) {
                 Interview interviews = interviewList.get(position);
-                Toast.makeText(interviewexperience.this,"position selected: "+position,Toast.LENGTH_LONG).show();
+                //Toast.makeText(interviewexperience.this,"position selected: "+position,Toast.LENGTH_LONG).show();
                         /*Intent intent=new Intent(starQuestion.this,starQuestionDisplay.class);
                         intent.putExtra("position",position);
                         startActivity(intent);*/
