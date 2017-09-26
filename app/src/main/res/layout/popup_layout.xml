@@ -1,26 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rl_custom_layout"
-    android:layout_width="300dp"
-    android:layout_height="400dp"
-    android:layout_margin="100dp"
-    android:background="@android:color/holo_green_light"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/land1"
+    android:orientation="vertical"
     >
     <TextView
-        android:id="@+id/tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="This is a sample popup window."
+        android:layout_weight="50"
+        android:id="@+id/company"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="#f4a302"
+        android:textSize="30dp"
         android:layout_centerInParent="true"
-        android:padding="25sp"
         />
 
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:text="Close"
-        android:id="@+id/ib_close"
-        android:layout_below="@id/tv"
-        android:layout_centerHorizontal="true"/>
-</RelativeLayout>
+    <LinearLayout
+        android:layout_weight="50"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:textSize="20dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="50"
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#f4a302"
+            android:textSize="20dp"
+            android:layout_centerInParent="true"
+            />
+
+        <TextView
+            android:layout_weight="50"
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#f4a302"
+            android:textSize="20dp"
+            android:layout_centerInParent="true"
+            />
+
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_weight="20">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/experience"
+            android:hint="Loading..."
+            android:inputType="textMultiLine"
+            android:maxLines="50"
+            android:lines="6"
+            android:textSize="20dp"
+            android:ems="10"
+            android:textColorHint="#f4a302"
+            android:textColor="#f4a302"/>
+    </ScrollView>
+
+
+    <LinearLayout
+        android:layout_weight="50"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="20"/>
+
+        <Button
+            android:layout_weight="20"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Close"
+            android:id="@+id/ib_close"
+            android:background="#f4a302"
+            android:layout_centerHorizontal="true"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="20"/>
+
+    </LinearLayout>
+</LinearLayout>

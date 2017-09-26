@@ -114,7 +114,13 @@ public class StudentProfile extends AppCompatActivity
                         branch.setText(userDetails.child("branch").getValue().toString());
                         regnum.setText(registrationnum);
                         tpocredit.setText(userDetails.child("tpocredit").getValue().toString());
-                        company.setText(userDetails.child("company").getValue().toString());
+                        if(userDetails.child("company").getValue().toString().length() == 0) {
+                            company.setText("N/A");
+                        }
+                        else
+                        {
+                            company.setText(userDetails.child("company").getValue().toString());
+                        }
                         int val=Integer.parseInt(userDetails.child("isverified").getValue().toString());
                         if(val==1)
                         {
