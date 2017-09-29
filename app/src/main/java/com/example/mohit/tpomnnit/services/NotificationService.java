@@ -1,10 +1,14 @@
 package com.example.mohit.tpomnnit.services;
 
 import android.app.IntentService;
+import android.app.Service;
 import android.content.Intent;
+import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.example.mohit.tpomnnit.Landing;
 import com.example.mohit.tpomnnit.R;
 import com.example.mohit.tpomnnit.notification.NotificationHandler;
 import com.google.firebase.database.DataSnapshot;
@@ -17,57 +21,78 @@ import com.google.firebase.database.ValueEventListener;
  * Created by neera on 9/5/2017.
  */
 
-public class NotificationService extends IntentService{
-
+public class NotificationService extends Service {
     DatabaseReference mDatabase;
     String companyId;
     int n,i=-10;
-    public NotificationService() {
-        super("Notification Service");
-        Log.i("service", "Constructor called");
-        //System.out.println("Service Constructor called");
+
+
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+    @Override
+    public void onCreate() {
+        Toast.makeText(this, " MyService Created ", Toast.LENGTH_LONG).show();
     }
 
     @Override
-    protected void onHandleIntent(@Nullable Intent intent) {
-        Log.i("service", "In onHandleIntent");
-        mDatabase= FirebaseDatabase.getInstance().getReference("companies");
-        companyId=mDatabase.push().getKey();
-        //System.out.println("in onHandler called");
-        while(true)
-        {
-            Log.i("service", "In while");
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Toast.makeText(this, " MyService Started", Toast.LENGTH_LONG).show();
+        final int currentId = startId;
 
-            ValueEventListener vel = new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    n= (int) dataSnapshot.getChildrenCount();
-                    if(i==-10)
+        Runnable r = new Runnable() {
+            public void run() {
+                mDatabase= FirebaseDatabase.getInstance().getReference("companies");
+                companyId=mDatabase.push().getKey();
+                //System.out.println("in onHandler called");
+                while(true)
+                {
+                    Log.i("service", "In while");
+
+                    ValueEventListener vel = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            n= (int) dataSnapshot.getChildrenCount();
+                            if(i==-10)
+                            {
+                                i=n;
+                            }
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    };
+                    mDatabase.addValueEventListener(vel);
+
+                    if(i!=n&&i!=-10)
                     {
+                        Log.i("service", "In while loop");
                         i=n;
+                        System.out.println("new company added");
+                        NotificationHandler.showNotification(NotificationService.this, R.drawable.company4, "Company added","a new company is added click here to check");
                     }
-                }
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+                    try {
+                        Thread.sleep(10000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
                 }
-            };
-            mDatabase.addValueEventListener(vel);
 
-            if(i!=n&&i!=-10)
-            {
-                //Log.i("service", "In while loop");
-                i=n;
-                System.out.println("new company added");
-                NotificationHandler.showNotification(this, R.drawable.company4, "Company added","a new company is added click here to check");
             }
-            try {
-                Thread.sleep(10000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        };
 
-        }
-
+        Thread t = new Thread(r);
+        t.start();
+        return Service.START_STICKY;
     }
+
+    @Override
+    public void onDestroy() {
+        Toast.makeText(this, "MyService Stopped", Toast.LENGTH_LONG).show();
+    }
+
 }
