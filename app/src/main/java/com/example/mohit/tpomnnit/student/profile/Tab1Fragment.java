@@ -38,7 +38,7 @@ public class    Tab1Fragment extends Fragment {
             category,residential,guardian,presentaddress,permanentaddress,
             marital,state,country,parentcontact,personalcontact,datetime;
     Button save;
-    private String registrationnum,userId,key,branchselected,courseselected,genderstr,pwd;
+    private String registrationnum,userId,key,branchselected="n/a",courseselected="n/a",genderstr="n/a",pwd="n/a";
     private DatabaseReference mDatabase;
     Spinner spinnerbranch,spinnercourse;
     private RadioGroup radioSexGroup,phyradiogroup;
@@ -54,7 +54,7 @@ public class    Tab1Fragment extends Fragment {
         dob = (EditText) view.findViewById(R.id.dob);
         email = (EditText) view.findViewById(R.id.email);
         skype = (EditText) view.findViewById(R.id.skypeid);
-        linkedin = (EditText) view.findViewById(R.id.linkedinid);
+        linkedin = (EditText) view.findViewById(R.id.pwd);
 //        gender = (EditText) view.findViewById(R.id.gender);
         category = (EditText) view.findViewById(R.id.category);
 //        pwd = (EditText) view.findViewById(R.id.pwd);

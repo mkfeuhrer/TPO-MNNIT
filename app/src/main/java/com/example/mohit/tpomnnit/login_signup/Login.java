@@ -46,7 +46,7 @@ public class Login extends AppCompatActivity {
         signin = (Button)findViewById(R.id.signin);
         signup = (TextView)findViewById(R.id.signup);
 
-        SharedPreferences preferences1 = PreferenceManager.getDefaultSharedPreferences(this);
+        /*SharedPreferences preferences1 = PreferenceManager.getDefaultSharedPreferences(this);
         String isLogged = preferences1.getString("Logged", "");
         if(!isLogged.equalsIgnoreCase(""))
         {
@@ -59,7 +59,7 @@ public class Login extends AppCompatActivity {
                 startActivity(i);
                 finish();
             }
-        }
+        }*/
 
         signin.setOnClickListener(new View.OnClickListener() {
             @Override

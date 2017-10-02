@@ -39,13 +39,13 @@ public class InterViewAdapter extends ArrayAdapter<Interview> {
             LayoutInflater vi = LayoutInflater.from(getContext());
             cell = (FoldingCell) vi.inflate(R.layout.cell, parent, false);
             // binding view parts to view holder
-            viewHolder.price = (TextView) cell.findViewById(R.id.title_price);
-            viewHolder.time = (TextView) cell.findViewById(R.id.title_time_label);
-            viewHolder.date = (TextView) cell.findViewById(R.id.title_date_label);
-            viewHolder.fromAddress = (TextView) cell.findViewById(R.id.title_from_address);
-            viewHolder.toAddress = (TextView) cell.findViewById(R.id.title_to_address);
-            viewHolder.requestsCount = (TextView) cell.findViewById(R.id.title_requests_count);
-            viewHolder.pledgePrice = (TextView) cell.findViewById(R.id.title_pledge);
+            viewHolder.price = (TextView) cell.findViewById(R.id.name);
+            viewHolder.time = (TextView) cell.findViewById(R.id.regnum);
+            viewHolder.date = (TextView) cell.findViewById(R.id.branch);
+            viewHolder.fromAddress = (TextView) cell.findViewById(R.id.course);
+            viewHolder.toAddress = (TextView) cell.findViewById(R.id.name);
+            viewHolder.requestsCount = (TextView) cell.findViewById(R.id.branch);
+            viewHolder.pledgePrice = (TextView) cell.findViewById(R.id.branch);
             viewHolder.contentRequestBtn = (TextView) cell.findViewById(R.id.content_request_btn);
             cell.setTag(viewHolder);
         } else {

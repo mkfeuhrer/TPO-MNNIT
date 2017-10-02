@@ -18,7 +18,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.mohit.tpomnnit.R;
-import com.example.mohit.tpomnnit.VerifyUser;
 import com.example.mohit.tpomnnit.login_signup.TpoLogin;
 
 public class TpoHome extends AppCompatActivity

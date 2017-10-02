@@ -172,8 +172,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="40"
-            android:inputType="text"
-            android:ems="10" />
+            android:ems="10"
+            android:inputType="text" />
 
     </LinearLayout>
     <LinearLayout
@@ -191,7 +191,7 @@
             android:textSize="20dp"/>
 
         <EditText
-            android:id="@+id/linkedinid"
+            android:id="@+id/pwd"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="40"

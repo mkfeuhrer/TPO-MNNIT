@@ -38,7 +38,7 @@ public class TpoLogin extends AppCompatActivity {
         imageView = (ImageView) findViewById(R.id.code);
         imageView.setImageResource(R.drawable.loginback);
 
-        SharedPreferences preferences1 = PreferenceManager.getDefaultSharedPreferences(this);
+       /* SharedPreferences preferences1 = PreferenceManager.getDefaultSharedPreferences(this);
         String isLogged = preferences1.getString("LoggedTpo", "");
         Log.e("islogged",isLogged);
         if(!isLogged.equalsIgnoreCase(""))
@@ -54,7 +54,7 @@ public class TpoLogin extends AppCompatActivity {
                 finish();
             }
         }
-
+*/
 
         regnum = (EditText) findViewById(R.id.regnum);
         password = (EditText)findViewById(R.id.loginpassword);

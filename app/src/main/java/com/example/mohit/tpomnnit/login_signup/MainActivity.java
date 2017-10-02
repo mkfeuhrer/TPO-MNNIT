@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 //            userId = mDatabase.push().getKey();
         }
         Users user = new Users(name, year,regnum,password,userid);
-        UserData userData1 = new UserData(regnum,name,"","",year,"","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",10,0,1);
+        UserData userData1 = new UserData(regnum,name,"n/a","",year,"n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a",10,0,1);
         addUserChangeListener(user);
         addUserDataChangeListener(userData1);
     }

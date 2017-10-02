@@ -10,44 +10,39 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="155dp"
-        android:layout_weight="3"
+        android:layout_weight="2"
         android:background="@color/bgTitleLeft"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:paddingBottom="20dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="20dp">
+        android:paddingBottom="5dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp">
+        <ImageView
+            android:id="@+id/dp"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avatar" />
 
-        <TextView
-            android:id="@+id/title_price"
+        <!--TextView
+            android:id="@+id/nameini"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
+            android:text="A"
+            android:fontFamily="casual"
+            android:textStyle="bold"
             android:textColor="@android:color/white"
-            android:textSize="26sp" />
-
-        <TextView
-            android:id="@+id/title_time_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:textColor="@android:color/white"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/title_date_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/title_time_label"
-            android:layout_alignParentStart="true"
-            android:textColor="@android:color/white"
-            android:textSize="12sp" />
+            android:textSize="80dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" /-->
 
 
     </RelativeLayout>
     <!-- RIGHT TITLE PART -->
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -58,16 +53,8 @@
         android:paddingStart="15dp"
         android:paddingTop="20dp">
 
-        <ImageView
-            android:id="@+id/title_from_to_dots"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/from_to_purple" />
-
         <TextView
-            android:id="@+id/title_from_address"
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/title_from_to_dots"
@@ -75,81 +62,89 @@
             android:layout_toEndOf="@+id/title_from_to_dots"
             android:ellipsize="marquee"
             android:fadingEdge="horizontal"
+            android:fontFamily="casual"
             android:singleLine="true"
             android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:textSize="20dp" />
 
         <ImageView
             android:id="@+id/title_from_to_dots_divider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/title_from_address"
+            android:layout_below="@id/name"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
             android:layout_toEndOf="@+id/title_from_to_dots"
             android:src="@color/contentDividerLine" />
 
         <TextView
-            android:id="@+id/title_to_address"
+            android:id="@+id/regno"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/title_from_to_dots_divider"
             android:layout_toEndOf="@id/title_from_to_dots"
             android:ellipsize="marquee"
             android:fadingEdge="horizontal"
+            android:fontFamily="casual"
             android:singleLine="true"
             android:textColor="@android:color/black"
-            android:textSize="16sp" />
-
-
-        <TextView
-            android:id="@+id/title_requests_count"
-            style="@style/TitleBadgeText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true" />
+            android:textSize="20dp" />
 
         <TextView
-            style="@style/TitleBadgeTitle"
+            android:id="@+id/textView41"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/title_requests_count"
-            android:layout_alignStart="@id/title_requests_count"
-            android:text="@string/requests_count_badge" />
+            android:text="COURSE"
+            android:layout_below="@+id/regno"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="13dp" />
 
         <TextView
-            android:id="@+id/title_weight"
-            style="@style/TitleBadgeText"
+            android:id="@+id/textView42"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_alignTop="@+id/textView41"
+            android:layout_centerHorizontal="true"
+            android:text="BRANCH" />
+
+        <TextView
+            android:id="@+id/textView43"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:text="@string/weight_mock" />
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/textView42"
+            android:text="YEAR" />
 
         <TextView
-            style="@style/TitleBadgeTitle"
+            android:id="@+id/course"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/title_weight"
-            android:layout_alignStart="@id/title_weight"
-            android:text="@string/weight_badge" />
+            android:layout_alignLeft="@+id/textView41"
+            android:layout_alignStart="@+id/textView41"
+            android:layout_below="@+id/textView41"
+            android:fontFamily="casual"
+            android:text="B.tech" />
 
         <TextView
-            android:id="@+id/title_pledge"
-            style="@style/TitleBadgeText"
+            android:id="@+id/branch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_alignLeft="@+id/textView42"
+            android:layout_alignStart="@+id/textView42"
+            android:layout_below="@+id/textView42"
+            android:fontFamily="casual" />
 
         <TextView
-            style="@style/TitleBadgeTitle"
+            android:id="@+id/year"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/title_pledge"
-            android:layout_alignStart="@id/title_pledge"
-            android:text="@string/pledge_badge" />
+            android:layout_alignLeft="@+id/textView43"
+            android:layout_alignStart="@+id/textView43"
+            android:layout_below="@+id/textView43"
+            android:fontFamily="casual" />
+
 
     </RelativeLayout>
 </LinearLayout>

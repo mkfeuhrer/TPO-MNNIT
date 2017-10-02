@@ -53,7 +53,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".student.InterviewExperience.interviewexperience" />
         <activity android:name=".student.InterviewExperience.AddInterviewExperience" />
-        <activity android:name=".VerifyUser"></activity>
+        <activity android:name=".tpo.VerifyUser"></activity>
     </application>
 
 </manifest>
