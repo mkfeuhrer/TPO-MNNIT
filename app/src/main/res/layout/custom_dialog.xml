@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_dialog_feedback"
+        android:text="Register for Company"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:paddingBottom="50dp"
+        android:paddingTop="50dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="100">
+
+            <EditText
+                android:id="@+id/regis"
+                android:layout_weight="50"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Registration No."/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="100">
+
+            <EditText
+                android:id="@+id/pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="Password"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="100">
+
+            <View
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_weight="20"/>
+
+            <Button
+                android:id="@+id/register"
+                android:layout_weight="40"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:textColor="#f4a302"
+                android:background="#616161"
+                android:textAlignment="center"/>
+
+            <View
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:layout_weight="20"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

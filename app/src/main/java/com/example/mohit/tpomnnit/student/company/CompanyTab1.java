@@ -1,5 +1,7 @@
 package com.example.mohit.tpomnnit.student.company;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,8 +12,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mohit.tpomnnit.R;
@@ -90,10 +96,9 @@ public class CompanyTab1 extends Fragment {
         adapter.setDefaultRequestBtnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getContext(), MyProfile.class);
-                intent.putExtra("reg",currsel);
+                ViewDialog alertDialoge = new ViewDialog();
+                alertDialoge.showDialog(getActivity(), "Register");
                 //Toast.makeText(getApplicationContext(), "DEFAULT HANDLER FOR ALL BUTTONS "+currsel, Toast.LENGTH_SHORT).show();
-                startActivity(intent);
             }
         });
 
@@ -114,4 +119,35 @@ public class CompanyTab1 extends Fragment {
         });
     }
 
+}
+
+class ViewDialog {
+
+    public void showDialog(Activity activity, String msg) {
+
+        final Dialog dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.custom_dialog);
+
+        TextView text = (TextView) dialog.findViewById(R.id.text_dialog_feedback);
+        text.setText(msg);
+
+        Button register = (Button) dialog.findViewById(R.id.register);
+        final EditText regis = (EditText) dialog.findViewById(R.id.regis);
+        final EditText pass = (EditText) dialog.findViewById(R.id.pass);
+
+
+        register.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //Perfome Action
+                Toast.makeText(dialog.getContext(),"Company Registered",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        dialog.show();
+
+    }
 }
