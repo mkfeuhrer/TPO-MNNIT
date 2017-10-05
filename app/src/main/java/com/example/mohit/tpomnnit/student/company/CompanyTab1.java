@@ -35,25 +35,25 @@ import java.util.List;
 
 
 public class CompanyTab1 extends Fragment {
-    RecyclerView recyclerView;
+    //RecyclerView recyclerView;
     List<Companies> companiesList;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference mDatabase;
-    CompaniesAdapter companiesAdapter;
+    //CompaniesAdapter companiesAdapter;
     String companyId;
     String currsel="null";
-    View view;
+    View view1;
     CompanyStudent companyStudent=(CompanyStudent)getActivity();
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view=inflater.inflate(R.layout.fragment_companytab1, container, false);
+        view1=inflater.inflate(R.layout.fragment_companytab1, container, false);
         mDatabase=FirebaseDatabase.getInstance().getReference("companies");
         companyId=mDatabase.push().getKey();
         companiesList=new ArrayList<>();
         prepareData();
-        return view;
+        return view1;
     }
     void prepareData()
     {
@@ -91,8 +91,9 @@ public class CompanyTab1 extends Fragment {
     }
     void addCompany()
     {
-        ListView theListView = (ListView) view.findViewById(R.id.mainListView);
+        ListView theListView = (ListView) view1.findViewById(R.id.mainListView);
         final FoldingCellCompanyAdapter adapter= new FoldingCellCompanyAdapter(getContext(),companiesList);
+
         adapter.setDefaultRequestBtnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

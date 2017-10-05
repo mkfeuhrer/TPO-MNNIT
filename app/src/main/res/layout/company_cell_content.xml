@@ -18,21 +18,22 @@
             android:id="@+id/name1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
+            android:text="20150000"
             android:textColor="@android:color/white"
-            android:textSize="20sp" />
-
+            android:textSize="20sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
         <TextView
             android:id="@+id/location1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
+            android:text="00/00/0000"
             android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 
@@ -61,12 +62,12 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/textView30"
                     style="@style/ContentMainBadgeTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:text="Branch Allowed" />
+                    android:text="Branch Allowed"
+                    android:id="@+id/textView30" />
 
                 <TextView
                     android:id="@+id/branch"
@@ -86,10 +87,11 @@
 
         <!-- divider line -->
         <ImageView
+            android:id="@+id/imageView6"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginBottom="6dp"
-            android:layout_marginTop="7dp"
+            android:layout_marginTop="9dp"
             android:src="@color/contentDividerLine" />
 
         <LinearLayout
@@ -200,15 +202,15 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/textView42"
                     style="@style/ContentMainBadgeTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:text="Stipend"/>
+                    android:text="Porfile"
+                    android:id="@+id/textView42"
+                    android:layout_alignParentStart="true"/>
 
                 <TextView
-                    android:id="@+id/ctc"
+                    android:id="@+id/profile1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -241,15 +243,15 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/textView43"
                     style="@style/ContentMainBadgeTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:text="Profile" />
+                    android:text="Stipend"
+                    android:id="@+id/textView43"
+                    android:layout_alignParentStart="true"/>
 
                 <TextView
-                    android:id="@+id/profile1"
+                    android:id="@+id/ctc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -272,6 +274,7 @@
             android:layout_marginTop="9dp"
             android:src="@color/contentDividerLine" />
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -284,12 +287,12 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/textView46"
                     style="@style/ContentMainBadgeTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:text="Provision of PPO" />
+                    android:text="Provision of PPO"
+                    android:id="@+id/textView46"
+                    android:layout_alignParentStart="true"/>
 
                 <TextView
                     android:id="@+id/ppo"
@@ -327,12 +330,12 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/textView47"
                     style="@style/ContentMainBadgeTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:text="Last date for Registration" />
+                    android:text="Last date of Registration"
+                    android:id="@+id/textView47"
+                    android:layout_alignParentStart="true"/>
 
                 <TextView
                     android:id="@+id/deadline1"
@@ -370,12 +373,12 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/textView48"
                     style="@style/ContentMainBadgeTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:text="Note" />
+                    android:text="Note"
+                    android:id="@+id/textView48"
+                    android:layout_alignParentStart="true"/>
 
                 <TextView
                     android:id="@+id/note"
@@ -385,7 +388,6 @@
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/textView48"
                     android:text="n/a"
-                    android:inputType="textMultiLine"
                     android:textColor="@color/mainTextColor"
                     android:textSize="18sp"
                     android:textStyle="bold"/>
@@ -414,12 +416,12 @@
                 android:layout_weight="1">
 
                 <TextView
-                    android:id="@+id/textView49"
                     style="@style/ContentMainBadgeTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:text="Updates" />
+                    android:text="Updates"
+                    android:id="@+id/textView49"
+                    android:layout_alignParentStart="true"/>
 
                 <TextView
                     android:id="@+id/updates"
@@ -429,14 +431,14 @@
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/textView49"
                     android:text="n/a"
-                    android:inputType="textMultiLine"
-                    android:textColor="@android:color/holo_red_dark"
+                    android:textColor="@color/mainTextColor"
                     android:textSize="18sp"
                     android:textStyle="bold"/>
 
             </RelativeLayout>
 
         </LinearLayout>
+
 
 
         <!-- divider line -->
@@ -450,7 +452,7 @@
 
 
 
-        <Button
+        <TextView
             android:id="@+id/content_request_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

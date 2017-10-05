@@ -67,6 +67,7 @@ public class FoldingCellCompanyAdapter extends ArrayAdapter<Companies> {
             viewHolder.cpi = (TextView) cell.findViewById(R.id.cpi);
             viewHolder.class10 = (TextView) cell.findViewById(R.id.class10);
             viewHolder.class12 = (TextView) cell.findViewById(R.id.class12);
+            viewHolder.button=(TextView)cell.findViewById(R.id.content_request_btn);
             cell.setTag(viewHolder);
         } else {
             if (unfoldedIndexes.contains(position)) {
@@ -93,6 +94,7 @@ public class FoldingCellCompanyAdapter extends ArrayAdapter<Companies> {
         viewHolder.ppo.setText(item.getPpo());
         viewHolder.deadline.setText(item.getDeadline());
         viewHolder.deadline1.setText(item.getDeadline());
+        viewHolder.button.setOnClickListener(defaultRequestBtnClickListener);
         //viewHolder.link.setText(item.getLink());
         /*viewHolder.note.setText(item.getPermanentadd());
         viewHolder.updates.setText(item.getMobileno());
@@ -131,7 +133,7 @@ public class FoldingCellCompanyAdapter extends ArrayAdapter<Companies> {
     private static class ViewHolder {
        // ImageView dp;
         TextView name,name1,ctc,location,location1,profile,profile1,year,
-               ppo,companyid,deadline,deadline1,link,nameini,note,updates,cpi,class10,class12;
+               ppo,deadline,deadline1,link,nameini,note,updates,cpi,class10,class12,button;
 
     }
 }
