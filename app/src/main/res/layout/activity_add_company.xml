@@ -3,14 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@drawable/background"
     android:layout_height="match_parent"
     tools:context="com.example.mohit.tpomnnit.tpo.AddCompany">
 
     <LinearLayout
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <TextView android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textSize="30dp"
+            android:textColor="#000000"
+            android:id="@+id/title"
+            android:textStyle="bold"
+            android:text="Add Company"
+            android:textAlignment="center"></TextView>
 
         <EditText
             android:layout_width="match_parent"
@@ -32,6 +42,13 @@
             android:hint="Year - eg-1,2"
             android:inputType="number"
             android:id="@+id/year" />
+
+        <com.example.mohit.tpomnnit.tpo.MultiSelectionSpinner
+            android:id="@+id/input1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp" />
+
 
         <EditText
             android:layout_width="match_parent"
@@ -59,6 +76,15 @@
             android:hint="CTC"
             android:inputType="text"
             android:id="@+id/ctc" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:maxLines="5"
+            android:inputType="textMultiLine"
+            android:layout_height="wrap_content"
+            android:id="@+id/note"
+            android:hint="Note" />
+
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
@@ -90,6 +116,7 @@
                 android:editable="false"
                 android:hint="time"
                 android:inputType="time" />
+
         </LinearLayout>
 
 

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -24,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 
 public class AddCompany extends AppCompatActivity {
@@ -77,6 +79,21 @@ public class AddCompany extends AppCompatActivity {
                 setTime(v);
             }
         });
+
+        MultiSelectionSpinner spinner=(MultiSelectionSpinner) findViewById(R.id.input1);
+
+        List<String> list = new ArrayList<String>();
+        list.add("CSE");
+        list.add("IT");
+        list.add("ECE");
+        list.add("EE");
+        list.add("CHE");
+        list.add("ME");
+        list.add("PIE");
+        list.add("CIVIL");
+        list.add("BIO");
+        spinner.setItems(list);
+
         addcompany.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,6 +118,7 @@ public class AddCompany extends AppCompatActivity {
 //                startActivity(i);
             }
         });
+
 
     }
 

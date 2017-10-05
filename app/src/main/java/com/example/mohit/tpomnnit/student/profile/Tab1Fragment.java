@@ -175,7 +175,7 @@ public class    Tab1Fragment extends Fragment {
         branches.add("EE");
         branches.add("ME");
         branches.add("PIE");
-        branches.add("CE");
+        branches.add("CHE");
         branches.add("BIO");
         branches.add("CIVIL");
         branches.add("MCA");

@@ -15,10 +15,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mohit.tpomnnit.student.InterviewExperience.interviewexperience;
@@ -49,6 +52,7 @@ public class StudentProfile extends AppCompatActivity
     private DatabaseReference mDatabase;
     private StorageReference storage,imageref;
     private ImageView imageview,verified;
+    String nameuser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +66,7 @@ public class StudentProfile extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         mDatabase = FirebaseDatabase.getInstance().getReference("userdata");
         userId=mDatabase.push().getKey();
@@ -111,6 +115,12 @@ public class StudentProfile extends AppCompatActivity
                     if(registrationnum.equals(userDetails.child("regnum").getValue().toString()))
                     {
                         name.setText(userDetails.child("name").getValue().toString());
+                        View h1 = navigationView.getHeaderView(0);
+                        TextView nav_user = h1.findViewById(R.id.name);
+                        TextView nav_email = h1.findViewById(R.id.email);
+                        Toast.makeText(StudentProfile.this,""+userDetails.child("name").getValue().toString(),Toast.LENGTH_LONG).show();
+                        nav_user.setText( "\t  "+userDetails.child("name").getValue().toString());
+                        nav_email.setText("\t  "+userDetails.child("email").getValue().toString());
                         branch.setText(userDetails.child("branch").getValue().toString());
                         regnum.setText(registrationnum);
                         tpocredit.setText(userDetails.child("tpocredit").getValue().toString());
@@ -137,15 +147,14 @@ public class StudentProfile extends AppCompatActivity
                 }
             }
 
+
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         };
         mDatabase.addValueEventListener(vel);
-
-
-
     }
 
     @Override

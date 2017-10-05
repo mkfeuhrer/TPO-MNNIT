@@ -1,5 +1,7 @@
 package com.example.mohit.tpomnnit.student.profile;
 
+import java.util.ArrayList;
+
 /**
  * Created by mohit on 29/8/17.
  */
@@ -11,6 +13,8 @@ public class UserData {
     public String spi1,spi2,spi3,spi4,spi5,spi6,spi7,spi8;
     public String project,internship,company;
     public int iseditable,isverified,tpocredit;
+    ArrayList<String> companies = new ArrayList<String>();
+    ArrayList<String> messages = new ArrayList<String>();
 
     public UserData() {
     }
@@ -62,6 +66,18 @@ public class UserData {
         this.isverified     = isverified;
         this.company        = company;
         this.tpocredit      = tpocredit;
+    }
+
+    public ArrayList<String> getCompanies() { return companies; }
+
+    public void setCompanies(ArrayList<String> companies) {
+        this.companies = companies;
+    }
+
+    public ArrayList<String> getMessages() { return messages; }
+
+    public void setMessages(ArrayList<String> messages) {
+        this.messages = messages;
     }
 
     public String getRegnum() {
