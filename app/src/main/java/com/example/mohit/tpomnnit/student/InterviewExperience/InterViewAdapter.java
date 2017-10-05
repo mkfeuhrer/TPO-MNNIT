@@ -26,7 +26,6 @@ public class InterViewAdapter extends ArrayAdapter<Interview> {
     public InterViewAdapter(Context context, List<Interview> objects) {
         super(context, 0, objects);
     }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // get item for selected view

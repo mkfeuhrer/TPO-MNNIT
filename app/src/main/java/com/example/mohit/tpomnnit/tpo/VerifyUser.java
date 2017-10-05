@@ -24,7 +24,7 @@ public class VerifyUser extends AppCompatActivity {
     List<UserData> userList;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference mDatabase;
-    String userId;
+    String userId,reg,key;
     String currsel="null";
 
     @Override
@@ -44,6 +44,7 @@ public class VerifyUser extends AppCompatActivity {
         ValueEventListener vel = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                userList.clear();
                 for(DataSnapshot userDetails : dataSnapshot.getChildren()) {
                     //UserData userData=new UserData(userDetails.child("regnum").getValue().toString(),userDetails.child("name").getValue().toString(),userDetails.child("branch").getValue().toString(),userDetails.child("batch").getValue().toString(),userDetails.child("course").getValue().toString(),userDetails.child("dob").getValue().toString(),userDetails.child("email").getValue().toString(),userDetails.child("skypeid").getValue().toString(),userDetails.child("linkedinid").getValue().toString(),userDetails.child("gender").getValue().toString(),userDetails.child("category").getValue().toString(),userDetails.child("phychal").getValue().toString(),null,userDetails.child("guardian").getValue().toString(),userDetails.child("presentadd").getValue().toString(),userDetails.child("permanentadd").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),0,0,0);
                     UserData userData=new UserData();
@@ -106,6 +107,12 @@ public class VerifyUser extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        adapter.setDefaultVerifyClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                verifyUser(currsel);
+            }
+        });
 
         // set elements to adapter
         theListView.setAdapter(adapter);
@@ -122,5 +129,31 @@ public class VerifyUser extends AppCompatActivity {
                 adapter.registerToggle(pos);
             }
         });
+    }
+    void verifyUser(String regno)
+    {
+        reg=regno;
+        mDatabase = FirebaseDatabase.getInstance().getReference("userdata");
+        userId = mDatabase.push().getKey();
+        ValueEventListener vel = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                UserData user = dataSnapshot.getValue(UserData.class);
+                for (DataSnapshot userDetails : dataSnapshot.getChildren()) {
+                    System.out.println(userDetails.child("regnum").getValue().toString());
+                    if (reg.equals(userDetails.child("regnum").getValue().toString())) {
+                        key=userDetails.getKey();
+                    }
+                }
+                mDatabase.child(key).child("isverified").setValue(1);
+                System.out.println("verified");
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        mDatabase.addValueEventListener(vel);
+
     }
 }

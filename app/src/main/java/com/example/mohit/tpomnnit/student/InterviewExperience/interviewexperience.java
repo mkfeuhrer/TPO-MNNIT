@@ -60,7 +60,6 @@ public class interviewexperience extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot userDetails : dataSnapshot.getChildren()) {
-
                     Interview interviews=new Interview(
                             userDetails.child("username").getValue().toString(),
                             userDetails.child("regno").getValue().toString(),
@@ -72,7 +71,7 @@ public class interviewexperience extends AppCompatActivity {
                     interviewList.add(interviews);
                     System.out.println("in"+ userDetails.child("username").getValue().toString()+" : "+ interviews.getExperience()+" : " + interviews.getDate());
                 }
-                addRecycler();
+                addInterview();
 
             }
             @Override
@@ -83,10 +82,9 @@ public class interviewexperience extends AppCompatActivity {
         mDatabase.addValueEventListener(vel);
 
     }
-    void addRecycler()
+    void addInterview()
     {
         ListView theListView = (ListView) findViewById(R.id.mainListView);
-
         final InterViewAdapter adapter = new InterViewAdapter(this, interviewList);
 
         // add default btn handler for each request btn on each item if custom handler not found

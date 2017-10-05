@@ -7,6 +7,9 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:paddingTop="10dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:weightSum="210">
 
 
@@ -15,7 +18,11 @@
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:layout_weight="10"
-        android:weightSum="100">
+        android:padding="5dp"
+        android:elevation="5dp"
+        android:layout_margin="5dp"
+        android:weightSum="100"
+        android:background="@drawable/rounded_border">
 
         <TextView
             android:id="@+id/textView1"
@@ -40,6 +47,10 @@
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:layout_weight="10"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:elevation="5dp"
+        android:background="@drawable/rounded_border"
         android:weightSum="100">
 
         <TextView
@@ -64,6 +75,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:padding="5dp"
+        android:elevation="5dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_border"
         android:layout_weight="10"
         android:weightSum="100">
 
@@ -86,6 +101,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:padding="5dp"
+        android:elevation="5dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_border"
         android:layout_weight="10">
 
         <TextView
@@ -109,6 +128,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:padding="5dp"
+        android:elevation="5dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_border"
         android:layout_weight="10">
 
         <TextView
@@ -134,6 +157,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:padding="5dp"
+        android:elevation="5dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_border"
         android:layout_weight="10">
 
         <TextView
@@ -157,6 +184,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:padding="5dp"
+        android:elevation="5dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_border"
         android:layout_weight="10">
 
         <TextView
@@ -180,6 +211,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:padding="5dp"
+        android:elevation="5dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_border"
         android:layout_weight="10">
 
         <TextView
@@ -203,6 +238,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:padding="5dp"
+        android:elevation="5dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_border"
         android:layout_weight="10">
 
         <TextView
@@ -245,6 +284,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
+        android:padding="5dp"
+        android:elevation="5dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_border"
     android:layout_weight="10">
 
         <TextView
@@ -267,6 +310,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:padding="5dp"
+        android:elevation="5dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_border"
         android:layout_weight="5">
 
         <TextView
@@ -313,6 +360,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:padding="5dp"
+        android:elevation="5dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_border"
         android:layout_weight="10">
 
         <TextView
@@ -335,6 +386,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:padding="5dp"
+        android:elevation="5dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_border"
         android:layout_weight="10">
 
         <TextView
@@ -357,6 +412,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:padding="5dp"
+        android:elevation="5dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_border"
         android:layout_weight="10">
 
         <TextView
@@ -379,6 +438,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:padding="5dp"
+        android:elevation="5dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_border"
         android:layout_weight="10">
 
         <TextView
@@ -401,6 +464,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:padding="5dp"
+        android:elevation="5dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_border"
         android:layout_weight="10">
 
         <TextView
@@ -423,6 +490,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:padding="5dp"
+        android:elevation="5dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_border"
         android:layout_weight="10">
 
         <TextView
@@ -445,6 +516,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:padding="5dp"
+        android:elevation="5dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_border"
         android:layout_weight="10">
 
         <TextView
@@ -467,6 +542,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:padding="5dp"
+        android:elevation="5dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_border"
         android:layout_weight="10">
 
         <TextView
@@ -490,6 +569,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:padding="5dp"
+        android:elevation="5dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/rounded_border"
         android:layout_weight="10">
 
         <TextView

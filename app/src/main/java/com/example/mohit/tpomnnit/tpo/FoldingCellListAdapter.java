@@ -33,6 +33,7 @@ public class FoldingCellListAdapter extends ArrayAdapter<UserData> {
 
     private HashSet<Integer> unfoldedIndexes = new HashSet<>();
     private View.OnClickListener defaultRequestBtnClickListener;
+    private View.OnClickListener defaultVerifyClickListener;
     private StorageReference storage,imageref;
 
     public FoldingCellListAdapter(Context context, List<UserData> objects) {
@@ -71,6 +72,7 @@ public class FoldingCellListAdapter extends ArrayAdapter<UserData> {
             viewHolder.project = (TextView) cell.findViewById(R.id.project);
             viewHolder.internship = (TextView) cell.findViewById(R.id.internship);
             viewHolder.button = (TextView) cell.findViewById(R.id.content_request_btn);
+            viewHolder.verify = (TextView) cell.findViewById(R.id.verify);
             cell.setTag(viewHolder);
         } else {
             if (unfoldedIndexes.contains(position)) {
@@ -149,6 +151,7 @@ public class FoldingCellListAdapter extends ArrayAdapter<UserData> {
         } else {*/
         // (optionally) add "default" handler if no handler found in item
         viewHolder.button.setOnClickListener(defaultRequestBtnClickListener);
+        viewHolder.verify.setOnClickListener(defaultVerifyClickListener);
         //}
         return cell;
     }
@@ -168,11 +171,16 @@ public class FoldingCellListAdapter extends ArrayAdapter<UserData> {
         unfoldedIndexes.add(position);
     }
 
+    public View.OnClickListener getDefaultVerifyClickListener(){
+        return defaultVerifyClickListener;
+    }
+    public void setDefaultVerifyClickListener(View.OnClickListener defaultVerifyClickListener){
+        this.defaultVerifyClickListener=defaultVerifyClickListener;
+    }
     public View.OnClickListener getDefaultRequestBtnClickListener() {
         System.out.println("Clicked at 1 ");
         return defaultRequestBtnClickListener;
     }
-
     public void setDefaultRequestBtnClickListener(View.OnClickListener defaultRequestBtnClickListener) {
         System.out.println("Clicked at 2");
         this.defaultRequestBtnClickListener = defaultRequestBtnClickListener;
@@ -183,7 +191,7 @@ public class FoldingCellListAdapter extends ArrayAdapter<UserData> {
         ImageView dp;
         TextView name,regno,regno1,branch,course,year,nameini,
                 dob,email,linkedinid,skypeid,gender,category,pwd,presentaddr,permanentaddr,
-                personalcontact,parentcontact,project,internship,button;
+                personalcontact,parentcontact,project,internship,button,verify;
 
     }
 }
