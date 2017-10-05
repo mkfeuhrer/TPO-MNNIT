@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:visibility="gone">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +25,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/location"
+            android:id="@+id/location1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -205,7 +208,7 @@
                     android:text="Stipend"/>
 
                 <TextView
-                    android:id="@+id/stipend"
+                    android:id="@+id/ctc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -246,7 +249,7 @@
                     android:text="Profile" />
 
                 <TextView
-                    android:id="@+id/profile"
+                    android:id="@+id/profile1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -332,7 +335,7 @@
                     android:text="Last date for Registration" />
 
                 <TextView
-                    android:id="@+id/deadline"
+                    android:id="@+id/deadline1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"

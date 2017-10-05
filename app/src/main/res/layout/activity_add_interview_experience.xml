@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:hint="Registration No."
             android:inputType="number"
-            android:id="@+id/regno" />
+            android:id="@+id/location" />
 
         <EditText
             android:layout_width="match_parent"

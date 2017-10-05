@@ -47,7 +47,7 @@ public class    Tab1Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab1_fragment, container, false);
-        regno = (EditText) view.findViewById(R.id.regno);
+        regno = (EditText) view.findViewById(R.id.location);
         name = (EditText) view.findViewById(R.id.name);
 //        course = (EditText) view.findViewById(R.id.course);
 //        branch = (EditText) view.findViewById(R.id.branch);

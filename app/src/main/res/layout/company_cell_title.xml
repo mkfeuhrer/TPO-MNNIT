@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="155dp"
-        android:layout_weight="2"
+        android:layout_weight="3"
         android:background="@color/bgTitleLeft"
         android:gravity="center_horizontal"
         android:orientation="vertical"
@@ -18,15 +18,15 @@
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:paddingTop="5dp">
-        <ImageView
+        <!--ImageView
             android:id="@+id/dp"
             android:layout_centerInParent="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/avatar" />
+            android:src="@drawable/avatar" /-->
 
-        <!--TextView
+        <TextView
             android:id="@+id/nameini"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
             android:textSize="80dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" /-->
+            android:layout_alignParentEnd="true" />
 
 
     </RelativeLayout>
@@ -94,11 +94,11 @@
             android:id="@+id/textView41"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="COURSE"
-            android:layout_below="@+id/location"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="13dp" />
+            android:layout_below="@+id/location"
+            android:layout_marginTop="13dp"
+            android:text="PROFILE" />
 
         <TextView
             android:id="@+id/textView42"
@@ -106,7 +106,7 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/textView41"
             android:layout_centerHorizontal="true"
-            android:text="BRANCH" />
+            android:text="YEAR" />
 
         <TextView
             android:id="@+id/textView43"
@@ -115,10 +115,10 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignTop="@+id/textView42"
-            android:text="YEAR" />
+            android:text="DEADLINE" />
 
         <TextView
-            android:id="@+id/course"
+            android:id="@+id/profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/textView41"
@@ -128,7 +128,7 @@
             android:text="B.tech" />
 
         <TextView
-            android:id="@+id/branch"
+            android:id="@+id/year"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/textView42"
@@ -137,7 +137,7 @@
             android:fontFamily="casual" />
 
         <TextView
-            android:id="@+id/year"
+            android:id="@+id/deadline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/textView43"

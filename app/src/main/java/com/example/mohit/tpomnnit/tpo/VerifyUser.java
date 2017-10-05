@@ -3,17 +3,11 @@ package com.example.mohit.tpomnnit.tpo;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.example.mohit.tpomnnit.*;
 import com.example.mohit.tpomnnit.R;
-import com.example.mohit.tpomnnit.student.company.Companies;
-import com.example.mohit.tpomnnit.student.company.CompaniesAdapter;
 import com.example.mohit.tpomnnit.student.profile.MyProfile;
 import com.example.mohit.tpomnnit.student.profile.UserData;
 import com.google.firebase.database.DataSnapshot;
@@ -22,13 +16,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.ramotion.foldingcell.*;
-import com.alexvasilkov.foldablelayout.FoldableListLayout;
-import com.alexvasilkov.foldablelayout.UnfoldableView;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.example.mohit.tpomnnit.R.id.companies;
 
 public class VerifyUser extends AppCompatActivity {
     List<UserData> userList;

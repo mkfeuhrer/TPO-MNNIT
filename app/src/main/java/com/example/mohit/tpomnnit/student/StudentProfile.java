@@ -118,7 +118,7 @@ public class StudentProfile extends AppCompatActivity
                         View h1 = navigationView.getHeaderView(0);
                         TextView nav_user = h1.findViewById(R.id.name);
                         TextView nav_email = h1.findViewById(R.id.email);
-                        Toast.makeText(StudentProfile.this,""+userDetails.child("name").getValue().toString(),Toast.LENGTH_LONG).show();
+                        //Toast.makeText(StudentProfile.this,""+userDetails.child("name").getValue().toString(),Toast.LENGTH_LONG).show();
                         nav_user.setText( "\t  "+userDetails.child("name").getValue().toString());
                         nav_email.setText("\t  "+userDetails.child("email").getValue().toString());
                         branch.setText(userDetails.child("branch").getValue().toString());

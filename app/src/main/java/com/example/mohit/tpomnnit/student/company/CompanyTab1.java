@@ -1,5 +1,6 @@
 package com.example.mohit.tpomnnit.student.company;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,14 +10,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.mohit.tpomnnit.R;
+import com.example.mohit.tpomnnit.student.profile.MyProfile;
+import com.example.mohit.tpomnnit.tpo.VerifyUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.ramotion.foldingcell.FoldingCell;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,24 +35,18 @@ public class CompanyTab1 extends Fragment {
     DatabaseReference mDatabase;
     CompaniesAdapter companiesAdapter;
     String companyId;
+    String currsel="null";
+    View view;
+    CompanyStudent companyStudent=(CompanyStudent)getActivity();
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_companytab1, container, false);
+        view=inflater.inflate(R.layout.fragment_companytab1, container, false);
         mDatabase=FirebaseDatabase.getInstance().getReference("companies");
         companyId=mDatabase.push().getKey();
-        recyclerView=(RecyclerView)view.findViewById(R.id.recyclerView);
         companiesList=new ArrayList<>();
-       // Companies companies=new Companies("name","ctc","fasfd","fasfd","fasfd","fasfd","fasfd","fasfd","fasfd",null,null,null);
-       // companiesList.add(companies);
         prepareData();
-       /* companiesAdapter=new CompaniesAdapter(companiesList);
-        CompanyStudent companyStudent=(CompanyStudent)getActivity();
-        RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(companyStudent.getApplicationContext());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(companiesAdapter);*/
         return view;
     }
     void prepareData()
@@ -56,13 +56,24 @@ public class CompanyTab1 extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot userDetails : dataSnapshot.getChildren()) {
-                    Companies companies=new Companies(userDetails.child("name").getValue().toString(),userDetails.child("ctc").getValue().toString(),userDetails.child("location").getValue().toString(),null,null,null,null,null,null,null,null,null);
-                    //Companies companies=dataSnapshot.getValue(Companies.class);
-                            companiesList.add(companies);
-                    System.out.println("in"+ userDetails.child("name").getValue().toString()+" : "+companies.getCtc()+" : "+companies.getLocation());
+                    //Companies companies=new Companies(userDetails.child("name").getValue().toString(),userDetails.child("ctc").getValue().toString(),userDetails.child("location").getValue().toString(),null,null,null,null,null,null,null,null,null);
+                    Companies companies=new Companies();
+                    companies.setName(userDetails.child("name").getValue().toString());
+                    companies.setCtc(userDetails.child("ctc").getValue().toString());
+                    companies.setLocation(userDetails.child("location").getValue().toString());
+                    companies.setProfile(userDetails.child("profile").getValue().toString());
+                    companies.setYear(userDetails.child("year").getValue().toString());
+                    companies.setPpo(userDetails.child("ppo").getValue().toString());
+                    companies.setCompanyid(userDetails.child("companyid").getValue().toString());
+                    companies.setDeadline(userDetails.child("deadline").getValue().toString());
+                    companies.setLink(userDetails.child("link").getValue().toString());
+                    //ArrayList<String> branch=new ArrayList<String>();
+                    System.out.println("branch "+userDetails.child("branch").getValue());
+                    //companies.setBranch(userDetails.child("branch").getValue().toString());
+                    companiesList.add(companies);
+                    //System.out.println("in"+ userDetails.child("name").getValue().toString()+" : "+companies.getCtc()+" : "+companies.getLocation());
                 }
-                addRecycler();
-
+                addCompany();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -72,39 +83,35 @@ public class CompanyTab1 extends Fragment {
         mDatabase.addValueEventListener(vel);
 
     }
-    void addRecycler()
+    void addCompany()
     {
-       /* System.out.println("out");
-        for(int i=0;i<companiesList.size();i++)
-        {
-            Companies companies=companiesList.get(i);
-            System.out.println("ex "+companies.getName()+" : "+companies.getLocation());
-        }*/
-        companiesAdapter=new CompaniesAdapter(companiesList);
-        final CompanyStudent companyStudent=(CompanyStudent)getActivity();
-        RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(companyStudent.getApplicationContext());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.addItemDecoration(new DividerItemDecoration(companyStudent.getApplicationContext(),LinearLayoutManager.VERTICAL));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(companyStudent.getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
+        ListView theListView = (ListView) view.findViewById(R.id.mainListView);
+        final FoldingCellCompanyAdapter adapter= new FoldingCellCompanyAdapter(getContext(),companiesList);
+        adapter.setDefaultRequestBtnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view, int position) {
-                Companies companies=companiesList.get(position);
-                Toast.makeText(companyStudent.getApplicationContext(),"position selected: "+position,Toast.LENGTH_LONG).show();
-                        /*Intent intent=new Intent(starQuestion.this,starQuestionDisplay.class);
-                        intent.putExtra("position",position);
-                        startActivity(intent);*/
-                //finish();
-                //Toast.makeText(getApplicationContext(), question.getQUESTION() + " is selected!", Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(), MyProfile.class);
+                intent.putExtra("reg",currsel);
+                //Toast.makeText(getApplicationContext(), "DEFAULT HANDLER FOR ALL BUTTONS "+currsel, Toast.LENGTH_SHORT).show();
+                startActivity(intent);
             }
+        });
 
+        // set elements to adapter
+        theListView.setAdapter(adapter);
+
+        // set on click event listener to list view
+        theListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onLongClick(View view, int position) {
-
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                // toggle clicked cell state
+                System.out.println("toggle");
+                currsel=companiesList.get(pos).getName().toString();
+                ((FoldingCell) view).toggle(false);
+                // register in adapter that state for selected cell is toggled
+                adapter.registerToggle(pos);
             }
-        }));
-        recyclerView.setAdapter(companiesAdapter);
-
+        });
     }
 
 }

@@ -1,4 +1,4 @@
-package com.example.mohit.tpomnnit;
+package com.example.mohit.tpomnnit.tpo;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.mohit.tpomnnit.R;
 import com.example.mohit.tpomnnit.student.profile.UserData;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -52,7 +53,7 @@ public class FoldingCellListAdapter extends ArrayAdapter<UserData> {
             viewHolder.dp=(ImageView)cell.findViewById(R.id.dp);
             viewHolder.name = (TextView) cell.findViewById(R.id.name);
             viewHolder.regno1 = (TextView) cell.findViewById(R.id.regno1);
-            viewHolder.regno = (TextView) cell.findViewById(R.id.regno);
+            viewHolder.regno = (TextView) cell.findViewById(R.id.location);
             viewHolder.branch = (TextView) cell.findViewById(R.id.branch);
             viewHolder.course = (TextView) cell.findViewById(R.id.course);
             viewHolder.year = (TextView) cell.findViewById(R.id.year);

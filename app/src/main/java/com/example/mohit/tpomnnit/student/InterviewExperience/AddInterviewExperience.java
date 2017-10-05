@@ -47,7 +47,7 @@ public class AddInterviewExperience extends AppCompatActivity {
         company        = (EditText)findViewById(R.id.company);
         experience     = (EditText)findViewById(R.id.experience);
         name           = (EditText)findViewById(R.id.name);
-        regno           = (EditText)findViewById(R.id.regno);
+        regno           = (EditText)findViewById(R.id.location);
 
         calendar = Calendar.getInstance();
         Year = calendar.get(Calendar.YEAR);

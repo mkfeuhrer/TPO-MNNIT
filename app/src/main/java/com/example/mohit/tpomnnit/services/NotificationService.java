@@ -25,7 +25,7 @@ public class NotificationService extends Service {
     DatabaseReference mDatabase;
     String companyId;
     int n,i=-10;
-
+    public static int flag=-1;
 
     @Nullable
     @Override
@@ -34,11 +34,13 @@ public class NotificationService extends Service {
     }
     @Override
     public void onCreate() {
+        flag=1;
         Toast.makeText(this, " MyService Created ", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        flag=2;
         Toast.makeText(this, " MyService Started", Toast.LENGTH_LONG).show();
         final int currentId = startId;
 
@@ -91,7 +93,9 @@ public class NotificationService extends Service {
     }
 
     @Override
-    public void onDestroy() {
+    public void onDestroy()
+    {
+        flag=-1;
         Toast.makeText(this, "MyService Stopped", Toast.LENGTH_LONG).show();
     }
 

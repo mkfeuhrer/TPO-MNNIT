@@ -4,20 +4,13 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.mohit.tpomnnit.FoldingCellListAdapter;
 import com.example.mohit.tpomnnit.R;
-import com.example.mohit.tpomnnit.student.company.*;
-import com.example.mohit.tpomnnit.student.company.RecyclerTouchListener;
-import com.example.mohit.tpomnnit.tpo.AddCompany;
-import com.example.mohit.tpomnnit.tpo.TpoHome;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,7 +37,7 @@ public class interviewexperience extends AppCompatActivity {
 
         mDatabase     = FirebaseDatabase.getInstance().getReference("interviews");
         interviewId   = mDatabase.push().getKey();
-        recyclerView  = (RecyclerView)findViewById(R.id.recyclerView);
+       // recyclerView  = (RecyclerView)findViewById(R.id.recyclerView);
         interviewList = new ArrayList<>();
         prepareData();
 
