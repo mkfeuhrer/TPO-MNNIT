@@ -8,18 +8,17 @@ import java.util.ArrayList;
 
 public class Companies {
 
-    public String name,ctc,location,profile,year,ppo,companyid,deadline,link;
-    ArrayList<String> branch = new ArrayList<String>();
+    public String name,ctc,location,profile,year,ppo,companyid,deadline,link,branch;
     ArrayList<String> registeredstudents = new ArrayList<String>();
     ArrayList<String> selectedstudents = new ArrayList<String>();
     public Companies(){
     }
 
-    public ArrayList<String> getBranch() {
+    public String getBranch() {
         return branch;
     }
 
-    public void setBranch(ArrayList<String> branch) {
+    public void setBranch(String branch) {
         this.branch = branch;
     }
 
@@ -111,7 +110,7 @@ public class Companies {
         this.selectedstudents = selectedstudents;
     }
 
-    public Companies(String name, String ctc, String location, String profile, String year, String ppo, String companyid, String deadline, String link, ArrayList<String> branch, ArrayList<String> registeredstudents, ArrayList<String> selectedstudents)
+    public Companies(String name, String ctc, String location, String profile, String year, String ppo, String companyid, String deadline, String link, String branch, ArrayList<String> registeredstudents, ArrayList<String> selectedstudents)
     {
         this.name = name;
         this.ctc  = ctc;

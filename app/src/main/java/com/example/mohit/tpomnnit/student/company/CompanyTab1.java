@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.mohit.tpomnnit.R;
 import com.example.mohit.tpomnnit.student.profile.MyProfile;
+import com.example.mohit.tpomnnit.student.profile.UserData;
 import com.example.mohit.tpomnnit.tpo.VerifyUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,7 +43,7 @@ public class CompanyTab1 extends Fragment {
     DatabaseReference mDatabase;
     //CompaniesAdapter companiesAdapter;
     String companyId;
-    String currsel="null";
+    static String currsel;
     View view1;
     CompanyStudent companyStudent=(CompanyStudent)getActivity();
     @Nullable
@@ -61,6 +63,7 @@ public class CompanyTab1 extends Fragment {
         ValueEventListener vel = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                companiesList.clear();
                 for(DataSnapshot userDetails : dataSnapshot.getChildren()) {
                     //Companies companies=new Companies(userDetails.child("name").getValue().toString(),userDetails.child("ctc").getValue().toString(),userDetails.child("location").getValue().toString(),null,null,null,null,null,null,null,null,null);
                     Companies companies=new Companies();
@@ -113,6 +116,7 @@ public class CompanyTab1 extends Fragment {
                 // toggle clicked cell state
                 System.out.println("toggle");
                 currsel=companiesList.get(pos).getName().toString();
+                System.out.println(currsel);
                 ((FoldingCell) view).toggle(false);
                 // register in adapter that state for selected cell is toggled
                 adapter.registerToggle(pos);
@@ -120,9 +124,18 @@ public class CompanyTab1 extends Fragment {
         });
     }
 
+    public String getcurrsel()
+    {
+//        System.out.println("return "+currsel);
+        return currsel;
+    }
+
 }
 
 class ViewDialog {
+    String reg,userId,key,cursel;
+    DatabaseReference mDatabase;
+    ArrayList<String> registered;
 
     public void showDialog(Activity activity, String msg) {
 
@@ -130,6 +143,8 @@ class ViewDialog {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.custom_dialog);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.onBackPressed();
 
         TextView text = (TextView) dialog.findViewById(R.id.text_dialog_feedback);
         text.setText(msg);
@@ -144,11 +159,49 @@ class ViewDialog {
             @Override
             public void onClick(View v) {
                 //Perfome Action
+                verifyUser(regis.getText().toString().trim());
                 Toast.makeText(dialog.getContext(),"Company Registered",Toast.LENGTH_LONG).show();
             }
         });
 
         dialog.show();
+
+    }
+    void verifyUser(String regno)
+    {
+        registered = new ArrayList<String>();
+        CompanyTab1 obj = new CompanyTab1();
+        cursel = obj.getcurrsel();
+        System.out.println("Cursel"+cursel);
+        reg=regno;
+        mDatabase = FirebaseDatabase.getInstance().getReference("userdata");
+        userId = mDatabase.push().getKey();
+        ValueEventListener vel = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                registered.clear();
+                UserData user = dataSnapshot.getValue(UserData.class);
+                for (DataSnapshot userDetails : dataSnapshot.getChildren()) {
+                    System.out.println(userDetails.child("regnum").getValue().toString());
+                    if (reg.equals(userDetails.child("regnum").getValue().toString())) {
+                        key=userDetails.getKey();
+                        for (DataSnapshot userDetails1 : userDetails.child(key).child("companies").getChildren()) {
+                            registered.add(userDetails1.getValue().toString());
+                        }
+                        registered.add(cursel);
+
+                    }
+                }
+
+//                System.out.println("verified");
+                mDatabase.child(key).child("companies").setValue(registered);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        mDatabase.addValueEventListener(vel);
 
     }
 }

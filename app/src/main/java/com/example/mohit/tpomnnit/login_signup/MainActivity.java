@@ -22,6 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 import static com.example.mohit.tpomnnit.R.id.confirmpass;
 import static com.example.mohit.tpomnnit.R.id.username;
 
@@ -110,6 +112,9 @@ public class MainActivity extends AppCompatActivity {
         }
         Users user = new Users(name, year,regnum,password,userid);
         UserData userData1 = new UserData(regnum,name,"n/a","",year,"n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a",10,0,1);
+        ArrayList<String> companies = new ArrayList<String>();
+        companies.add("Temp");
+        userData1.setCompanies(companies);
         addUserChangeListener(user);
         addUserDataChangeListener(userData1);
     }
