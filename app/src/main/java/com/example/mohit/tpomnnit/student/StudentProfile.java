@@ -78,8 +78,6 @@ public class StudentProfile extends AppCompatActivity
         company=(EditText)findViewById(R.id.company);
         imageview = (ImageView)findViewById(R.id.imageView3);
         registrationnum = getIntent().getStringExtra("reg");
-//        Log.e("reg",registrationnum);
-
         storage = FirebaseStorage.getInstance().getReference("userimage/"+registrationnum+".jpg");
 
         imageref = storage;
@@ -140,10 +138,6 @@ public class StudentProfile extends AppCompatActivity
                         //Access all data
 
                     }
-//                            Log.d("valueName:", userDetails.child("name").getValue().toString());
-//                            Log.d("valueEmail:", userDetails.child("email").getValue().toString());
-//                            Log.d("valueuserid:", userDetails.child("studentid").getValue().toString());
-//                            Log.d("password:", userDetails.child("password").getValue().toString());
                 }
             }
 

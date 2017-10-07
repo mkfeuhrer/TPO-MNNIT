@@ -25,6 +25,7 @@ public class VerifyUser extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference mDatabase;
     String userId,reg,key;
+    String regno,branch,course;
     String currsel="null";
 
     @Override
@@ -34,6 +35,9 @@ public class VerifyUser extends AppCompatActivity {
         mDatabase=FirebaseDatabase.getInstance().getReference("userdata");
         userId=mDatabase.push().getKey();
         userList=new ArrayList<>();
+        regno=getIntent().getStringExtra("regno");
+        branch=getIntent().getStringExtra("branch");
+        course=getIntent().getStringExtra("course");
         prepareData();
 
 
@@ -69,7 +73,8 @@ public class VerifyUser extends AppCompatActivity {
                     userData.setInternship(userDetails.child("internship").getValue().toString());
                     //userData.getName()
                     //Companies companies=dataSnapshot.getValue(Companies.class);
-                    userList.add(userData);
+                    if((course.equals("") || course.equals(userData.getCourse())) && (branch.equals("") || branch.equals(userData.getBranch())) && (regno.equals("") || regno.equals(userData.getRegnum())))
+                        userList.add(userData);
                     //System.out.println("in"+ userDetails.child("name").getValue().toString()+" : "+companies.getCtc()+" : "+companies.getLocation());
                 }
                 addUsers();

@@ -27,6 +27,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
@@ -175,16 +176,28 @@ public class Tab4Fragment extends Fragment {
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             filePath = data.getData();
-
             try {
                 //getting image from gallery
                 //ContentResolver cr=getApplicationCon;
                 Context applicationContext = MyProfile.getContextOfApplication();
                 ContentResolver cr=applicationContext.getContentResolver();
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(cr,filePath);
-
+                Bitmap bitmap1 = bitmap;
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bitmap1.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                byte[] imageInByte = stream.toByteArray();
+                long size = imageInByte.length;
+                size/=2000;
+                System.out.println("image size "+size);
+                if(size<=62) {
+                    image.setImageBitmap(bitmap);
+                }
+                else
+                {
+                    Toast.makeText(applicationContext,"Image size too large... Max size allowed is 50KB",Toast.LENGTH_LONG).show();
+                }
                 //Setting image to ImageView
-                image.setImageBitmap(bitmap);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
