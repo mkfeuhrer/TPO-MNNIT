@@ -36,7 +36,7 @@ public class StudentFilter extends AppCompatActivity {
         find.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(StudentFilter.this,VerifyUser.class);
+                Intent intent=new Intent(StudentFilter.this,ManageStudents.class);
                 intent.putExtra("flag",1);
                 intent.putExtra("course",courseselected);
                 intent.putExtra("branch",branchselected);

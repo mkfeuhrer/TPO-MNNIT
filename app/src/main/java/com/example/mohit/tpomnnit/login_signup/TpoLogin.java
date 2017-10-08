@@ -31,6 +31,7 @@ public class TpoLogin extends AppCompatActivity {
     private TextView signup;
     private DatabaseReference mDatabase;
     ImageView imageView;
+    ValueEventListener val;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +66,7 @@ public class TpoLogin extends AppCompatActivity {
                 }
                 else
                 {
-                    ValueEventListener val = new ValueEventListener() {
+                     val = new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             int f = 0;
@@ -90,6 +91,7 @@ public class TpoLogin extends AppCompatActivity {
                             if (f == 0) {
                                 Toast.makeText(TpoLogin.this, "User Not Registered", Toast.LENGTH_LONG).show();
                             }
+                            mDatabase.removeEventListener(val);
                         }
                         @Override
                         public void onCancelled(DatabaseError databaseError) {

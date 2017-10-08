@@ -1,6 +1,5 @@
 package com.example.mohit.tpomnnit.tpo;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,13 +10,10 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mohit.tpomnnit.R;
-import com.example.mohit.tpomnnit.student.company.CompanyTab1;
 import com.example.mohit.tpomnnit.student.profile.MyProfile;
 import com.example.mohit.tpomnnit.student.profile.UserData;
 import com.google.firebase.database.DataSnapshot;
@@ -25,31 +21,33 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.ramotion.foldingcell.*;
+import com.ramotion.foldingcell.FoldingCell;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class VerifyUser extends AppCompatActivity {
+public class ManageStudents extends AppCompatActivity {
     List<UserData> userList;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference mDatabase;
     String userId,reg,key;
     String regno,branch,course;
     static String currsel="null";
-    static int adapterFlag;
+    static int adapterFlag=0;
     int flag;
     ValueEventListener vel,vel1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(com.example.mohit.tpomnnit.R.layout.activity_verify_user);
+        setContentView(R.layout.activity_verify_user);
         mDatabase=FirebaseDatabase.getInstance().getReference("userdata");
         userId=mDatabase.push().getKey();
         userList=new ArrayList<>();
+        regno = getIntent().getStringExtra("regno");
+        branch = getIntent().getStringExtra("branch");
+        course = getIntent().getStringExtra("course");
         prepareData();
-
 
     }
     void prepareData()
@@ -85,9 +83,8 @@ public class VerifyUser extends AppCompatActivity {
                     //userData.getName()
                     //Companies companies=dataSnapshot.getValue(Companies.class);
 
-                        if (userData.getIsverified() == 0)
-                            userList.add(userData);
-
+                    if ((course.equals("") || course.equals(userData.getCourse())) && (branch.equals("") || branch.equals(userData.getBranch())) && (regno.equals("") || regno.equals(userData.getRegnum())))
+                        userList.add(userData);
                     //System.out.println("in"+ userDetails.child("name").getValue().toString()+" : "+companies.getCtc()+" : "+companies.getLocation());
                 }
                 addUsers();
@@ -100,7 +97,7 @@ public class VerifyUser extends AppCompatActivity {
             }
         };
         mDatabase.addValueEventListener(vel);
-        //mDatabase.removeEventListener(vel);
+
 
     }
     public void addUsers()
@@ -112,7 +109,7 @@ public class VerifyUser extends AppCompatActivity {
         adapter.setDefaultRequestBtnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(VerifyUser.this, MyProfile.class);
+                Intent intent=new Intent(ManageStudents.this, MyProfile.class);
                 intent.putExtra("reg",currsel);
                 //Toast.makeText(getApplicationContext(), "DEFAULT HANDLER FOR ALL BUTTONS "+currsel, Toast.LENGTH_SHORT).show();
                 startActivity(intent);
@@ -123,20 +120,54 @@ public class VerifyUser extends AppCompatActivity {
             public void onClick(View view) {
                 /*ManageStudentDialog alertDialoge = new ManageStudentDialog();
                 alertDialoge.showDialog(VerifyUser.this, "Register");*/
-                    new AlertDialog.Builder(VerifyUser.this)
-                            .setIcon(android.R.drawable.ic_dialog_alert)
-                            .setTitle("Verify " + currsel)
-                            .setMessage("Are you sure you want to verify?")
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    verifyUser(currsel);
-                                }
+                    final Dialog dialog = new Dialog(ManageStudents.this);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setCancelable(false);
+                    dialog.setContentView(R.layout.dialog_manage_student);
+                    dialog.setCanceledOnTouchOutside(true);
+                    dialog.onBackPressed();
+                    Button deducttpo=(Button)dialog.findViewById(R.id.deducttpo);
+                    Button deleteuser=(Button)dialog.findViewById(R.id.deleteaccount);
+                    Button addcompany=(Button)dialog.findViewById(R.id.addcompany);
+                    Button blockaccount=(Button)dialog.findViewById(R.id.blockaccount);
+                    deducttpo.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
 
-                            })
-                            .setNegativeButton("No", null)
-                            .show();
+                        }
+                    });
+                    deleteuser.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
 
+                        }
+                    });
+                    addcompany.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
+                    blockaccount.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            new AlertDialog.Builder(ManageStudents.this)
+                                    .setIcon(android.R.drawable.ic_dialog_alert)
+                                    .setTitle("Block " + currsel)
+                                    .setMessage("Are you sure you want to block user?")
+                                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            blockUser(currsel);
+                                        }
+
+                                    })
+                                    .setNegativeButton("No", null)
+                                    .show();
+
+                        }
+                    });
+                    dialog.show();
             }
         });
 
@@ -155,11 +186,38 @@ public class VerifyUser extends AppCompatActivity {
             }
         });
     }
+
     void deductcredit(int n)
     {
 
     }
-    void verifyUser(String regno)
+    void deleteUser(String regno)
+    {
+        reg=regno;
+        mDatabase = FirebaseDatabase.getInstance().getReference("userdata");
+        userId = mDatabase.push().getKey();
+        ValueEventListener vel = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                UserData user = dataSnapshot.getValue(UserData.class);
+                for (DataSnapshot userDetails : dataSnapshot.getChildren()) {
+                    System.out.println(userDetails.child("regnum").getValue().toString());
+                    if (reg.equals(userDetails.child("regnum").getValue().toString())) {
+                        key=userDetails.getKey();
+                    }
+                }
+                mDatabase.child(key).child("isverified").setValue(0);
+                //System.out.println("verified");
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        mDatabase.addValueEventListener(vel);
+
+    }
+    void blockUser(final String regno)
     {
         reg=regno;
         mDatabase = FirebaseDatabase.getInstance().getReference("userdata");
@@ -174,12 +232,10 @@ public class VerifyUser extends AppCompatActivity {
                         key=userDetails.getKey();
                     }
                 }
-                mDatabase.child(key).child("isverified").setValue(1);
-                System.out.println("verified");
+                mDatabase.child(key).child("isverified").setValue(0);
+                Toast.makeText(getApplicationContext(), regno+" Blocked", Toast.LENGTH_SHORT).show();
                 mDatabase.removeEventListener(vel1);
-                finish();
-                Intent intent=new Intent(VerifyUser.this,VerifyUser.class);
-                startActivity(intent);
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -189,5 +245,4 @@ public class VerifyUser extends AppCompatActivity {
         mDatabase.addValueEventListener(vel1);
 
     }
-
 }

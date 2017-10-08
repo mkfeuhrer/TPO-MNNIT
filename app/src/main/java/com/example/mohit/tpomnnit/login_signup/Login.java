@@ -31,6 +31,7 @@ public class Login extends AppCompatActivity {
     private TextView signup;
     private DatabaseReference mDatabase;
     private ImageView imageView;
+    ValueEventListener vel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +64,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                ValueEventListener vel = new ValueEventListener() {
+                vel = new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         int f = 0;
@@ -106,6 +107,7 @@ public class Login extends AppCompatActivity {
                         {
                             Toast.makeText(Login.this,"User Not Registered",Toast.LENGTH_LONG).show();
                         }
+                        mDatabase.removeEventListener(vel);
                     }
 
                     @Override
