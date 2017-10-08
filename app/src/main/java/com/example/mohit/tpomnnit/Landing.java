@@ -47,12 +47,12 @@ public class Landing extends AppCompatActivity {
             }
         });
         //NotificationService ob=new NotificationService();
-        int flag=NotificationService.flag;
+        /*int flag=NotificationService.flag;
         System.out.println("flag : "+flag);
         if(flag!=2) {
             Intent serviceIntent = new Intent(Landing.this, NotificationService.class);
             startService(serviceIntent);
-        }
+        }*/
         imageView = (ImageView) findViewById(R.id.landingimage);
 
         imageView.setImageResource(R.drawable.imagee);

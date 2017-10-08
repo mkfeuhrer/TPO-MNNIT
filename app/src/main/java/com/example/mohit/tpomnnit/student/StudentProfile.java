@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mohit.tpomnnit.services.NotificationService;
 import com.example.mohit.tpomnnit.student.InterviewExperience.interviewexperience;
 import com.example.mohit.tpomnnit.student.company.CompanyStudent;
 import com.example.mohit.tpomnnit.student.profile.MyProfile;
@@ -225,6 +226,12 @@ public class StudentProfile extends AppCompatActivity
         } else if( id == R.id.logout) {
             SQLiteDatabase data = openOrCreateDatabase("login", MODE_PRIVATE, null);
             data.execSQL("drop table if exists student");
+            int flag= NotificationService.flag;
+            System.out.println("flag : "+flag);
+            if(flag==2) {
+                Intent serviceIntent = new Intent(StudentProfile.this, NotificationService.class);
+                stopService(serviceIntent);
+            }
             Intent i = new Intent(StudentProfile.this, Login.class);
             startActivity(i);
             finish();
