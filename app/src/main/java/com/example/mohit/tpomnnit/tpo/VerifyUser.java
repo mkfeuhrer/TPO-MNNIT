@@ -150,32 +150,54 @@ public class VerifyUser extends AppCompatActivity {
 
                 }
                 else if (flag == 1) {
-                   /* final Dialog dialog = new Dialog(VerifyUser.this);
+                    final Dialog dialog = new Dialog(VerifyUser.this);
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dialog.setCancelable(false);
-                    dialog.setContentView(R.layout.custom_dialog);
+                    dialog.setContentView(R.layout.dialog_manage_student);
                     dialog.setCanceledOnTouchOutside(true);
                     dialog.onBackPressed();
-
-                    TextView text = (TextView) dialog.findViewById(R.id.text_dialog_feedback);
-                    //text.setText(msg);
-
-                    Button register = (Button) dialog.findViewById(R.id.register);
-                    final EditText regis = (EditText) dialog.findViewById(R.id.regis);
-                    final EditText pass = (EditText) dialog.findViewById(R.id.pass);
-
-
-                    register.setOnClickListener(new View.OnClickListener() {
-
+                    Button deducttpo=(Button)dialog.findViewById(R.id.deducttpo);
+                    Button deleteuser=(Button)dialog.findViewById(R.id.deleteaccount);
+                    Button addcompany=(Button)dialog.findViewById(R.id.addcompany);
+                    Button blockaccount=(Button)dialog.findViewById(R.id.blockaccount);
+                    deducttpo.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public void onClick(View v) {
-                            //Perfome Action
-                            verifyUser(regis.getText().toString().trim());
-                            Toast.makeText(dialog.getContext(),"Company Registered",Toast.LENGTH_LONG).show();
+                        public void onClick(View view) {
+
                         }
                     });
+                    deleteuser.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
 
-                    dialog.show();*/
+                        }
+                    });
+                    addcompany.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
+                    blockaccount.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            new AlertDialog.Builder(VerifyUser.this)
+                                    .setIcon(android.R.drawable.ic_dialog_alert)
+                                    .setTitle("Block " + currsel)
+                                    .setMessage("Are you sure you want to block user?")
+                                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            blockUser(currsel);
+                                        }
+
+                                    })
+                                    .setNegativeButton("No", null)
+                                    .show();
+
+                        }
+                    });
+                    dialog.show();
 
                 }
             }
@@ -196,6 +218,10 @@ public class VerifyUser extends AppCompatActivity {
             }
         });
     }
+    void deductcredit(int n)
+    {
+
+    }
     void verifyUser(String regno)
     {
         reg=regno;
@@ -213,6 +239,59 @@ public class VerifyUser extends AppCompatActivity {
                 }
                 mDatabase.child(key).child("isverified").setValue(1);
                 System.out.println("verified");
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        mDatabase.addValueEventListener(vel);
+
+    }
+    void deleteUser(String regno)
+    {
+        reg=regno;
+        mDatabase = FirebaseDatabase.getInstance().getReference("userdata");
+        userId = mDatabase.push().getKey();
+        ValueEventListener vel = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                UserData user = dataSnapshot.getValue(UserData.class);
+                for (DataSnapshot userDetails : dataSnapshot.getChildren()) {
+                    System.out.println(userDetails.child("regnum").getValue().toString());
+                    if (reg.equals(userDetails.child("regnum").getValue().toString())) {
+                        key=userDetails.getKey();
+                    }
+                }
+                mDatabase.child(key).child("isverified").setValue(0);
+                //System.out.println("verified");
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        mDatabase.addValueEventListener(vel);
+
+    }
+    void blockUser(final String regno)
+    {
+        reg=regno;
+        mDatabase = FirebaseDatabase.getInstance().getReference("userdata");
+        userId = mDatabase.push().getKey();
+        ValueEventListener vel = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                UserData user = dataSnapshot.getValue(UserData.class);
+                for (DataSnapshot userDetails : dataSnapshot.getChildren()) {
+                    System.out.println(userDetails.child("regnum").getValue().toString());
+                    if (reg.equals(userDetails.child("regnum").getValue().toString())) {
+                        key=userDetails.getKey();
+                    }
+                }
+                mDatabase.child(key).child("isverified").setValue(0);
+                Toast.makeText(getApplicationContext(), regno+" Blocked", Toast.LENGTH_SHORT).show();
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
