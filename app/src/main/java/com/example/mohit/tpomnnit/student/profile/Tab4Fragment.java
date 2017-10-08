@@ -42,6 +42,7 @@ public class Tab4Fragment extends Fragment {
     private StorageReference imageref,str;
     Uri filePath,resumePath;
     ImageView image;
+    byte[] byteimage;
     private  String registrationnum;
     int PICK_IMAGE_REQUEST=111;
     Button upload,choose,uploadresume,chooseresume;
@@ -106,7 +107,7 @@ public class Tab4Fragment extends Fragment {
                     MyProfile obj = (MyProfile)getActivity();
                     regnum = obj.getRegno();
                     StorageReference childref=storageref.child(regnum+".jpg");
-                    UploadTask uploadTask=childref.putFile(filePath);
+                    UploadTask uploadTask=childref.putBytes(byteimage);
                     uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -187,15 +188,18 @@ public class Tab4Fragment extends Fragment {
                 byte[] imageInByte = stream.toByteArray();
                 long size = imageInByte.length;
                 size/=2000;
-                int y=(int)(1000/size);
+                int y=(int)(15000/size);
+                if(y>100)
+                    y=100;
                 Bitmap bitmap1=bitmap;
                 ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
                 bitmap1.compress(Bitmap.CompressFormat.JPEG, y,stream1);
-                byte[] imageInByte1=stream1.toByteArray();
-                size=imageInByte1.length;
+                byteimage=stream1.toByteArray();
+                size=byteimage.length;
                 size/=2000;
                 System.out.println("image size "+size);
                 image.setImageBitmap(bitmap1);
+
 
 
             } catch (Exception e) {

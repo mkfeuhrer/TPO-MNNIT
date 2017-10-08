@@ -80,6 +80,12 @@ public class StudentProfile extends AppCompatActivity
         company=(EditText)findViewById(R.id.company);
         imageview = (ImageView)findViewById(R.id.imageView3);
         registrationnum = getIntent().getStringExtra("reg");
+        int flag= NotificationService.flag;
+        System.out.println("flag : "+flag);
+        if(flag!=2) {
+            Intent serviceIntent = new Intent(StudentProfile.this, NotificationService.class);
+            startService(serviceIntent);
+        }
         storage = FirebaseStorage.getInstance().getReference("userimage/"+registrationnum+".jpg");
 
         imageref = storage;

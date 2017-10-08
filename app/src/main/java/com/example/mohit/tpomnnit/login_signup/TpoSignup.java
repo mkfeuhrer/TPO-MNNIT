@@ -62,6 +62,7 @@ public class TpoSignup extends AppCompatActivity {
     Uri filePath;
     ProgressDialog progressDialog;
     ImageView image;
+    byte[] byteimage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,7 +128,7 @@ public class TpoSignup extends AppCompatActivity {
                         progressDialog.show();
 
                         StorageReference childref=storageref.child(s1+".jpg");
-                        UploadTask uploadTask=childref.putFile(filePath);
+                        UploadTask uploadTask=childref.putBytes(byteimage);
                         uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -288,16 +289,17 @@ public class TpoSignup extends AppCompatActivity {
                 byte[] imageInByte = stream.toByteArray();
                 long size = imageInByte.length;
                 size/=2000;
-                int y=(int)(1000/size);
+                int y=(int)(15000/size);
                 Bitmap bitmap1=bitmap;
                 ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
+                if(y>100)
+                    y=100;
                 bitmap1.compress(Bitmap.CompressFormat.JPEG, y,stream1);
-                byte[] imageInByte1=stream1.toByteArray();
-                size=imageInByte1.length;
+                byteimage=stream1.toByteArray();
+                size=byteimage.length;
                 size/=2000;
                 System.out.println("image size "+size);
                 image.setImageBitmap(bitmap1);
-                //Setting image to ImageView
 
             } catch (Exception e) {
                 e.printStackTrace();

@@ -86,12 +86,7 @@ public class Login extends AppCompatActivity {
                                 }
                                 if(passw.equals(password.getText().toString().trim()))
                                 {
-                                    int flag= NotificationService.flag;
-                                    System.out.println("flag : "+flag);
-                                    if(flag!=2) {
-                                        Intent serviceIntent = new Intent(Login.this, NotificationService.class);
-                                        startService(serviceIntent);
-                                    }
+
                                     SQLiteDatabase data = openOrCreateDatabase("login", MODE_PRIVATE, null); //nobody other can access
                                     data.execSQL("create table if not exists student (regno varchar, password varchar);");
                                     data.execSQL("insert into student values ('" + regnum.getText().toString().trim() + "','" + password.getText().toString().trim() + "');");
