@@ -1,13 +1,23 @@
 package com.example.mohit.tpomnnit.tpo;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mohit.tpomnnit.R;
+import com.example.mohit.tpomnnit.student.company.CompanyTab1;
 import com.example.mohit.tpomnnit.student.profile.MyProfile;
 import com.example.mohit.tpomnnit.student.profile.UserData;
 import com.google.firebase.database.DataSnapshot;
@@ -26,7 +36,9 @@ public class VerifyUser extends AppCompatActivity {
     DatabaseReference mDatabase;
     String userId,reg,key;
     String regno,branch,course;
-    String currsel="null";
+    static String currsel="null";
+    static int adapterFlag;
+    int flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +47,13 @@ public class VerifyUser extends AppCompatActivity {
         mDatabase=FirebaseDatabase.getInstance().getReference("userdata");
         userId=mDatabase.push().getKey();
         userList=new ArrayList<>();
-        regno=getIntent().getStringExtra("regno");
-        branch=getIntent().getStringExtra("branch");
-        course=getIntent().getStringExtra("course");
+        flag=getIntent().getIntExtra("flag",-1);
+        adapterFlag=flag;
+        if(flag==1) {
+            regno = getIntent().getStringExtra("regno");
+            branch = getIntent().getStringExtra("branch");
+            course = getIntent().getStringExtra("course");
+        }
         prepareData();
 
 
@@ -71,10 +87,19 @@ public class VerifyUser extends AppCompatActivity {
                     userData.setGuardianmobile(userDetails.child("guardianmobile").getValue().toString());
                     userData.setProject(userDetails.child("project").getValue().toString());
                     userData.setInternship(userDetails.child("internship").getValue().toString());
+                    userData.setIsverified(Integer.parseInt(userDetails.child("isverified").getValue().toString()));
                     //userData.getName()
                     //Companies companies=dataSnapshot.getValue(Companies.class);
-                    if((course.equals("") || course.equals(userData.getCourse())) && (branch.equals("") || branch.equals(userData.getBranch())) && (regno.equals("") || regno.equals(userData.getRegnum())))
-                        userList.add(userData);
+                    if(flag==1)
+                    {
+                        if ((course.equals("") || course.equals(userData.getCourse())) && (branch.equals("") || branch.equals(userData.getBranch())) && (regno.equals("") || regno.equals(userData.getRegnum())))
+                            userList.add(userData);
+                    }
+                    else
+                    {
+                        if (userData.getIsverified() == 0)
+                            userList.add(userData);
+                    }
                     //System.out.println("in"+ userDetails.child("name").getValue().toString()+" : "+companies.getCtc()+" : "+companies.getLocation());
                 }
                 addUsers();
@@ -91,17 +116,8 @@ public class VerifyUser extends AppCompatActivity {
     public void addUsers()
     {
         ListView theListView = (ListView) findViewById(R.id.mainListView);
-        /*userList.get(0).setRequestBtnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "CUSTOM HANDLER FOR FIRST BUTTON", Toast.LENGTH_SHORT).show();
-            }
-        });*/
 
-        // create custom adapter that holds elements and their state (we need hold a id's of unfolded elements for reusable elements)
         final FoldingCellListAdapter adapter = new FoldingCellListAdapter(this, userList);
-
-        // add default btn handler for each request btn on each item if custom handler not found
 
         adapter.setDefaultRequestBtnClickListener(new View.OnClickListener() {
             @Override
@@ -115,14 +131,59 @@ public class VerifyUser extends AppCompatActivity {
         adapter.setDefaultVerifyClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                verifyUser(currsel);
+                /*ManageStudentDialog alertDialoge = new ManageStudentDialog();
+                alertDialoge.showDialog(VerifyUser.this, "Register");*/
+                if (flag == 0) {
+                    new AlertDialog.Builder(VerifyUser.this)
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setTitle("Verify " + currsel)
+                            .setMessage("Are you sure you want to verify?")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    verifyUser(currsel);
+                                }
+
+                            })
+                            .setNegativeButton("No", null)
+                            .show();
+
+                }
+                else if (flag == 1) {
+                   /* final Dialog dialog = new Dialog(VerifyUser.this);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setCancelable(false);
+                    dialog.setContentView(R.layout.custom_dialog);
+                    dialog.setCanceledOnTouchOutside(true);
+                    dialog.onBackPressed();
+
+                    TextView text = (TextView) dialog.findViewById(R.id.text_dialog_feedback);
+                    //text.setText(msg);
+
+                    Button register = (Button) dialog.findViewById(R.id.register);
+                    final EditText regis = (EditText) dialog.findViewById(R.id.regis);
+                    final EditText pass = (EditText) dialog.findViewById(R.id.pass);
+
+
+                    register.setOnClickListener(new View.OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+                            //Perfome Action
+                            verifyUser(regis.getText().toString().trim());
+                            Toast.makeText(dialog.getContext(),"Company Registered",Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                    dialog.show();*/
+
+                }
             }
         });
 
         // set elements to adapter
         theListView.setAdapter(adapter);
 
-        // set on click event listener to list view
         theListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
@@ -161,4 +222,5 @@ public class VerifyUser extends AppCompatActivity {
         mDatabase.addValueEventListener(vel);
 
     }
+
 }

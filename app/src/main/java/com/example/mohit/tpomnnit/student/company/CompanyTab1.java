@@ -193,7 +193,6 @@ class ViewDialog {
                     }
                 }
 
-//                System.out.println("verified");
                 mDatabase.child(key).child("companies").setValue(registered);
             }
             @Override

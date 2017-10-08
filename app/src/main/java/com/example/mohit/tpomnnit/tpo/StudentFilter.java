@@ -37,6 +37,7 @@ public class StudentFilter extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(StudentFilter.this,VerifyUser.class);
+                intent.putExtra("flag",1);
                 intent.putExtra("course",courseselected);
                 intent.putExtra("branch",branchselected);
                 intent.putExtra("regno",regno.getText().toString().trim());

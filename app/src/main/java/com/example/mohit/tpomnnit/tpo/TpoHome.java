@@ -207,10 +207,13 @@ public class TpoHome extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent i = new Intent(TpoHome.this,StudentFilter.class);
+            Intent i = new Intent(TpoHome.this,VerifyUser.class);
+            i.putExtra("flag",0);
             startActivity(i);
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
+            Intent i = new Intent(TpoHome.this,StudentFilter.class);
+            startActivity(i);
 
         } else if (id == R.id.nav_slideshow) {
 
@@ -221,10 +224,6 @@ public class TpoHome extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         } else if (id == R.id.logout){
-            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString("LoggedTpo","false");
-            editor.apply();
             Intent i = new Intent(TpoHome.this, TpoLogin.class);
             startActivity(i);
             finish();

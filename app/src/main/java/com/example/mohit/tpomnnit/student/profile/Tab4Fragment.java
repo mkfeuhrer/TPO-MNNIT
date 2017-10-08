@@ -182,21 +182,21 @@ public class Tab4Fragment extends Fragment {
                 Context applicationContext = MyProfile.getContextOfApplication();
                 ContentResolver cr=applicationContext.getContentResolver();
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(cr,filePath);
-                Bitmap bitmap1 = bitmap;
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmap1.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
                 byte[] imageInByte = stream.toByteArray();
                 long size = imageInByte.length;
                 size/=2000;
+                int y=(int)(1000/size);
+                Bitmap bitmap1=bitmap;
+                ByteArrayOutputStream stream1 = new ByteArrayOutputStream();
+                bitmap1.compress(Bitmap.CompressFormat.JPEG, y,stream1);
+                byte[] imageInByte1=stream1.toByteArray();
+                size=imageInByte1.length;
+                size/=2000;
                 System.out.println("image size "+size);
-                if(size<=62) {
-                    image.setImageBitmap(bitmap);
-                }
-                else
-                {
-                    Toast.makeText(applicationContext,"Image size too large... Max size allowed is 50KB",Toast.LENGTH_LONG).show();
-                }
-                //Setting image to ImageView
+                image.setImageBitmap(bitmap1);
+
 
             } catch (Exception e) {
                 e.printStackTrace();

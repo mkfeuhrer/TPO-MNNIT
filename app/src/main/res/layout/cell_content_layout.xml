@@ -520,7 +520,7 @@
                     android:layout_marginTop="16dp"
                     android:background="@color/btnRequest"
                     android:padding="10dp"
-                    android:text="@string/request_btn_text"
+                    android:text="View Full Profile"
                     android:textAlignment="center"
                     android:textColor="@color/mainTextColor"
                     android:textSize="20sp" />
@@ -540,7 +540,7 @@
                     android:layout_marginTop="16dp"
                     android:background="@color/btnRequest"
                     android:padding="10dp"
-                    android:text="Verify"
+                    android:text="Verify User"
                     android:textAlignment="center"
                     android:textColor="@color/mainTextColor"
                     android:textSize="20sp" />
