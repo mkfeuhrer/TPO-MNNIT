@@ -54,7 +54,8 @@
         <activity android:name=".student.InterviewExperience.interviewexperience" />
         <activity android:name=".student.InterviewExperience.AddInterviewExperience" />
         <activity android:name=".tpo.VerifyUser" />
-        <activity android:name=".tpo.StudentFilter"></activity>
+        <activity android:name=".tpo.StudentFilter" />
+        <activity android:name=".tpo.MessageTpo"></activity>
     </application>
 
 </manifest>

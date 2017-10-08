@@ -45,22 +45,19 @@ public class Login extends AppCompatActivity {
         password = (EditText)findViewById(R.id.loginpassword);
         signin = (Button)findViewById(R.id.signin);
         signup = (TextView)findViewById(R.id.signup);
+        SQLiteDatabase data = openOrCreateDatabase("login", MODE_PRIVATE, null); //nobody other can access
+        data.execSQL("create table if not exists student (regno varchar, password varchar);");
+        String s = "select * from student";
+        Cursor cursor = data.rawQuery(s, null); // whatever query i run i can store something in cursor it is a class
+        if (cursor.getCount()==1) {
+            cursor.moveToFirst();
 
-        /*SharedPreferences preferences1 = PreferenceManager.getDefaultSharedPreferences(this);
-        String isLogged = preferences1.getString("Logged", "");
-        if(!isLogged.equalsIgnoreCase(""))
-        {
-            if(isLogged.equals("true")){
-                Intent i=new Intent(Login.this,StudentProfile.class);
-                SharedPreferences settings2 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                String regn = settings2.getString("registrationnum","");
-                Log.e("regis",regn);
-                i.putExtra("reg",regn);
-                startActivity(i);
-                finish();
-            }
-        }*/
+            Intent i = new Intent(Login.this,StudentProfile.class);
+            i.putExtra("reg",cursor.getString(cursor.getColumnIndex("regno")));
+            startActivity(i);
+            finish();
 
+        }
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,23 +85,9 @@ public class Login extends AppCompatActivity {
                                 }
                                 if(passw.equals(password.getText().toString().trim()))
                                 {
-                                    SQLiteDatabase data=openOrCreateDatabase("tpo",MODE_PRIVATE,null); //nobody other can access
-                                    //it is stored in ouFtoaFr phone only
-                                    data.execSQL("create table if not exists student(name varchar, password varchar);");
-                                    //
-                                    String s1 = regnum.getText().toString().trim();
-                                    String s2 = password.getText().toString().trim();
-                                    String s = "select * from student where name='" + s1 + "' and password='" + s2 + "'";
-
-                                    Cursor cursor = data.rawQuery(s, null);
-                                    if (cursor.getCount() > 0) {
-                                        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                                        SharedPreferences.Editor editor = settings.edit();
-                                        editor.putString("registrationnum", s1).apply();
-                                        editor.putString("Logged","true");
-                                        editor.apply();
-                                        //Toast.makeText(Login.this, "sjkhfdkjhafl", Toast.LENGTH_LONG).show();
-                                    }
+                                    SQLiteDatabase data = openOrCreateDatabase("login", MODE_PRIVATE, null); //nobody other can access
+                                    data.execSQL("create table if not exists student (regno varchar, password varchar);");
+                                    data.execSQL("insert into student values ('" + regnum.getText().toString().trim() + "','" + password.getText().toString().trim() + "');");
                                     finish();
                                     Intent i = new Intent(Login.this,StudentProfile.class);
                                     i.putExtra("reg",regnum.getText().toString().trim());

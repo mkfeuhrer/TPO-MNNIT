@@ -3,6 +3,7 @@ package com.example.mohit.tpomnnit.tpo;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -224,6 +225,8 @@ public class TpoHome extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         } else if (id == R.id.logout){
+            SQLiteDatabase data = openOrCreateDatabase("login", MODE_PRIVATE, null);
+            data.execSQL("drop table if exists tpo");
             Intent i = new Intent(TpoHome.this, TpoLogin.class);
             startActivity(i);
             finish();

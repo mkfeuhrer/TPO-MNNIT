@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mohit.tpomnnit.R;
+import com.example.mohit.tpomnnit.student.StudentProfile;
 import com.example.mohit.tpomnnit.tpo.TpoHome;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,29 +38,23 @@ public class TpoLogin extends AppCompatActivity {
 
         imageView = (ImageView) findViewById(R.id.code);
         imageView.setImageResource(R.drawable.loginback);
-
-       /* SharedPreferences preferences1 = PreferenceManager.getDefaultSharedPreferences(this);
-        String isLogged = preferences1.getString("LoggedTpo", "");
-        Log.e("islogged",isLogged);
-        if(!isLogged.equalsIgnoreCase(""))
-        {
-            if(isLogged.equals("true")){
-                Intent i=new Intent(TpoLogin.this,TpoHome.class);
-                SharedPreferences settings2 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                String regn = settings2.getString("tpoadminregister","");
-                Toast.makeText(getApplicationContext(),"Already Logged in!",Toast.LENGTH_LONG);
-                Log.e("regis",regn);
-                i.putExtra("reg",regn);
-                startActivity(i);
-                finish();
-            }
-        }
-*/
-
         regnum = (EditText) findViewById(R.id.regnum);
         password = (EditText)findViewById(R.id.loginpassword);
         signin = (Button)findViewById(R.id.signin);
         signup = (TextView)findViewById(R.id.signup);
+        SQLiteDatabase data = openOrCreateDatabase("login", MODE_PRIVATE, null); //nobody other can access
+        data.execSQL("create table if not exists tpo (regno varchar, password varchar);");
+        String s = "select * from tpo";
+        Cursor cursor = data.rawQuery(s, null); // whatever query i run i can store something in cursor it is a class
+        if (cursor.getCount()==1) {
+            cursor.moveToFirst();
+
+            Intent i = new Intent(TpoLogin.this,TpoHome.class);
+            i.putExtra("reg",cursor.getString(cursor.getColumnIndex("regno")));
+            startActivity(i);
+            finish();
+
+        }
         mDatabase = FirebaseDatabase.getInstance().getReference("tpouserdata");
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +74,9 @@ public class TpoLogin extends AppCompatActivity {
                                     f = 1;
                                     String passwd = tpoDetails.child("password").getValue().toString();
                                     if (passwd.equals(password.getText().toString().trim())) {
+                                        SQLiteDatabase data = openOrCreateDatabase("login", MODE_PRIVATE, null); //nobody other can access
+                                        data.execSQL("create table if not exists tpo (regno varchar, password varchar);");
+                                        data.execSQL("insert into tpo values ('" + regnum.getText().toString().trim() + "','" + password.getText().toString().trim() + "');");
                                         Intent i = new Intent(TpoLogin.this, TpoHome.class);
                                         i.putExtra("reg", regnum.getText().toString().trim());
                                         startActivity(i);

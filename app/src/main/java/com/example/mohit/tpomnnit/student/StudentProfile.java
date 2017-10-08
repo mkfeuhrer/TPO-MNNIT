@@ -3,6 +3,7 @@ package com.example.mohit.tpomnnit.student;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -222,12 +223,9 @@ public class StudentProfile extends AppCompatActivity
         } else if (id == R.id.rate) {
 
         } else if( id == R.id.logout) {
-            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putString("Logged","false");
-            editor.apply();
+            SQLiteDatabase data = openOrCreateDatabase("login", MODE_PRIVATE, null);
+            data.execSQL("drop table if exists student");
             Intent i = new Intent(StudentProfile.this, Login.class);
-
             startActivity(i);
             finish();
 
