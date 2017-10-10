@@ -7,105 +7,107 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="25dp"
-        android:weightSum="210">
-
+        android:layout_marginTop="25dp">
 
         <LinearLayout
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_weight="10"
-            android:weightSum="100">
-
-            <TextView
-                android:id="@+id/oldpassview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="30"
-                android:textSize="20dp"
-                android:text="Current Password" />
-
-            <EditText
-                android:id="@+id/oldpass"
+            android:background="@drawable/rounded_border"
+            android:elevation="10dp"
+            android:layout_margin="10dp"
+            android:padding="10dp">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="70"
-                android:inputType="textPassword"
-                android:ems="10"
-                />
+                android:orientation="vertical"
+                android:weightSum="100">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/oldpassview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="30"
+                    android:textSize="20dp"
+                    android:text="Current Password" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="10"
-            android:layout_marginTop="10dp"
-            android:weightSum="100">
+                <EditText
+                    android:id="@+id/oldpass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="70"
+                    android:inputType="textPassword"
+                    android:ems="10"
+                    />
 
-            <TextView
-                android:id="@+id/newpassview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="30"
-                android:textSize="20dp"
-                android:text="New Password" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/newpass"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="70"
-                android:inputType="textPassword"
-                android:ems="10"
-                />
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:weightSum="100">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/newpassview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="30"
+                    android:textSize="20dp"
+                    android:text="New Password" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="10"
-            android:layout_marginTop="10dp"
-            android:weightSum="100">
+                <EditText
+                    android:id="@+id/newpass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="70"
+                    android:inputType="textPassword"
+                    android:ems="10"
+                    />
 
-            <TextView
-                android:id="@+id/confirmpassview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="30"
-                android:textSize="20dp"
-                android:text="Confirm Password" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/confirmpass"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="70"
-                android:inputType="textPassword"
-                android:ems="10"
-                />
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:weightSum="100">
 
+                <TextView
+                    android:id="@+id/confirmpassview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="30"
+                    android:textSize="20dp"
+                    android:text="Confirm Password" />
+
+                <EditText
+                    android:id="@+id/confirmpass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="70"
+                    android:inputType="textPassword"
+                    android:ems="10"
+                    />
+
+
+
+            </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
+        <Button
+            android:id="@+id/save"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="#f4a302"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_weight="10">
+            android:layout_height="wrap_content"
+            android:layout_weight="30"
+            android:text="Save and Continue" />
 
+    </LinearLayout>
 
-            <Button
-                android:id="@+id/save"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Save and Continue" />
-        </LinearLayout>
-
-    </LinearLayout>>
 
 </ScrollView>

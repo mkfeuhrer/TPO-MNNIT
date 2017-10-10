@@ -46,6 +46,7 @@ import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 
@@ -86,6 +87,11 @@ public class StudentProfile extends AppCompatActivity
         imageview = (ImageView)findViewById(R.id.imageView3);
         registrationnum = getIntent().getStringExtra("reg");
         int flag= NotificationService.flag;
+        /*ByteArrayOutputStream boas = new ByteArrayOutputStream();
+       // bitmap.compress(Bitmap.CompressFormat.JPEG, 100, boas ); //bm is the bitmap object
+        byte[] byteArrayImage = boas .toByteArray();
+        String temp=byteArrayImage.toString();
+        byte[] bt=temp.getBytes();*/
         System.out.println("flag : "+flag);
         if(flag!=2) {
             Intent serviceIntent = new Intent(StudentProfile.this, NotificationService.class);
