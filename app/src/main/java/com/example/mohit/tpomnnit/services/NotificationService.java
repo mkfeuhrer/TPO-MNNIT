@@ -25,6 +25,7 @@ public class NotificationService extends Service {
     DatabaseReference mDatabase;
     String companyId;
     int n,i=-10;
+    Thread t;
     public static int flag=-1;
 
     @Nullable
@@ -87,7 +88,7 @@ public class NotificationService extends Service {
             }
         };
 
-        Thread t = new Thread(r);
+        t = new Thread(r);
         t.start();
         return Service.START_STICKY;
     }

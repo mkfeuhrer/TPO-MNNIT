@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -36,7 +37,7 @@ public class ManageStudents extends AppCompatActivity {
     static int adapterFlag=0;
     int flag;
     ValueEventListener vel,vel1;
-
+    int comflag=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,7 +105,7 @@ public class ManageStudents extends AppCompatActivity {
     {
         ListView theListView = (ListView) findViewById(R.id.mainListView);
 
-        final FoldingCellListAdapter adapter = new FoldingCellListAdapter(this, userList);
+        final FoldingCellListAdapter adapter = new FoldingCellListAdapter(this, userList,1);
 
         adapter.setDefaultRequestBtnClickListener(new View.OnClickListener() {
             @Override
@@ -130,9 +131,23 @@ public class ManageStudents extends AppCompatActivity {
                     Button deleteuser=(Button)dialog.findViewById(R.id.deleteaccount);
                     Button addcompany=(Button)dialog.findViewById(R.id.addcompany);
                     Button blockaccount=(Button)dialog.findViewById(R.id.blockaccount);
+                    final EditText company=(EditText)dialog.findViewById(R.id.company);
                     deducttpo.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            new AlertDialog.Builder(ManageStudents.this)
+                                    .setIcon(android.R.drawable.ic_dialog_alert)
+                                    .setTitle("Deduct Credit of " + currsel)
+                                    .setMessage("Are you sure you want to deduct One TPO Credit?")
+                                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            deductcredit(currsel);
+                                        }
+
+                                    })
+                                    .setNegativeButton("No", null)
+                                    .show();
 
                         }
                     });
@@ -145,6 +160,27 @@ public class ManageStudents extends AppCompatActivity {
                     addcompany.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            if(comflag==0)
+                            {
+                                company.setVisibility(View.VISIBLE);
+                                comflag=1;
+                            }
+                            else {
+                                new AlertDialog.Builder(ManageStudents.this)
+                                        .setIcon(android.R.drawable.ic_dialog_alert)
+                                        .setTitle("Add company to " + currsel)
+                                        .setMessage("Are you sure you want to add company?")
+                                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                addCompany(currsel,company.getText().toString().trim());
+                                            }
+
+                                        })
+                                        .setNegativeButton("No", null)
+                                        .show();
+
+                            }
 
                         }
                     });
@@ -186,14 +222,66 @@ public class ManageStudents extends AppCompatActivity {
             }
         });
     }
-
-    void deductcredit(int n)
+    String compp;
+    int tpo;
+    void addCompany(String regno,String comp)
     {
+        reg=regno;
+        compp=comp;
+        mDatabase = FirebaseDatabase.getInstance().getReference("userdata");
+        userId = mDatabase.push().getKey();
+        vel = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                UserData user = dataSnapshot.getValue(UserData.class);
+                for (DataSnapshot userDetails : dataSnapshot.getChildren()) {
+                    System.out.println(userDetails.child("regnum").getValue().toString());
+                    if (reg.equals(userDetails.child("regnum").getValue().toString())) {
+                        key=userDetails.getKey();
+                    }
+                }
+                mDatabase.child(key).child("company").setValue(compp);
+                Toast.makeText(getApplication(),"Company Added",Toast.LENGTH_LONG).show();
+                mDatabase.removeEventListener(vel);
+                //System.out.println("verified");
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
+            }
+        };
+        mDatabase.addValueEventListener(vel);
+    }
+    void deductcredit(String regno)
+    {
+        reg=regno;
+        mDatabase = FirebaseDatabase.getInstance().getReference("userdata");
+        userId = mDatabase.push().getKey();
+        vel = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                UserData user = dataSnapshot.getValue(UserData.class);
+                for (DataSnapshot userDetails : dataSnapshot.getChildren()) {
+                    System.out.println(userDetails.child("regnum").getValue().toString());
+                    if (reg.equals(userDetails.child("regnum").getValue().toString())) {
+                        tpo=Integer.parseInt(userDetails.child("tpocredit").getValue().toString());
+                        key=userDetails.getKey();
+                    }
+                }
+                mDatabase.child(key).child("tpocredit").setValue(tpo-1);
+                mDatabase.removeEventListener(vel);
+                //System.out.println("verified");
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+        mDatabase.addValueEventListener(vel);
     }
     void deleteUser(String regno)
     {
-        reg=regno;
+       /* reg=regno;
         mDatabase = FirebaseDatabase.getInstance().getReference("userdata");
         userId = mDatabase.push().getKey();
         ValueEventListener vel = new ValueEventListener() {
@@ -214,7 +302,7 @@ public class ManageStudents extends AppCompatActivity {
 
             }
         };
-        mDatabase.addValueEventListener(vel);
+        mDatabase.addValueEventListener(vel);*/
 
     }
     void blockUser(final String regno)

@@ -1,48 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
-    <RelativeLayout
+        <TextView
+            android:id="@+id/text_dialog_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="50dp"
+            android:paddingTop="50dp"
+            android:text="       Manage Student       "
+            android:textAlignment="center"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+
+    <!--LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-        <Button
-            android:id="@+id/deducttpo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:text="Deduct TPO Credit" />
-
-        <Button
-            android:id="@+id/deleteaccount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/deducttpo"
-            android:layout_toRightOf="@+id/deducttpo"
-            android:text="Delete Account" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"-->
 
         <Button
             android:id="@+id/blockaccount"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/deducttpo"
-            android:text="Block Account" />
+            android:background="#616161"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:text="Block Account"
+            android:textAlignment="center"
+            android:textColor="#f4a302"
+            android:textStyle="bold" />
 
         <Button
-            android:id="@+id/addcompany"
-            android:layout_width="wrap_content"
+            android:id="@+id/deducttpo"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/blockaccount"
-            android:layout_alignLeft="@+id/deleteaccount"
-            android:layout_alignStart="@+id/deleteaccount"
-            android:text="Add Company" />
-    </RelativeLayout>
+            android:layout_margin="5dp"
+            android:background="#616161"
+            android:padding="10dp"
+            android:text="Deduct One TPO Credit"
+            android:textAlignment="center"
+            android:textColor="#f4a302"
+            android:textStyle="bold" />
+
+    <!--/LinearLayout-->
+
+    <!--LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"-->
+
+        <Button
+            android:id="@+id/deleteaccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#616161"
+            android:padding="10dp"
+            android:layout_margin="5dp"
+            android:text="Delete Account"
+            android:textAlignment="center"
+            android:textColor="#f4a302"
+            android:textStyle="bold" />
+        <EditText
+            android:id="@+id/company"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_margin="20dp"
+            android:padding="10dp"
+            android:background="@drawable/rounded_border"
+            android:visibility="gone"
+            android:hint="Enter Company name"/>
+        <Button
+            android:id="@+id/addcompany"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#616161"
+            android:padding="10dp"
+            android:layout_margin="5dp"
+            android:text="Add Company"
+            android:textAlignment="center"
+            android:textColor="#f4a302"
+            android:textStyle="bold"
+            />
+
+    <!--/LinearLayout-->
 
 </LinearLayout>

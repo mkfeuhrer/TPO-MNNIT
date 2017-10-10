@@ -35,9 +35,11 @@ public class FoldingCellListAdapter extends ArrayAdapter<UserData> {
     private View.OnClickListener defaultRequestBtnClickListener;
     private View.OnClickListener defaultVerifyClickListener;
     private StorageReference storage,imageref;
+    int flg;
 
-    public FoldingCellListAdapter(Context context, List<UserData> objects) {
+    public FoldingCellListAdapter(Context context, List<UserData> objects,int flag) {
         super(context, 0, objects);
+        flg=flag;
     }
 
     @Override
@@ -113,7 +115,7 @@ public class FoldingCellListAdapter extends ArrayAdapter<UserData> {
         viewHolder.parentcontact.setText(item.getGuardianmobile());
         viewHolder.project.setText(item.getProject());
         viewHolder.internship.setText(item.getInternship());
-        if(VerifyUser.adapterFlag==1)
+        if(flg==1)
             viewHolder.verify.setText("Manage User");
        /* if(viewHolder.button.isFocused())
         {

@@ -107,7 +107,7 @@ public class VerifyUser extends AppCompatActivity {
     {
         ListView theListView = (ListView) findViewById(R.id.mainListView);
 
-        final FoldingCellListAdapter adapter = new FoldingCellListAdapter(this, userList);
+        final FoldingCellListAdapter adapter = new FoldingCellListAdapter(this, userList,0);
 
         adapter.setDefaultRequestBtnClickListener(new View.OnClickListener() {
             @Override
