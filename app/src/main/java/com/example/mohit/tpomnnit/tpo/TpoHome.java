@@ -195,7 +195,7 @@ public class TpoHome extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
         }
 
         return super.onOptionsItemSelected(item);

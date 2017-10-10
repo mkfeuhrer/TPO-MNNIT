@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.design.widget.NavigationView;
@@ -206,7 +207,7 @@ public class StudentProfile extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
         }
 
         return super.onOptionsItemSelected(item);
