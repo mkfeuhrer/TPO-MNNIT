@@ -29,7 +29,7 @@ public class AddInterviewExperience extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private String interviewId;
     private Button addinterview;
-    private EditText company,year,date,experience,time,name,regno;
+    private EditText company,year,date,experience,time,name,regno,profile;
     private int Year, month, day,hours,minutes;
     Calendar calendar;
 
@@ -48,6 +48,7 @@ public class AddInterviewExperience extends AppCompatActivity {
         experience     = (EditText)findViewById(R.id.experience);
         name           = (EditText)findViewById(R.id.name);
         regno           = (EditText)findViewById(R.id.location);
+        profile=(EditText)findViewById(R.id.profile);
 
         calendar = Calendar.getInstance();
         Year = calendar.get(Calendar.YEAR);
@@ -83,7 +84,14 @@ public class AddInterviewExperience extends AppCompatActivity {
                 if (TextUtils.isEmpty(interviewId)) {
                 } else {
                     String curtime = time.getText().toString() + " " + date.getText().toString();
-                    Interview interview = new Interview(name.getText().toString().trim(), regno.getText().toString().trim(), year.getText().toString().trim(), company.getText().toString().trim(), experience.getText().toString().trim(), curtime);
+                    Interview interview = new Interview();
+                    interview.setName(name.getText().toString().trim());
+                    interview.setRegno(regno.getText().toString().trim());
+                    interview.setYear(year.getText().toString().trim());
+                    interview.setCompany(company.getText().toString().trim());
+                    interview.setExperience(experience.getText().toString().trim());
+                    interview.setDate(curtime);
+                    interview.setProfile(profile.getText().toString().trim());
                     addCompanyChangeListener(interview);
                 }
 

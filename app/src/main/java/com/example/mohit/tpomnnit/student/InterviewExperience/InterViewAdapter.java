@@ -36,16 +36,17 @@ public class InterViewAdapter extends ArrayAdapter<Interview> {
         if (cell == null) {
             viewHolder = new ViewHolder();
             LayoutInflater vi = LayoutInflater.from(getContext());
-            cell = (FoldingCell) vi.inflate(R.layout.cell, parent, false);
+            cell = (FoldingCell) vi.inflate(R.layout.interview_cell, parent, false);
             // binding view parts to view holder
-            viewHolder.price = (TextView) cell.findViewById(R.id.name);
-            viewHolder.time = (TextView) cell.findViewById(R.id.regnum);
-            viewHolder.date = (TextView) cell.findViewById(R.id.branch);
-            viewHolder.fromAddress = (TextView) cell.findViewById(R.id.course);
-            viewHolder.toAddress = (TextView) cell.findViewById(R.id.name);
-            viewHolder.requestsCount = (TextView) cell.findViewById(R.id.branch);
-            viewHolder.pledgePrice = (TextView) cell.findViewById(R.id.branch);
-            viewHolder.contentRequestBtn = (TextView) cell.findViewById(R.id.content_request_btn);
+            viewHolder.company = (TextView) cell.findViewById(R.id.company);
+            viewHolder.company1 = (TextView) cell.findViewById(R.id.company1);
+            viewHolder.name = (TextView) cell.findViewById(R.id.name);
+            viewHolder.profile = (TextView) cell.findViewById(R.id.profile);
+            viewHolder.profil1 = (TextView) cell.findViewById(R.id.profile1);
+            viewHolder.date = (TextView) cell.findViewById(R.id.date);
+            viewHolder.year = (TextView) cell.findViewById(R.id.year);
+            viewHolder.experience = (TextView) cell.findViewById(R.id.experience);
+            viewHolder.nameini = (TextView) cell.findViewById(R.id.nameini);
             cell.setTag(viewHolder);
         } else {
             // for existing cell set valid valid state(without animation)
@@ -58,16 +59,26 @@ public class InterViewAdapter extends ArrayAdapter<Interview> {
         }
 
         // bind data from selected element to view through view holder
-        viewHolder.price.setText(item.getName());
-        viewHolder.time.setText(item.getCompany());
+        viewHolder.company.setText(item.getCompany());
+        viewHolder.company1.setText(item.getCompany());
+        viewHolder.name.setText(item.getName());
+        viewHolder.profile.setText(item.getProfile());
+        viewHolder.profil1.setText(item.getProfile());
         viewHolder.date.setText(item.getDate());
+        viewHolder.year.setText(item.getYear());
+        viewHolder.experience.setText(item.getExperience());
+        if(!item.getCompany().equals("")) {
+            Character t = item.getCompany().charAt(0);
+            String str = t.toString();
+            viewHolder.nameini.setText(str);
+        }
 
         // set custom btn handler for list item from that item
         /*if (item.getRequestBtnClickListener() != null) {
             viewHolder.contentRequestBtn.setOnClickListener(item.getRequestBtnClickListener());
         } else {*/
         // (optionally) add "default" handler if no handler found in item
-        viewHolder.contentRequestBtn.setOnClickListener(defaultRequestBtnClickListener);
+        //viewHolder.contentRequestBtn.setOnClickListener(defaultRequestBtnClickListener);
         //}
 
 
@@ -100,13 +111,6 @@ public class InterViewAdapter extends ArrayAdapter<Interview> {
 
     // View lookup cache
     private static class ViewHolder {
-        TextView price;
-        TextView contentRequestBtn;
-        TextView pledgePrice;
-        TextView fromAddress;
-        TextView toAddress;
-        TextView requestsCount;
-        TextView date;
-        TextView time;
+        TextView company,name,profile,year,date,experience,profil1,company1,nameini;
     }
 }

@@ -60,16 +60,17 @@ public class interviewexperience extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot userDetails : dataSnapshot.getChildren()) {
-                    Interview interviews=new Interview(
-                            userDetails.child("username").getValue().toString(),
-                            userDetails.child("regno").getValue().toString(),
-                            userDetails.child("year").getValue().toString(),
-                            userDetails.child("company").getValue().toString(),
-                            userDetails.child("experience").getValue().toString(),
-                            userDetails.child("date").getValue().toString());
+                    Interview interviews=new Interview();
+                    interviews.setName(userDetails.child("name").getValue().toString());
+                    interviews.setRegno(userDetails.child("regno").getValue().toString());
+                    interviews.setYear(userDetails.child("year").getValue().toString());
+                    interviews.setCompany(userDetails.child("company").getValue().toString());
+                    interviews.setExperience(userDetails.child("experience").getValue().toString());
+                    interviews.setDate(userDetails.child("date").getValue().toString());
+                    interviews.setProfile(userDetails.child("profile").getValue().toString());
                     //Companies companies=dataSnapshot.getValue(Companies.class);
                     interviewList.add(interviews);
-                    System.out.println("in"+ userDetails.child("username").getValue().toString()+" : "+ interviews.getExperience()+" : " + interviews.getDate());
+                    //System.out.println("in"+ userDetails.child("username").getValue().toString()+" : "+ interviews.getExperience()+" : " + interviews.getDate());
                 }
                 addInterview();
 
