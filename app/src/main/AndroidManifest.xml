@@ -56,7 +56,8 @@
         <activity android:name=".tpo.VerifyUser" />
         <activity android:name=".tpo.StudentFilter" />
         <activity android:name=".tpo.MessageTpo" />
-        <activity android:name=".tpo.ManageStudents"></activity>
+        <activity android:name=".tpo.ManageStudents" />
+        <activity android:name=".charts.PointerChart"></activity>
     </application>
 
 </manifest>

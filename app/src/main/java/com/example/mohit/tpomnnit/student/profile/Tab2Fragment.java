@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
  * Created by User on 2/28/2017.
  */
 
-public class Tab2Fragment extends Fragment {
+public class    Tab2Fragment extends Fragment {
     private static final String TAG = "Tab2Fragment";
     public EditText school10,year10,board10,percentage10,school12,year12,board12,percentage12;
     public EditText spi1,spi2,spi3,spi4,spi5,spi6,spi7,spi8,cpi;

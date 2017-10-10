@@ -20,11 +20,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mohit.tpomnnit.charts.PointerChart;
 import com.example.mohit.tpomnnit.services.NotificationService;
 import com.example.mohit.tpomnnit.student.InterviewExperience.interviewexperience;
 import com.example.mohit.tpomnnit.student.company.CompanyStudent;
@@ -54,6 +56,7 @@ public class StudentProfile extends AppCompatActivity
     private DatabaseReference mDatabase;
     private StorageReference storage,imageref;
     private ImageView imageview,verified;
+    Button charts;
     String nameuser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +81,7 @@ public class StudentProfile extends AppCompatActivity
         verified=(ImageView)findViewById(R.id.verified);
         tpocredit=(EditText)findViewById(R.id.tpocredit);
         company=(EditText)findViewById(R.id.company);
+        charts=(Button)findViewById(R.id.charts);
         imageview = (ImageView)findViewById(R.id.imageView3);
         registrationnum = getIntent().getStringExtra("reg");
         int flag= NotificationService.flag;
@@ -111,6 +115,14 @@ public class StudentProfile extends AppCompatActivity
             }
         });
 
+        charts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(StudentProfile.this, PointerChart.class);
+                i.putExtra("reg",registrationnum);
+                startActivity(i);
+            }
+        });
 
         ValueEventListener vel = new ValueEventListener() {
             @Override
