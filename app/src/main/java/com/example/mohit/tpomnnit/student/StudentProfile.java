@@ -238,6 +238,7 @@ public class StudentProfile extends AppCompatActivity
 
         } else if (id == R.id.companies) {
             Intent i = new Intent(StudentProfile.this, CompanyStudent.class);
+            i.putExtra("reg",regnum.getText().toString().trim());
             startActivity(i);
 
         } else if (id == R.id.interviewexperience) {

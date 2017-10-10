@@ -1,5 +1,6 @@
 package com.example.mohit.tpomnnit.student.profile;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.mohit.tpomnnit.R;
+import com.example.mohit.tpomnnit.login_signup.TpoSignup;
 
 public class MyProfile extends AppCompatActivity {
 
@@ -44,6 +46,7 @@ public class MyProfile extends AppCompatActivity {
         adapter.addFragment(new Tab4Fragment(), "Photo & Resume");
         adapter.addFragment(new Tab5Fragment(), "Password");
         viewPager.setAdapter(adapter);
+
     }
     public static Context contextOfApplication;
     public static Context getContextOfApplication()

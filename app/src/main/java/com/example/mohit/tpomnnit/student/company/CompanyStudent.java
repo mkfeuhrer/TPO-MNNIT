@@ -28,6 +28,7 @@ public class CompanyStudent extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         contextOfApplication=getApplicationContext();
+        regnum=getIntent().getStringExtra("reg");
         setupViewPager(mViewPager);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
@@ -45,6 +46,11 @@ public class CompanyStudent extends AppCompatActivity {
         viewPager.setAdapter(adapter);
     }
     public static Context contextOfApplication;
+    public static String regnum;
+    public static String getRegnum()
+    {
+        return regnum;
+    }
     public static Context getContextOfApplication()
     {
         return contextOfApplication;

@@ -30,6 +30,7 @@ public class CompanyTab2 extends Fragment {
     String companyId;
     String currsel="null";
     View view1;
+    ValueEventListener vel;
     CompanyStudent companyStudent=(CompanyStudent)getActivity();
     @Nullable
     @Override
@@ -47,7 +48,7 @@ public class CompanyTab2 extends Fragment {
     void prepareData()
     {
         System.out.println("in prepare data");
-        ValueEventListener vel = new ValueEventListener() {
+        vel = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot userDetails : dataSnapshot.getChildren()) {
@@ -69,6 +70,7 @@ public class CompanyTab2 extends Fragment {
                     //System.out.println("in"+ userDetails.child("name").getValue().toString()+" : "+companies.getCtc()+" : "+companies.getLocation());
                 }
                 addCompany();
+                mDatabase.removeEventListener(vel);
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -83,14 +85,14 @@ public class CompanyTab2 extends Fragment {
         ListView theListView = (ListView) view1.findViewById(R.id.mainListView);
         final FoldingCellCompanyAdapter adapter= new FoldingCellCompanyAdapter(getContext(),companiesList);
 
-        adapter.setDefaultRequestBtnClickListener(new View.OnClickListener() {
+       /* adapter.setDefaultRequestBtnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ViewDialog alertDialoge = new ViewDialog();
                 alertDialoge.showDialog(getActivity(), "Register");
                 //Toast.makeText(getApplicationContext(), "DEFAULT HANDLER FOR ALL BUTTONS "+currsel, Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
         // set elements to adapter
         theListView.setAdapter(adapter);

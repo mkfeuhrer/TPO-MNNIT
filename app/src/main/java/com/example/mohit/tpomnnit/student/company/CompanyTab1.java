@@ -40,57 +40,92 @@ public class CompanyTab1 extends Fragment {
     //RecyclerView recyclerView;
     List<Companies> companiesList;
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference mDatabase;
+    DatabaseReference mDatabase,mDatabase1;
     //CompaniesAdapter companiesAdapter;
+    ArrayList registered;
     String companyId;
+    String regnum;
     static String currsel;
     View view1;
+    ValueEventListener vel,vel1;
     CompanyStudent companyStudent=(CompanyStudent)getActivity();
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view1=inflater.inflate(R.layout.fragment_companytab1, container, false);
+        mDatabase1 = FirebaseDatabase.getInstance().getReference("userdata");
         mDatabase=FirebaseDatabase.getInstance().getReference("companies");
         companyId=mDatabase.push().getKey();
         companiesList=new ArrayList<>();
+        regnum=CompanyStudent.regnum;
         prepareData();
         return view1;
     }
     void prepareData()
     {
         System.out.println("in prepare data");
-        ValueEventListener vel = new ValueEventListener() {
+        registered = new ArrayList<String>();
+        vel = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                companiesList.clear();
-                for(DataSnapshot userDetails : dataSnapshot.getChildren()) {
-                    //Companies companies=new Companies(userDetails.child("name").getValue().toString(),userDetails.child("ctc").getValue().toString(),userDetails.child("location").getValue().toString(),null,null,null,null,null,null,null,null,null);
-                    Companies companies=new Companies();
-                    companies.setName(userDetails.child("name").getValue().toString());
-                    companies.setCtc(userDetails.child("ctc").getValue().toString());
-                    companies.setLocation(userDetails.child("location").getValue().toString());
-                    companies.setProfile(userDetails.child("profile").getValue().toString());
-                    companies.setYear(userDetails.child("year").getValue().toString());
-                    companies.setPpo(userDetails.child("ppo").getValue().toString());
-                    companies.setCompanyid(userDetails.child("companyid").getValue().toString());
-                    companies.setDeadline(userDetails.child("deadline").getValue().toString());
-                    companies.setLink(userDetails.child("link").getValue().toString());
-                    //ArrayList<String> branch=new ArrayList<String>();
-                    System.out.println("branch "+userDetails.child("branch").getValue());
-                    //companies.setBranch(userDetails.child("branch").getValue().toString());
-                    companiesList.add(companies);
-                    //System.out.println("in"+ userDetails.child("name").getValue().toString()+" : "+companies.getCtc()+" : "+companies.getLocation());
+                UserData user = dataSnapshot.getValue(UserData.class);
+                for (DataSnapshot userDetails : dataSnapshot.getChildren()) {
+                    System.out.println(userDetails.child("regnum").getValue().toString());
+                    if (regnum.equals(userDetails.child("regnum").getValue().toString())) {
+                        registered= (ArrayList<String>) userDetails.child("companies").getValue();
+                    }
                 }
-                addCompany();
+                mDatabase1.removeEventListener(vel);
+                vel1 = new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        companiesList.clear();
+                        for(DataSnapshot userDetails : dataSnapshot.getChildren()) {
+                            //Companies companies=new Companies(userDetails.child("name").getValue().toString(),userDetails.child("ctc").getValue().toString(),userDetails.child("location").getValue().toString(),null,null,null,null,null,null,null,null,null);
+                            Companies companies=new Companies();
+                            companies.setName(userDetails.child("name").getValue().toString());
+                            companies.setCtc(userDetails.child("ctc").getValue().toString());
+                            companies.setLocation(userDetails.child("location").getValue().toString());
+                            companies.setProfile(userDetails.child("profile").getValue().toString());
+                            companies.setYear(userDetails.child("year").getValue().toString());
+                            companies.setPpo(userDetails.child("ppo").getValue().toString());
+                            companies.setCompanyid(userDetails.child("companyid").getValue().toString());
+                            companies.setDeadline(userDetails.child("deadline").getValue().toString());
+                            companies.setLink(userDetails.child("link").getValue().toString());
+                            //ArrayList<String> branch=new ArrayList<String>();
+                            System.out.println("branch "+userDetails.child("branch").getValue());
+                            //companies.setBranch(userDetails.child("branch").getValue().toString());
+                            int flag=0;
+                            for(int it=0;it<registered.size();it++)
+                            {
+                                if(companies.getName().equals(registered.get(it)))
+                                {
+                                    flag=1;
+                                    break;
+                                }
+                            }
+                            if(flag==0)
+                                companiesList.add(companies);
+                            //System.out.println("in"+ userDetails.child("name").getValue().toString()+" : "+companies.getCtc()+" : "+companies.getLocation());
+                        }
+                        addCompany();
+                        mDatabase.removeEventListener(vel1);
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                };
+                mDatabase.addValueEventListener(vel1);
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         };
-        mDatabase.addValueEventListener(vel);
-
+        mDatabase1.addValueEventListener(vel);
     }
     void addCompany()
     {
@@ -100,9 +135,8 @@ public class CompanyTab1 extends Fragment {
         adapter.setDefaultRequestBtnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ViewDialog alertDialoge = new ViewDialog();
-                alertDialoge.showDialog(getActivity(), "Register");
-                //Toast.makeText(getApplicationContext(), "DEFAULT HANDLER FOR ALL BUTTONS "+currsel, Toast.LENGTH_SHORT).show();
+                showDialog(getActivity(), currsel);
+
             }
         });
 
@@ -123,21 +157,7 @@ public class CompanyTab1 extends Fragment {
             }
         });
     }
-
-    public String getcurrsel()
-    {
-//        System.out.println("return "+currsel);
-        return currsel;
-    }
-
-}
-
-class ViewDialog {
-    String reg,userId,key,cursel;
-    DatabaseReference mDatabase;
-    ArrayList<String> registered;
-
-    public void showDialog(Activity activity, String msg) {
+    public void showDialog(Activity activity, final String curreg) {
 
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -147,7 +167,7 @@ class ViewDialog {
         dialog.onBackPressed();
 
         TextView text = (TextView) dialog.findViewById(R.id.text_dialog_feedback);
-        text.setText(msg);
+        text.setText("Register");
 
         Button register = (Button) dialog.findViewById(R.id.register);
         final EditText regis = (EditText) dialog.findViewById(R.id.regis);
@@ -159,7 +179,7 @@ class ViewDialog {
             @Override
             public void onClick(View v) {
                 //Perfome Action
-                verifyUser(regis.getText().toString().trim());
+                registerCompanyToUser(regis.getText().toString().trim(),curreg);
                 Toast.makeText(dialog.getContext(),"Company Registered",Toast.LENGTH_LONG).show();
             }
         });
@@ -167,33 +187,34 @@ class ViewDialog {
         dialog.show();
 
     }
-    void verifyUser(String regno)
+    String key;
+    void registerCompanyToUser(String regno,String curreg)
     {
         registered = new ArrayList<String>();
-        CompanyTab1 obj = new CompanyTab1();
-        cursel = obj.getcurrsel();
+        final String cursel = curreg;
         System.out.println("Cursel"+cursel);
-        reg=regno;
+        final String reg=regno;
         mDatabase = FirebaseDatabase.getInstance().getReference("userdata");
-        userId = mDatabase.push().getKey();
-        ValueEventListener vel = new ValueEventListener() {
+        String userId = mDatabase.push().getKey();
+        vel = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                registered.clear();
                 UserData user = dataSnapshot.getValue(UserData.class);
                 for (DataSnapshot userDetails : dataSnapshot.getChildren()) {
                     System.out.println(userDetails.child("regnum").getValue().toString());
                     if (reg.equals(userDetails.child("regnum").getValue().toString())) {
                         key=userDetails.getKey();
-                        for (DataSnapshot userDetails1 : userDetails.child(key).child("companies").getChildren()) {
-                            registered.add(userDetails1.getValue().toString());
-                        }
+                        registered= (ArrayList<String>) userDetails.child("companies").getValue();
                         registered.add(cursel);
-
                     }
                 }
-
                 mDatabase.child(key).child("companies").setValue(registered);
+                mDatabase.removeEventListener(vel);
+                Intent intent=new Intent(getActivity(),CompanyStudent.class);
+                intent.putExtra("reg",regnum);
+                getActivity().finish();
+                startActivity(intent);
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
