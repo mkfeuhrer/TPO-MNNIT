@@ -28,6 +28,7 @@ public class    Tab2Fragment extends Fragment {
     private Button btnTEST;
     private String registrationnum,userId,key;
     Button save;
+    ValueEventListener vel;
     private DatabaseReference mDatabase;
     @Nullable
     @Override
@@ -55,7 +56,7 @@ public class    Tab2Fragment extends Fragment {
         userId = mDatabase.push().getKey();
         MyProfile myProfile = (MyProfile) getActivity();
         registrationnum = myProfile.getRegno();
-        ValueEventListener vel = new ValueEventListener() {
+        vel = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 UserData user = dataSnapshot.getValue(UserData.class);
@@ -88,6 +89,7 @@ public class    Tab2Fragment extends Fragment {
 //                            Log.d("valueuserid:", userDetails.child("studentid").getValue().toString());
 //                            Log.d("password:", userDetails.child("password").getValue().toString());
                 }
+                mDatabase.removeEventListener(vel);
             }
 
             @Override

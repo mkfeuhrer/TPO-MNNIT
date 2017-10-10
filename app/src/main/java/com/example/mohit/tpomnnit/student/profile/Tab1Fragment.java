@@ -40,6 +40,7 @@ public class    Tab1Fragment extends Fragment {
             category,residential,guardian,presentaddress,permanentaddress,
             marital,state,country,parentcontact,personalcontact,datetime;
     Button save;
+    ValueEventListener vel;
     private String registrationnum,userId,key,branchselected="n/a",courseselected="n/a",genderstr="n/a",pwd="n/a";
     private DatabaseReference mDatabase;
     Spinner spinnerbranch,spinnercourse;
@@ -87,7 +88,7 @@ public class    Tab1Fragment extends Fragment {
         gender();
         physicallychallenged();
 
-        ValueEventListener vel = new ValueEventListener() {
+        vel = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 UserData user = dataSnapshot.getValue(UserData.class);
@@ -121,6 +122,7 @@ public class    Tab1Fragment extends Fragment {
 
                     }
                 }
+                mDatabase.removeEventListener(vel);
             }
 
             @Override

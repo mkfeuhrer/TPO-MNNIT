@@ -36,7 +36,6 @@ public class TpoLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tpo_login);
-
         imageView = (ImageView) findViewById(R.id.code);
         imageView.setImageResource(R.drawable.loginback);
         regnum = (EditText) findViewById(R.id.regnum);
@@ -107,6 +106,7 @@ public class TpoLogin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(TpoLogin.this,TpoSignup.class);
+                finish();
                 startActivity(i);
             }
         });

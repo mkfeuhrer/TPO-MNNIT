@@ -28,6 +28,7 @@ public class Tab5Fragment extends Fragment {
     private String registrationnum,key,userId,pass;
     private DatabaseReference mDatabase;
     Button save;
+    ValueEventListener vel;
     private Button btnTEST;
 
     @Nullable
@@ -43,7 +44,7 @@ public class Tab5Fragment extends Fragment {
         userId = mDatabase.push().getKey();
         save = (Button) view.findViewById(R.id.save);
 
-        ValueEventListener vel = new ValueEventListener() {
+        vel = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 UserData user = dataSnapshot.getValue(UserData.class);
@@ -58,6 +59,7 @@ public class Tab5Fragment extends Fragment {
 //                            Log.d("valueuserid:", userDetails.child("studentid").getValue().toString());
 //                            Log.d("password:", userDetails.child("password").getValue().toString());
                 }
+                mDatabase.removeEventListener(vel);
             }
 
             @Override

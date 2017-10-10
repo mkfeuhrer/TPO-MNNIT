@@ -60,6 +60,7 @@ public class StudentProfile extends AppCompatActivity
     private ImageView imageview,verified;
     Button charts;
     String nameuser;
+    ValueEventListener vel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,7 +132,7 @@ public class StudentProfile extends AppCompatActivity
             }
         });
 
-        ValueEventListener vel = new ValueEventListener() {
+        vel = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 UserData user= dataSnapshot.getValue(UserData.class);
@@ -166,6 +167,7 @@ public class StudentProfile extends AppCompatActivity
 
                     }
                 }
+                mDatabase.removeEventListener(vel);
             }
 
 

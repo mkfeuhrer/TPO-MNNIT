@@ -28,7 +28,7 @@ public class PointerChart extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
     String userId, registrationnum,spi[];
-
+    ValueEventListener vel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +39,7 @@ public class PointerChart extends AppCompatActivity {
         registrationnum = getIntent().getStringExtra("reg");
         spi = new String[8];
 
-        ValueEventListener vel = new ValueEventListener() {
+        vel = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 UserData user = dataSnapshot.getValue(UserData.class);
@@ -59,6 +59,7 @@ public class PointerChart extends AppCompatActivity {
                 }
                 solve();
                 solve2();
+                mDatabase.removeEventListener(vel);
             }
 
 

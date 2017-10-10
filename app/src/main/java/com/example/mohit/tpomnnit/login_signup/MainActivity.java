@@ -40,14 +40,10 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
         userId = mDatabase.push().getKey();
-
         mDatabase2 = FirebaseDatabase.getInstance().getReference("userdata");
         userId2 = mDatabase2.push().getKey();
-
         register   = (Button)findViewById(R.id.register);
         regnum     = (EditText)findViewById(R.id.regnum);
         name       = (EditText)findViewById(username);
@@ -55,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         password   = (EditText)findViewById(R.id.password);
         confirmpassword = (EditText)findViewById(R.id.confirmpassword);
         mobile     = (EditText)findViewById(R.id.mobile);
-
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,9 +69,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    //database in android
-
-                    // Check for already existed userId
                     if (TextUtils.isEmpty(userId)) {
                     }
                     else

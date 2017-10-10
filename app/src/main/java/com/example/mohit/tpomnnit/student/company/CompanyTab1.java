@@ -172,7 +172,9 @@ public class CompanyTab1 extends Fragment {
         Button register = (Button) dialog.findViewById(R.id.register);
         final EditText regis = (EditText) dialog.findViewById(R.id.regis);
         final EditText pass = (EditText) dialog.findViewById(R.id.pass);
-
+        regis.setText(regnum);
+        regis.setFocusable(false);
+        pass.setVisibility(View.GONE);
 
         register.setOnClickListener(new View.OnClickListener() {
 
