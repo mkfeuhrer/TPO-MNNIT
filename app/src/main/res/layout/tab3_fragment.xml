@@ -6,35 +6,35 @@
     <LinearLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="25dp"
-        android:weightSum="210">
+        android:orientation="vertical">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="10"
-            android:weightSum="100">
+            android:padding="5dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/rounded_border">
 
             <TextView
                 android:id="@+id/projectview"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="30"
+                android:padding="5dp"
                 android:textSize="20dp"
                 android:text="Project Details" />
 
-            <EditText
+            <com.example.mohit.tpomnnit.student.profile.LinedEditText
                 android:id="@+id/project"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="70"
+                android:textSize="20dp"
+                android:padding="5dp"
                 android:inputType="textMultiLine"
-                android:background="@drawable/edittextstyle"
-                android:maxLines="6"
-                android:lines="6"
+                android:lineSpacingExtra="10dp"
                 android:ems="10"
                 />
 
@@ -42,29 +42,29 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="10"
             android:layout_marginTop="10dp"
-            android:weightSum="100">
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:background="@drawable/rounded_border">
 
             <TextView
                 android:id="@+id/internview"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="30"
                 android:textSize="20dp"
+                android:padding="5dp"
                 android:text="Internship Details" />
 
-            <EditText
+            <com.example.mohit.tpomnnit.student.profile.LinedEditText
                 android:id="@+id/intern"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="70"
+                android:textSize="20dp"
+                android:padding="5dp"
                 android:inputType="textMultiLine"
-                android:background="@drawable/edittextstyle"
-                android:maxLines="6"
-                android:lines="6"
+                android:lineSpacingExtra="10dp"
                 android:ems="10"
                 />
 
@@ -73,18 +73,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_weight="10">
+        android:orientation="horizontal">
 
 
         <Button
             android:id="@+id/save"
-            android:layout_width="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:background="#f4a302"
             android:text="Save and Continue" />
     </LinearLayout>
 
-    </LinearLayout>>
+    </LinearLayout>
 
 </ScrollView>
