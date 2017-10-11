@@ -119,7 +119,7 @@ public class CompanyTab2 extends Fragment {
     void addCompany()
     {
         ListView theListView = (ListView) view1.findViewById(R.id.mainListView);
-        final FoldingCellCompanyAdapter adapter= new FoldingCellCompanyAdapter(getContext(),companiesList);
+        final FoldingCellCompanyAdapter adapter= new FoldingCellCompanyAdapter(getContext(),companiesList,0);
         theListView.setAdapter(adapter);
 
         // set on click event listener to list view

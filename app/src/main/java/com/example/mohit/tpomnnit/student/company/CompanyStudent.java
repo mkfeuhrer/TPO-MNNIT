@@ -32,9 +32,6 @@ public class CompanyStudent extends AppCompatActivity {
         setupViewPager(mViewPager);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
-
-
     }
 
     private void setupViewPager(ViewPager viewPager) {

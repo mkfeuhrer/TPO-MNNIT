@@ -253,6 +253,8 @@ public class TpoHome extends AppCompatActivity
             //startActivity(i);
 
         } else if (id == R.id.nav_slideshow) {
+            Intent intent=new Intent(TpoHome.this,UpdateCompany.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_manage) {
 

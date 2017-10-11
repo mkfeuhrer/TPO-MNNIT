@@ -58,7 +58,8 @@
         <activity android:name=".tpo.StudentFilter" />
         <activity android:name=".tpo.MessageTpo" />
         <activity android:name=".tpo.ManageStudents" />
-        <activity android:name=".charts.PointerChart"></activity>
+        <activity android:name=".charts.PointerChart" />
+        <activity android:name=".tpo.UpdateCompany"></activity>
     </application>
 
 </manifest>

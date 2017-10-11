@@ -3,15 +3,20 @@ package com.example.mohit.tpomnnit.student.company;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.mohit.tpomnnit.CircularTextView;
 import com.example.mohit.tpomnnit.R;
+import com.example.mohit.tpomnnit.student.InterviewExperience.Interview;
+import com.github.lzyzsd.randomcolor.RandomColor;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
@@ -21,8 +26,10 @@ import com.ramotion.foldingcell.FoldingCell;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Simple example of ListAdapter for using with Folding Cell
@@ -33,9 +40,11 @@ public class FoldingCellCompanyAdapter extends ArrayAdapter<Companies> {
     private HashSet<Integer> unfoldedIndexes = new HashSet<>();
     private View.OnClickListener defaultRequestBtnClickListener;
     private StorageReference storage,imageref;
+    int flag;
 
-    public FoldingCellCompanyAdapter(Context context, List<Companies> objects) {
+    public FoldingCellCompanyAdapter(Context context, List<Companies> objects,int flag) {
         super(context, 0, objects);
+        this.flag=flag;
     }
 
     @Override
@@ -52,7 +61,7 @@ public class FoldingCellCompanyAdapter extends ArrayAdapter<Companies> {
             viewHolder.name = (TextView) cell.findViewById(R.id.name);
             viewHolder.name1 = (TextView) cell.findViewById(R.id.name1);
             viewHolder.location = (TextView) cell.findViewById(R.id.location);
-            viewHolder.nameini = (TextView) cell.findViewById(R.id.nameini);
+            viewHolder.nameini = (CircularTextView) cell.findViewById(R.id.nameini);
             viewHolder.location1 = (TextView) cell.findViewById(R.id.location1);
             viewHolder.year = (TextView) cell.findViewById(R.id.year);
             viewHolder.ctc=(TextView)cell.findViewById(R.id.ctc);
@@ -67,7 +76,9 @@ public class FoldingCellCompanyAdapter extends ArrayAdapter<Companies> {
             viewHolder.cpi = (TextView) cell.findViewById(R.id.cpi);
             viewHolder.class10 = (TextView) cell.findViewById(R.id.class10);
             viewHolder.class12 = (TextView) cell.findViewById(R.id.class12);
+            viewHolder.title=(RelativeLayout)cell.findViewById(R.id.relativeTitle);
             viewHolder.button=(TextView)cell.findViewById(R.id.content_request_btn);
+
             cell.setTag(viewHolder);
         } else {
             if (unfoldedIndexes.contains(position)) {
@@ -81,7 +92,7 @@ public class FoldingCellCompanyAdapter extends ArrayAdapter<Companies> {
         if(!item.getName().equals("")) {
             Character t = item.getName().charAt(0);
             String str = t.toString();
-            viewHolder.nameini.setText(str);
+            viewHolder.nameini.setText(str.toUpperCase());
         }
         viewHolder.name.setText(item.getName());
         viewHolder.name1.setText(item.getName());
@@ -94,6 +105,31 @@ public class FoldingCellCompanyAdapter extends ArrayAdapter<Companies> {
         viewHolder.ppo.setText(item.getPpo());
         viewHolder.deadline.setText(item.getDeadline());
         viewHolder.deadline1.setText(item.getDeadline());
+       /* colors.add("#62BD18");
+        colors.add("#EF3E5B");
+        colors.add("#6F5495");
+        colors.add("#95D47A");
+        colors.add("#52CCCE");
+        colors.add("#F65283");
+        colors.add("#4078D3");
+        colors.add("#00535F");*/
+        /*ArrayList<Integer> colors=new ArrayList<>();
+        colors.add(Color.rgb(98,189,24));
+        colors.add(Color.rgb(225,179,0));
+        colors.add(Color.rgb(255,114,0));
+        colors.add(Color.rgb(210,16,52));
+        colors.add(Color.rgb(252,61,49));
+        colors.add(Color.rgb(255,71,92));
+        colors.add(Color.rgb(143,22,178));
+        colors.add(Color.rgb(165,119,249));
+        Random rand = new Random();
+        int i= rand.nextInt(8);*/
+        //viewHolder.title.setBackgroundColor(colors.get(i));
+        viewHolder.nameini.setSolidColor("#ffffff");
+        //viewHolder.nameini.setTextColor(colors.get(i));
+        if(flag==1) {
+            viewHolder.button.setText("Add Update Message");
+        }
         viewHolder.button.setOnClickListener(defaultRequestBtnClickListener);
         //viewHolder.link.setText(item.getLink());
         /*viewHolder.note.setText(item.getPermanentadd());
@@ -133,7 +169,9 @@ public class FoldingCellCompanyAdapter extends ArrayAdapter<Companies> {
     private static class ViewHolder {
        // ImageView dp;
         TextView name,name1,ctc,location,location1,profile,profile1,year,
-               ppo,deadline,deadline1,link,nameini,note,updates,cpi,class10,class12,button;
+               ppo,deadline,deadline1,link,note,updates,cpi,class10,class12,button;
+        RelativeLayout title;
+        CircularTextView nameini;
 
     }
 }
