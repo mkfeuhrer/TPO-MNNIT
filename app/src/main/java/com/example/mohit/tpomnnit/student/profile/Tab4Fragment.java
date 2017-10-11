@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -99,9 +100,10 @@ public class Tab4Fragment extends Fragment {
             public void onSuccess(byte[] bytes) {
                 if(bytes.length!=0)
                 {
-                    resumeDisplay.setText(childref.getName());
                     resumeDisplay.setTextColor(Color.BLUE);
                     resumeDisplay.setClickable(true);
+                    resumeDisplay.setPaintFlags(resumeDisplay.getPaintFlags()| Paint.UNDERLINE_TEXT_FLAG);
+                    resumeDisplay.setText(childref.getName());
                 }
 
             }
@@ -144,25 +146,14 @@ public class Tab4Fragment extends Fragment {
                     }
                     final File finalLocalFile = localFile;
                     final StorageReference childref=storageref1.child(registrationnum+".pdf");
-                    childref.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                    childref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
-                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                            // Local temp file has been created
-                            FileOutputStream outputStream;
-
-                            try {
-                                outputStream = getContext().openFileOutput(finalLocalFile.getName(), Context.MODE_PRIVATE);
-                                outputStream.write(finalLocalFile.getAbsolutePath().getBytes());
-                                outputStream.close();
-                                Toast.makeText(MyProfile.getContextOfApplication(),"file saved",Toast.LENGTH_LONG).show();
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception exception) {
+                        public void onSuccess(Uri uri) {
+                            Intent intent = new Intent();
+                            intent.setAction(Intent.ACTION_VIEW);
+                            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                            intent.setData(uri);
+                            startActivity(intent);
                         }
                     });
                 }
