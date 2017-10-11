@@ -89,7 +89,7 @@ public class    Tab2Fragment extends Fragment {
 //                            Log.d("valueuserid:", userDetails.child("studentid").getValue().toString());
 //                            Log.d("password:", userDetails.child("password").getValue().toString());
                 }
-                mDatabase.removeEventListener(vel);
+                //mDatabase.removeEventListener(vel);
             }
 
             @Override
@@ -97,7 +97,7 @@ public class    Tab2Fragment extends Fragment {
 
             }
         };
-        mDatabase.addValueEventListener(vel);
+        mDatabase.addListenerForSingleValueEvent(vel);
 
   /*      btnTEST = (Button) view.findViewById(R.id.btnTEST);
 

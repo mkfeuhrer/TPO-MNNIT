@@ -97,7 +97,7 @@ public class ManageStudents extends AppCompatActivity {
 
             }
         };
-        mDatabase.addValueEventListener(vel);
+        mDatabase.addListenerForSingleValueEvent(vel);
 
 
     }
@@ -250,7 +250,7 @@ public class ManageStudents extends AppCompatActivity {
 
             }
         };
-        mDatabase.addValueEventListener(vel);
+        mDatabase.addListenerForSingleValueEvent(vel);
     }
     void deductcredit(String regno)
     {
@@ -277,7 +277,7 @@ public class ManageStudents extends AppCompatActivity {
 
             }
         };
-        mDatabase.addValueEventListener(vel);
+        mDatabase.addListenerForSingleValueEvent(vel);
     }
     void deleteUser(String regno)
     {
@@ -330,7 +330,7 @@ public class ManageStudents extends AppCompatActivity {
 
             }
         };
-        mDatabase.addValueEventListener(vel1);
+        mDatabase.addListenerForSingleValueEvent(vel1);
 
     }
 }

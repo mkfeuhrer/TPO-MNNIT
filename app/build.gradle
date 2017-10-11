@@ -46,5 +46,6 @@ dependencies {
     compile 'com.android.support:support-v4:26.+'
     compile 'com.android.support:cardview-v7:26.+'
     compile 'com.alexvasilkov:foldable-layout:1.2.1'
+   // compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
     testCompile 'junit:junit:4.12'
 }

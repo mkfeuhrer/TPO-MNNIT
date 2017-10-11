@@ -156,7 +156,7 @@ public class TpoHome extends AppCompatActivity
 
             }
         };
-        mDatabase.addValueEventListener(vel);
+        mDatabase.addListenerForSingleValueEvent(vel);
 
     }
 

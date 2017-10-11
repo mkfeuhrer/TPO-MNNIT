@@ -124,7 +124,7 @@ public class AddCompany extends AppCompatActivity {
 
     private void addCompanyChangeListener(final Companies company) {
         // User data change listener
-        mDatabase.child(companyId).addValueEventListener(new ValueEventListener() {
+        mDatabase.child(companyId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Companies company1 = company;

@@ -103,7 +103,7 @@ public class AddInterviewExperience extends AppCompatActivity {
 
     private void addCompanyChangeListener(final Interview interview) {
         // User data change listener
-        mDatabase.child(interviewId).addValueEventListener(new ValueEventListener() {
+        mDatabase.child(interviewId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Interview interview1 = interview;

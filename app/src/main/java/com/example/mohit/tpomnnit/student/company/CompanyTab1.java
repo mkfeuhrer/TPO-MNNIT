@@ -76,7 +76,7 @@ public class CompanyTab1 extends Fragment {
                         registered= (ArrayList<String>) userDetails.child("companies").getValue();
                     }
                 }
-                mDatabase1.removeEventListener(vel);
+                //mDatabase1.removeEventListener(vel);
                 vel1 = new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -110,14 +110,14 @@ public class CompanyTab1 extends Fragment {
                             //System.out.println("in"+ userDetails.child("name").getValue().toString()+" : "+companies.getCtc()+" : "+companies.getLocation());
                         }
                         addCompany();
-                        mDatabase.removeEventListener(vel1);
+                       // mDatabase.removeEventListener(vel1);
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
 
                     }
                 };
-                mDatabase.addValueEventListener(vel1);
+                mDatabase.addListenerForSingleValueEvent(vel1);
 
             }
             @Override
@@ -125,7 +125,7 @@ public class CompanyTab1 extends Fragment {
 
             }
         };
-        mDatabase1.addValueEventListener(vel);
+        mDatabase1.addListenerForSingleValueEvent(vel);
     }
     void addCompany()
     {
@@ -168,7 +168,6 @@ public class CompanyTab1 extends Fragment {
 
         TextView text = (TextView) dialog.findViewById(R.id.text_dialog_feedback);
         text.setText("Register");
-
         Button register = (Button) dialog.findViewById(R.id.register);
         final EditText regis = (EditText) dialog.findViewById(R.id.regis);
         final EditText pass = (EditText) dialog.findViewById(R.id.pass);
@@ -181,7 +180,9 @@ public class CompanyTab1 extends Fragment {
             @Override
             public void onClick(View v) {
                 //Perfome Action
+
                 registerCompanyToUser(regis.getText().toString().trim(),curreg);
+                dialog.dismiss();
                 Toast.makeText(dialog.getContext(),"Company Registered",Toast.LENGTH_LONG).show();
             }
         });
@@ -211,7 +212,7 @@ public class CompanyTab1 extends Fragment {
                     }
                 }
                 mDatabase.child(key).child("companies").setValue(registered);
-                mDatabase.removeEventListener(vel);
+                //mDatabase.removeEventListener(vel);
                 Intent intent=new Intent(getActivity(),CompanyStudent.class);
                 intent.putExtra("reg",regnum);
                 getActivity().finish();
@@ -223,7 +224,7 @@ public class CompanyTab1 extends Fragment {
 
             }
         };
-        mDatabase.addValueEventListener(vel);
+        mDatabase.addListenerForSingleValueEvent(vel);
 
     }
 }

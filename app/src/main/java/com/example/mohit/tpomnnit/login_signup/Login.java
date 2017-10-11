@@ -106,7 +106,7 @@ public class Login extends AppCompatActivity {
                         {
                             Toast.makeText(Login.this,"User Not Registered",Toast.LENGTH_LONG).show();
                         }
-                        mDatabase.removeEventListener(vel);
+                        //mDatabase.removeEventListener(vel);
                     }
 
                     @Override
@@ -114,7 +114,7 @@ public class Login extends AppCompatActivity {
 
                     }
                 };
-                mDatabase.addValueEventListener(vel);
+                mDatabase.addListenerForSingleValueEvent(vel);
             }
         });
 

@@ -1,21 +1,26 @@
 package com.example.mohit.tpomnnit.student.profile;
 
 
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Context;
 
@@ -27,11 +32,15 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import static android.app.Activity.RESULT_OK;
+import static android.os.ParcelFileDescriptor.MODE_WORLD_READABLE;
 
 /**
  * Created by User on 2/28/2017.
@@ -40,10 +49,12 @@ import static android.app.Activity.RESULT_OK;
 public class Tab4Fragment extends Fragment {
     private static final String TAG = "Tab4Fragment";
     private StorageReference imageref,str;
+    TextView resumeDisplay;
     Uri filePath,resumePath;
     ImageView image;
     byte[] byteimage;
     private  String registrationnum;
+    int progFlag=2;
     int PICK_IMAGE_REQUEST=111;
     Button upload,choose,uploadresume,chooseresume;
     FirebaseStorage storage=FirebaseStorage.getInstance();
@@ -59,8 +70,12 @@ public class Tab4Fragment extends Fragment {
         upload=(Button)view.findViewById(R.id.upload);
         image=(ImageView)view.findViewById(R.id.image);
         choose=(Button) view.findViewById(R.id.choose);
+        progFlag=2;
         uploadresume = (Button)view.findViewById(R.id.uploadresume);
         chooseresume = (Button)view.findViewById(R.id.chooseresume);
+        resumeDisplay=(TextView)view.findViewById(R.id.resumeDisplay);
+        //resumeDisplay.setFocusable(false);
+        resumeDisplay.setClickable(false);
         choose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,9 +87,29 @@ public class Tab4Fragment extends Fragment {
         });
         MyProfile myProfile = (MyProfile) getActivity();
         registrationnum = myProfile.getRegno();
-
+        /*final ProgressDialog progressDialog=new ProgressDialog(MyProfile.getContextOfApplication());
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Loading Data please wait");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.show();*/
         str = FirebaseStorage.getInstance().getReference("userimage/"+registrationnum+".jpg");
+        final StorageReference childref=storageref1.child(registrationnum+".pdf");
+        childref.getBytes(1024*1024).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                if(bytes.length!=0)
+                {
+                    resumeDisplay.setText(childref.getName());
+                    resumeDisplay.setTextColor(Color.BLUE);
+                    resumeDisplay.setClickable(true);
+                }
 
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+            }
+        });
         imageref = str;
         File localFile = null;
         try {
@@ -90,11 +125,52 @@ public class Tab4Fragment extends Fragment {
                 Toast.makeText(getActivity(),"File Download",Toast.LENGTH_LONG);
                 Bitmap bitmap = BitmapFactory.decodeFile(finalLocalFile.getAbsolutePath());
                 image.setImageBitmap(bitmap);
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
+            }
+        });
+        resumeDisplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!resumeDisplay.getText().equals("File Name")) {
+                    File localFile = null;
+                    try {
+                        localFile = File.createTempFile("newresumefile", "pdf");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    final File finalLocalFile = localFile;
+                    final StorageReference childref=storageref1.child(registrationnum+".pdf");
+                    childref.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            // Local temp file has been created
+                            FileOutputStream outputStream;
+
+                            try {
+                                outputStream = getContext().openFileOutput(finalLocalFile.getName(), Context.MODE_PRIVATE);
+                                outputStream.write(finalLocalFile.getAbsolutePath().getBytes());
+                                outputStream.close();
+                                Toast.makeText(MyProfile.getContextOfApplication(),"file saved",Toast.LENGTH_LONG).show();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                        }
+                    });
+                }
+
+                else
+                {
+                    Toast.makeText(MyProfile.getContextOfApplication(),"File not found",Toast.LENGTH_LONG).show();
+                }
             }
         });
 

@@ -80,7 +80,7 @@ public class interviewexperience extends AppCompatActivity {
 
             }
         };
-        mDatabase.addValueEventListener(vel);
+        mDatabase.addListenerForSingleValueEvent(vel);
 
     }
     void addInterview()

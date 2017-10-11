@@ -177,7 +177,7 @@ public class StudentProfile extends AppCompatActivity
 
             }
         };
-        mDatabase.addValueEventListener(vel);
+        mDatabase.addListenerForSingleValueEvent(vel);
     }
 
     @Override

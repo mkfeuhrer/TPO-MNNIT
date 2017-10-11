@@ -99,7 +99,7 @@ public class VerifyUser extends AppCompatActivity {
 
             }
         };
-        mDatabase.addValueEventListener(vel);
+        mDatabase.addListenerForSingleValueEvent(vel);
         //mDatabase.removeEventListener(vel);
 
     }
@@ -186,7 +186,7 @@ public class VerifyUser extends AppCompatActivity {
 
             }
         };
-        mDatabase.addValueEventListener(vel1);
+        mDatabase.addListenerForSingleValueEvent(vel1);
 
     }
 

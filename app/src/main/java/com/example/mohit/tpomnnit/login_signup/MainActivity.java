@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void addUserChangeListener(final Users user) {
         // User data change listener
-        mDatabase.child(userId).addValueEventListener(new ValueEventListener() {
+        mDatabase.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Users user1 = user;

@@ -85,14 +85,14 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/resumeDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:padding="5dp"
                 android:text="File Name"
                 android:textSize="25dp"
-                android:textStyle="bold"
-                android:layout_margin="10dp"
-                android:padding="5dp"/>
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/chooseresume"

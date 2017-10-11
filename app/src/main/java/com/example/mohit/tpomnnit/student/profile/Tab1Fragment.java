@@ -122,7 +122,7 @@ public class    Tab1Fragment extends Fragment {
 
                     }
                 }
-                mDatabase.removeEventListener(vel);
+                //mDatabase.removeEventListener(vel);
             }
 
             @Override
@@ -130,7 +130,7 @@ public class    Tab1Fragment extends Fragment {
 
             }
         };
-        mDatabase.addValueEventListener(vel);
+        mDatabase.addListenerForSingleValueEvent(vel);
 
   /*      btnTEST = (Button) view.findViewById(R.id.btnTEST);
 

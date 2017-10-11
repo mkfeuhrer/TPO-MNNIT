@@ -68,7 +68,7 @@ public class NotificationService extends Service {
 
                         }
                     };
-                    mDatabase.addValueEventListener(vel);
+                    mDatabase.addListenerForSingleValueEvent(vel);
 
                     if(i!=n&&i!=-10)
                     {

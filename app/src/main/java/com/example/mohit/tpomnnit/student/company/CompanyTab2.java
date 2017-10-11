@@ -66,7 +66,7 @@ public class CompanyTab2 extends Fragment {
                         registered= (ArrayList<String>) userDetails.child("companies").getValue();
                     }
                 }
-                mDatabase1.removeEventListener(vel);
+                //mDatabase1.removeEventListener(vel);
                 vel1 = new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -98,14 +98,14 @@ public class CompanyTab2 extends Fragment {
                             //System.out.println("in"+ userDetails.child("name").getValue().toString()+" : "+companies.getCtc()+" : "+companies.getLocation());
                         }
                         addCompany();
-                        mDatabase.removeEventListener(vel1);
+                        //mDatabase.removeEventListener(vel1);
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
 
                     }
                 };
-                mDatabase.addValueEventListener(vel1);
+                mDatabase.addListenerForSingleValueEvent(vel1);
 
             }
             @Override
@@ -113,34 +113,7 @@ public class CompanyTab2 extends Fragment {
 
             }
         };
-        mDatabase1.addValueEventListener(vel);
-        vel = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot userDetails : dataSnapshot.getChildren()) {
-                    //Companies companies=new Companies(userDetails.child("name").getValue().toString(),userDetails.child("ctc").getValue().toString(),userDetails.child("location").getValue().toString(),null,null,null,null,null,null,null,null,null);
-                    Companies companies=new Companies();
-                    companies.setName(userDetails.child("name").getValue().toString());
-                    companies.setCtc(userDetails.child("ctc").getValue().toString());
-                    companies.setLocation(userDetails.child("location").getValue().toString());
-                    companies.setProfile(userDetails.child("profile").getValue().toString());
-                    companies.setYear(userDetails.child("year").getValue().toString());
-                    companies.setPpo(userDetails.child("ppo").getValue().toString());
-                    companies.setCompanyid(userDetails.child("companyid").getValue().toString());
-                    companies.setDeadline(userDetails.child("deadline").getValue().toString());
-                    companies.setLink(userDetails.child("link").getValue().toString());
-                    System.out.println("branch "+userDetails.child("branch").getValue());
-                    companiesList.add(companies);
-                    }
-                addCompany();
-                mDatabase.removeEventListener(vel);
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        };
-        mDatabase.addValueEventListener(vel);
+        mDatabase1.addListenerForSingleValueEvent(vel);
 
     }
     void addCompany()

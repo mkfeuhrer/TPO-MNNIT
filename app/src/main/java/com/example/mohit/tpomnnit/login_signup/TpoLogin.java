@@ -97,7 +97,7 @@ public class TpoLogin extends AppCompatActivity {
 
                         }
                     };
-                    mDatabase.addValueEventListener(val);
+                    mDatabase.addListenerForSingleValueEvent(val);
                 }
 
             }
