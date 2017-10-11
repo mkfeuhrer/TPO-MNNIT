@@ -1,5 +1,6 @@
 package com.example.mohit.tpomnnit.tpo;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,8 +21,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,16 +48,19 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TpoHome extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private EditText name,regnum,branch,course;
+    private EditText name,regnum,branch,course,regno;
     private String registrationnum,userId;
     private DatabaseReference mDatabase;
     private StorageReference storage,imageref;
     private ImageView imageview,verified;
     String nameuser;
-
+    Spinner spinnerbranch,spinnercourse;
+    String branchselected,courseselected;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -213,8 +222,35 @@ public class TpoHome extends AppCompatActivity
             startActivity(i);
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
-            Intent i = new Intent(TpoHome.this,StudentFilter.class);
-            startActivity(i);
+            final Dialog dialog = new Dialog(TpoHome.this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(false);
+            dialog.setContentView(R.layout.activity_student_filter);
+            dialog.setCanceledOnTouchOutside(true);
+            dialog.onBackPressed();
+            spinnerbranch=(Spinner)dialog.findViewById(R.id.spinnerbranch);
+            spinnercourse=(Spinner)dialog.findViewById(R.id.spinnercourse);
+            regno=(EditText) dialog.findViewById(R.id.regno);
+            Button find=(Button)dialog.findViewById(R.id.find);
+            branchspinner();
+            coursespinner();
+            find.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                    Intent intent=new Intent(TpoHome.this,ManageStudents.class);
+                    intent.putExtra("flag",1);
+                    intent.putExtra("course",courseselected);
+                    intent.putExtra("branch",branchselected);
+                    intent.putExtra("regno",regno.getText().toString().trim());
+                    startActivity(intent);
+                }
+            });
+            dialog.show();
+
+            //Intent i = new Intent(TpoHome.this,StudentFilter.class);
+
+            //startActivity(i);
 
         } else if (id == R.id.nav_slideshow) {
 
@@ -235,5 +271,91 @@ public class TpoHome extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    private void branchspinner()
+    {
+
+        // Spinner click listener
+        List<String> branches = new ArrayList<String>();
+        branches.add("ALL");
+        branches.add("CSE");
+        branches.add("IT");
+        branches.add("ECE");
+        branches.add("EE");
+        branches.add("ME");
+        branches.add("PIE");
+        branches.add("CHE");
+        branches.add("BIO");
+        branches.add("CIVIL");
+        branches.add("MCA");
+
+        ArrayAdapter<String> dataAdapterbranch;
+        dataAdapterbranch = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,branches);
+
+        // Drop down layout style - list view with radio button
+        dataAdapterbranch.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinnerbranch.setAdapter(dataAdapterbranch);
+
+        spinnerbranch.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                branchselected = parent.getItemAtPosition(position).toString();
+                if(branchselected.equals("ALL"))
+                    branchselected="";
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+    }
+
+    private void coursespinner()
+    {
+
+        // Spinner click listener
+        List<String> courses = new ArrayList<String>();
+        courses.add("ALL");
+        courses.add("BTech");
+        courses.add("MTech");
+        courses.add("MCA");
+        courses.add("PhD");
+        courses.add("MBA");
+
+        ArrayAdapter<String> dataAdapterbranch;
+        dataAdapterbranch = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,courses);
+
+        // Drop down layout style - list view with radio button
+        dataAdapterbranch.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinnercourse.setAdapter(dataAdapterbranch);
+
+        spinnercourse.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                courseselected = parent.getItemAtPosition(position).toString();
+                if(courseselected.equals("ALL"))
+                    courseselected="";
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+
+            }
+        });
     }
 }

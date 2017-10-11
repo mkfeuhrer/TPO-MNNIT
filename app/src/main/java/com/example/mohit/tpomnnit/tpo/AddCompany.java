@@ -34,7 +34,7 @@ public class AddCompany extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private String companyId;
     private Button addcompany;
-    private EditText year,ctc,location,name,time,date,ppo,profile,link;
+    private EditText year,ctc,location,name,time,date,ppo,profile,link,note;
     private int Year, month, day,hours,minutes;
     Calendar calendar;
     private TextView tvNotificationDetails;
@@ -57,6 +57,7 @@ public class AddCompany extends AppCompatActivity {
         //link=(EditText)findViewById(R.id.link);
         date = (EditText) findViewById(R.id.textDate);
         time = (EditText) findViewById(R.id.textTime);
+        note=(EditText)findViewById(R.id.note);
         calendar = Calendar.getInstance();
         Year = calendar.get(Calendar.YEAR);
         hours = calendar.get(Calendar.HOUR_OF_DAY);
@@ -79,6 +80,7 @@ public class AddCompany extends AppCompatActivity {
                 setTime(v);
             }
         });
+
 
         MultiSelectionSpinner spinner=(MultiSelectionSpinner) findViewById(R.id.input1);
 
@@ -108,6 +110,8 @@ public class AddCompany extends AppCompatActivity {
                     ArrayList<String> selectedstudents = new ArrayList<String>();
                     String deadline=time.getText().toString()+" "+date.getText().toString();
                     Companies company = new Companies(name.getText().toString().trim(),ctc.getText().toString().trim(),location.getText().toString().trim(),profile.getText().toString().trim(),year.getText().toString().trim(),ppo.getText().toString().trim(),companyId,deadline,"www.google.com",null,null,null);
+                    company.setUpdate("n/a");
+                    company.setNote(note.getText().toString());
                     addCompanyChangeListener(company);
                 }
                     //createCompany(name.getText().toString().trim(), year.getText().toString().trim(), ctc.getText().toString().trim(), location.getText().toString().trim(),companyId);

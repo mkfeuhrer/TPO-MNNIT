@@ -51,7 +51,7 @@
                     android:text="10th School"
                     android:textSize="20dp"/>
 
-                <EditText
+                <EditText                     android:inputType="text"
                     android:id="@+id/school10"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -74,7 +74,7 @@
                     android:text="10th Board"
                     android:textSize="20dp"/>
 
-                <EditText
+                <EditText                     android:inputType="text"
                     android:id="@+id/board10"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -97,7 +97,7 @@
                     android:text="10th Year"
                     android:textSize="20dp"/>
 
-                <EditText
+                <EditText                     android:inputType="text"
                     android:id="@+id/year10"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -119,7 +119,7 @@
                     android:text="10th %"
                     android:textSize="20dp"/>
 
-                <EditText
+                <EditText                     android:inputType="text"
                     android:id="@+id/percentage10"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -165,7 +165,7 @@
                     android:text="12th School"
                     android:textSize="20dp"/>
 
-                <EditText
+                <EditText                     android:inputType="text"
                     android:id="@+id/school12"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -187,7 +187,7 @@
                     android:text="12th Board"
                     android:textSize="20dp"/>
 
-                <EditText
+                <EditText                     android:inputType="text"
                     android:id="@+id/board12"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -209,7 +209,7 @@
                     android:text="12th Year"
                     android:textSize="20dp"/>
 
-                <EditText
+                <EditText                     android:inputType="text"
                     android:id="@+id/year12"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -231,7 +231,7 @@
                     android:text="12th %"
                     android:textSize="20dp"/>
 
-                <EditText
+                <EditText                     android:inputType="text"
                     android:id="@+id/percentage12"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -281,7 +281,7 @@
                     android:text="CPI"
                     android:textSize="20dp"/>
 
-                <EditText
+                <EditText                     android:inputType="text"
                     android:id="@+id/cpi"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -389,56 +389,56 @@
                         android:textSize="20dp"
                         android:layout_weight="40"/>
 
-                    <EditText
+                    <EditText                     android:inputType="text"
                         android:id="@+id/spi1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textSize="20dp"
                         android:layout_weight="7.5"/>
 
-                    <EditText
+                    <EditText                     android:inputType="text"
                         android:id="@+id/spi2"
                         android:textSize="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="7.5"/>
 
-                    <EditText
+                    <EditText                     android:inputType="text"
                         android:id="@+id/spi3"
                         android:textSize="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="7.5"/>
 
-                    <EditText
+                    <EditText                     android:inputType="text"
                         android:id="@+id/spi4"
                         android:textSize="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="7.5"/>
 
-                    <EditText
+                    <EditText                     android:inputType="text"
                         android:id="@+id/spi5"
                         android:textSize="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="7.5"/>
 
-                    <EditText
+                    <EditText                     android:inputType="text"
                         android:id="@+id/spi6"
                         android:textSize="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="7.5"/>
 
-                    <EditText
+                    <EditText                     android:inputType="text"
                         android:id="@+id/spi7"
                         android:textSize="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="7.5"/>
 
-                    <EditText
+                    <EditText                     android:inputType="text"
                         android:id="@+id/spi8"
                         android:textSize="20dp"
                         android:layout_width="match_parent"

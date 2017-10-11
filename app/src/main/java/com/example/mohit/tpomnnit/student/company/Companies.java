@@ -8,10 +8,26 @@ import java.util.ArrayList;
 
 public class Companies {
 
-    public String name,ctc,location,profile,year,ppo,companyid,deadline,link,branch;
+    public String name,ctc,location,profile,year,ppo,companyid,deadline,link,branch,update,note;
     ArrayList<String> registeredstudents = new ArrayList<String>();
     ArrayList<String> selectedstudents = new ArrayList<String>();
     public Companies(){
+    }
+
+    public String getUpdate() {
+        return update;
+    }
+
+    public void setUpdate(String update) {
+        this.update = update;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public String getBranch() {
