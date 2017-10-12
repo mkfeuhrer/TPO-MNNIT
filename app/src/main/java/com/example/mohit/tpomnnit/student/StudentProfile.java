@@ -1,5 +1,6 @@
 package com.example.mohit.tpomnnit.student;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,6 +22,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -58,14 +60,15 @@ public class StudentProfile extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private EditText name,regnum,branch,tpocredit,company;
     private String registrationnum,userId;
-    private DatabaseReference mDatabase;
+    private DatabaseReference mDatabase,mDatabase1;
     private StorageReference storage,imageref;
     private ImageView imageview,verified;
     public static int verification;
     public static String cmpny;
+    int tcc,cc;
     Button charts;
     String nameuser;
-    ValueEventListener vel;
+    ValueEventListener vel,vel1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -201,7 +204,6 @@ public class StudentProfile extends AppCompatActivity
         getMenuInflater().inflate(R.menu.student_profile, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -211,9 +213,55 @@ public class StudentProfile extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent i = new Intent(StudentProfile.this,chat.class);
+            /*Intent i = new Intent(StudentProfile.this,chat.class);
             i.putExtra("reg",registrationnum);
-            startActivity(i);
+            startActivity(i);*/
+            tcc=0;
+            cc=0;
+            mDatabase1 = FirebaseDatabase.getInstance().getReference("userdata");
+            vel1 = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for(DataSnapshot userDetails : dataSnapshot.getChildren()) {
+                        //UserData userData=new UserData(userDetails.child("regnum").getValue().toString(),userDetails.child("name").getValue().toString(),userDetails.child("branch").getValue().toString(),userDetails.child("batch").getValue().toString(),userDetails.child("course").getValue().toString(),userDetails.child("dob").getValue().toString(),userDetails.child("email").getValue().toString(),userDetails.child("skypeid").getValue().toString(),userDetails.child("linkedinid").getValue().toString(),userDetails.child("gender").getValue().toString(),userDetails.child("category").getValue().toString(),userDetails.child("phychal").getValue().toString(),null,userDetails.child("guardian").getValue().toString(),userDetails.child("presentadd").getValue().toString(),userDetails.child("permanentadd").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),0,0,0);
+                        String str=userDetails.child("company").getValue().toString();
+                        if(!str.equals("n/a"))
+                            cc++;
+                        tcc++;
+                    }
+                    final Dialog dialog = new Dialog(StudentProfile.this);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setCancelable(false);
+                    dialog.setContentView(R.layout.custom_dialog);
+                    dialog.setCanceledOnTouchOutside(true);
+                    dialog.onBackPressed();
+                    TextView text = (TextView) dialog.findViewById(R.id.text_dialog_feedback);
+                    text.setText("  Placement Statistics  ");
+                    Button register = (Button) dialog.findViewById(R.id.register);
+                    final EditText regis = (EditText) dialog.findViewById(R.id.regis);
+                    final EditText pass = (EditText) dialog.findViewById(R.id.pass);
+                    register.setText("Close");
+                    regis.setText("Total Student count: "+tcc);
+                    pass.setText("Placed Student count: "+cc);
+
+                    register.setOnClickListener(new View.OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+                            //Perfome Action
+                            dialog.dismiss();
+                        }
+                    });
+
+                    dialog.show();
+
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            };
+            mDatabase1.addListenerForSingleValueEvent(vel1);
         }
 
         return super.onOptionsItemSelected(item);

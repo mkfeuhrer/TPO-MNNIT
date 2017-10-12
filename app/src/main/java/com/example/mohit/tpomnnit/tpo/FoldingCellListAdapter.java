@@ -113,8 +113,8 @@ public class FoldingCellListAdapter extends ArrayAdapter<UserData> {
         viewHolder.permanentaddr.setText(item.getPermanentadd());
         viewHolder.personalcontact.setText(item.getMobileno());
         viewHolder.parentcontact.setText(item.getGuardianmobile());
-        viewHolder.project.setText(item.getProject());
-        viewHolder.internship.setText(item.getInternship());
+        //viewHolder.project.setText(item.getProject());
+        //viewHolder.internship.setText(item.getInternship());
         if(flg==1)
             viewHolder.verify.setText("Manage User");
        /* if(viewHolder.button.isFocused())

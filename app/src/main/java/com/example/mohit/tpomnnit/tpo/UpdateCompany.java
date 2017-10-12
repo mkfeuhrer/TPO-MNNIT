@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mohit.tpomnnit.R;
@@ -89,8 +90,10 @@ public class UpdateCompany extends AppCompatActivity {
                 dialog.setCanceledOnTouchOutside(true);
                 dialog.setContentView(R.layout.update_company_dialog);
                 dialog.show();
+                final TextView perm=(TextView) dialog.findViewById(R.id.text_dialog_feedback);
                 final EditText updatemsg=(EditText)dialog.findViewById(R.id.regis);
                 final Button update=(Button)dialog.findViewById(R.id.register);
+                perm.setText("  Add update Message  ");
                 update.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
