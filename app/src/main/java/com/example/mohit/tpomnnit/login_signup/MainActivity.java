@@ -62,11 +62,15 @@ public class MainActivity extends AppCompatActivity {
                 final String confirmpass = confirmpassword.getText().toString().trim();
                 final String mob  = mobile.getText().toString().trim();
                 final String years = year.getText().toString().trim();
-                Log.e("regnum",s1+"adf");
+                Log.e("regnum",confirmpass+" : "+s2);
                 Log.e("year",years);
                 if(confirmpass.length() == 0 || mob.length() == 0 || years.length() == 0 || s1.length() == 0 || s2.length() == 0 || nam.length() == 0)
                 {
                     Toast.makeText(MainActivity.this,"Fill all entries",Toast.LENGTH_LONG).show();
+                }
+                else if(!confirmpass.equals(s2))
+                {
+                    Toast.makeText(MainActivity.this,"Password not matched",Toast.LENGTH_LONG).show();
                 }
                 else
                 {

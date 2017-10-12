@@ -327,7 +327,7 @@
                 android:layout_margin="10dp"
                 android:layout_toEndOf="@+id/image"
                 android:layout_toRightOf="@+id/image"
-                android:text="Upload Image" />
+                android:text="Choose Image" />
         </RelativeLayout>
 
         <LinearLayout

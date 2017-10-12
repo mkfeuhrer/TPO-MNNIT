@@ -268,17 +268,17 @@ public class TpoHome extends AppCompatActivity
                     {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            SQLiteDatabase data = openOrCreateDatabase("login", MODE_PRIVATE, null);
+                            data.execSQL("drop table if exists tpo");
+                            Intent i = new Intent(TpoHome.this, TpoLogin.class);
+                            startActivity(i);
                             finish();
                         }
 
                     })
                     .setNegativeButton("No", null)
                     .show();
-            SQLiteDatabase data = openOrCreateDatabase("login", MODE_PRIVATE, null);
-            data.execSQL("drop table if exists tpo");
-            Intent i = new Intent(TpoHome.this, TpoLogin.class);
-            startActivity(i);
-            finish();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

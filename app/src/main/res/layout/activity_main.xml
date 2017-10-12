@@ -155,7 +155,7 @@
             android:textColorHint="#f4a302"
             android:maxLength="128"
             android:hint="Year:"
-            android:inputType="textEmailAddress"
+            android:inputType="number"
             android:id="@+id/year"/>
         <View
             android:layout_width="0dp"

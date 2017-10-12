@@ -8,7 +8,7 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/imagee"
-        android:label="TPOMNNIT"
+        android:label="Mnnit Recruits"
         android:roundIcon="@drawable/mnnit"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">

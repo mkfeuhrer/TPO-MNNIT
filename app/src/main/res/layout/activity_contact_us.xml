@@ -59,7 +59,7 @@
                 android:layout_weight="86"
                 android:background="#f6f9f8"
                 android:gravity="center_horizontal|center_vertical"
-                android:text="Email : mohitfeuhrer@gmail.com"
+                android:text="Email : mohitfeuhrer@gmail.com, neerajverma.mnnit@gmail.com"
                 android:textAllCaps="false"
                 android:textColor="#000000"
                 android:textSize="20sp"

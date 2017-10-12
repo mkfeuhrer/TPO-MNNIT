@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -54,6 +55,7 @@ public class    Tab1Fragment extends Fragment {
             marital,state,country,parentcontact,personalcontact,datetime;
     Button save;
     ValueEventListener vel;
+    RadioButton radioMale,radioFemale,radioYes,radioNo;
     private int Year, month, day,hours,minutes;
     Calendar calendar;
     private String registrationnum,userId,key,branchselected="n/a",courseselected="n/a",genderstr="n/a",pwd="n/a";
@@ -85,6 +87,10 @@ public class    Tab1Fragment extends Fragment {
         parentcontact = (EditText) view.findViewById(R.id.parentcontact);
         personalcontact = (EditText) view.findViewById(R.id.personalcontact);
         save = (Button) view.findViewById(R.id.save);
+        radioMale=(RadioButton)view.findViewById(R.id.radioMale);
+        radioFemale=(RadioButton)view.findViewById(R.id.radioFemale);
+        radioYes=(RadioButton)view.findViewById(R.id.radioYes);
+        radioNo=(RadioButton)view.findViewById(R.id.radioNo);
         mDatabase = FirebaseDatabase.getInstance().getReference("userdata");
         userId = mDatabase.push().getKey();
         MyProfile myProfile = (MyProfile) getActivity();
@@ -141,6 +147,13 @@ public class    Tab1Fragment extends Fragment {
                         personalcontact.setText(userDetails.child("mobileno").getValue().toString());
                         marital.setText(userDetails.child("maritalstatus").getValue().toString());
                         isverified1=Integer.parseInt(userDetails.child("isverified").getValue().toString());
+                        String gend,catr;
+                        gend=userDetails.child("gender").getValue().toString();
+                        catr=userDetails.child("phychal").getValue().toString();
+                        if(gend.equals("Female"))
+                            radioMale.setSelected(true);
+                        if(catr.equals("No"))
+                            radioNo.setSelected(true);
 
                         key=userDetails.getKey();
                         //Access all data

@@ -39,13 +39,13 @@ public class NotificationService extends Service {
     @Override
     public void onCreate() {
         flag=1;
-        Toast.makeText(this, " MyService Created ", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, " MyService Created ", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         flag=2;
-        Toast.makeText(this, " MyService Started", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, " MyService Started", Toast.LENGTH_LONG).show();
         final int currentId = startId;
 
         Runnable r = new Runnable() {

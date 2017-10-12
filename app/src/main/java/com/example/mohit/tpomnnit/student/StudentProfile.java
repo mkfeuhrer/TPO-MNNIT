@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import com.example.mohit.tpomnnit.Landing;
 import com.example.mohit.tpomnnit.charts.PointerChart;
+import com.example.mohit.tpomnnit.contactUs;
 import com.example.mohit.tpomnnit.messenger.chat;
 import com.example.mohit.tpomnnit.services.NotificationService;
 import com.example.mohit.tpomnnit.student.InterviewExperience.interviewexperience;
@@ -245,6 +246,8 @@ public class StudentProfile extends AppCompatActivity
             startActivity(i);
 
         } else if (id == R.id.contact) {
+            Intent i=new Intent(StudentProfile.this,contactUs.class);
+            startActivity(i);
 
         } else if (id == R.id.rate) {
 
@@ -257,17 +260,16 @@ public class StudentProfile extends AppCompatActivity
                     {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            SQLiteDatabase data = openOrCreateDatabase("login", MODE_PRIVATE, null);
+                            data.execSQL("drop table if exists student");
+                            Intent i = new Intent(StudentProfile.this, Login.class);
+                            startActivity(i);
                             finish();
                         }
 
                     })
                     .setNegativeButton("No", null)
                     .show();
-            SQLiteDatabase data = openOrCreateDatabase("login", MODE_PRIVATE, null);
-            data.execSQL("drop table if exists student");
-            Intent i = new Intent(StudentProfile.this, Login.class);
-            startActivity(i);
-            finish();
 
         }
 

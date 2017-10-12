@@ -3,6 +3,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/home"
+            android:title="Home" />
+        <item
             android:id="@+id/verifyuser"
             android:icon="@drawable/profile"
             android:title="Verify Students" />
@@ -14,10 +18,7 @@
             android:id="@+id/update_company"
             android:icon="@drawable/companies"
             android:title="Update Companies" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+
         <item
             android:id="@+id/logout"
             android:icon="@drawable/logout"
