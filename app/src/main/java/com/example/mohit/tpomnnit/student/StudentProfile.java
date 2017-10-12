@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mohit.tpomnnit.charts.PointerChart;
+import com.example.mohit.tpomnnit.messenger.chat;
 import com.example.mohit.tpomnnit.services.NotificationService;
 import com.example.mohit.tpomnnit.student.InterviewExperience.interviewexperience;
 import com.example.mohit.tpomnnit.student.company.CompanyStudent;
@@ -219,7 +220,9 @@ public class StudentProfile extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
+            Intent i = new Intent(StudentProfile.this,chat.class);
+            i.putExtra("reg",registrationnum);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);

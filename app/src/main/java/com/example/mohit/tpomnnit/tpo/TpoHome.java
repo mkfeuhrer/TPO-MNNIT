@@ -83,7 +83,7 @@ public class TpoHome extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         mDatabase = FirebaseDatabase.getInstance().getReference("tpouserdata");
@@ -133,6 +133,11 @@ public class TpoHome extends AppCompatActivity
                     if(registrationnum.equals(userDetails.child("regno").getValue().toString()))
                     {
                         name.setText(userDetails.child("name").getValue().toString());
+                        View h1 = navigationView.getHeaderView(0);
+                        TextView nav_user = h1.findViewById(R.id.name);
+                        TextView nav_email = h1.findViewById(R.id.email);
+                        nav_user.setText( "\t  "+userDetails.child("name").getValue().toString());
+                        nav_email.setText("\t  "+userDetails.child("email").getValue().toString());
                         /*View h1 = navigationView.getHeaderView(0);
                         TextView nav_user = h1.findViewById(R.id.name);
                         TextView nav_email = h1.findViewById(R.id.email);
@@ -216,12 +221,12 @@ public class TpoHome extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.verifyuser) {
             Intent i = new Intent(TpoHome.this,VerifyUser.class);
             i.putExtra("flag",0);
             startActivity(i);
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.manage_student) {
             final Dialog dialog = new Dialog(TpoHome.this);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setCancelable(false);
@@ -252,7 +257,7 @@ public class TpoHome extends AppCompatActivity
 
             //startActivity(i);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.update_company) {
             Intent intent=new Intent(TpoHome.this,UpdateCompany.class);
             startActivity(intent);
 

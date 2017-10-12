@@ -1,5 +1,8 @@
 package com.example.mohit.tpomnnit.charts;
 
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,40 +27,29 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PointerChart extends AppCompatActivity {
+public class PlacementStat extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
-    String userId, registrationnum,spi[];
+    String userId, registrationnum;
+    ArrayList<String> branch,stats;
     ValueEventListener vel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pointer_chart);
+        setContentView(R.layout.activity_placement_stat);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("userdata");
-        userId = mDatabase.push().getKey();
-        registrationnum = getIntent().getStringExtra("reg");
-        spi = new String[8];
+        mDatabase = FirebaseDatabase.getInstance().getReference("placementstat");
+        branch = new ArrayList<String>();
+        stats = new ArrayList<String>();
 
         vel = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                UserData user = dataSnapshot.getValue(UserData.class);
                 for (DataSnapshot userDetails : dataSnapshot.getChildren()) {
-
-                    if (registrationnum.equals(userDetails.child("regnum").getValue().toString())) {
-                        spi[0] = userDetails.child("spi1").getValue().toString();
-                        spi[1] = userDetails.child("spi2").getValue().toString();
-                        spi[2] = userDetails.child("spi3").getValue().toString();
-                        spi[3] = userDetails.child("spi4").getValue().toString();
-                        spi[4] = userDetails.child("spi5").getValue().toString();
-                        spi[5] = userDetails.child("spi6").getValue().toString();
-                        spi[6] = userDetails.child("spi7").getValue().toString();
-                        spi[7] = userDetails.child("spi8").getValue().toString();
-                        Log.e("sp",spi[0] + " " + spi[1]);
-                    }
+                        branch.add(userDetails.getKey().toString());
+                        stats.add(userDetails.getValue().toString());
                 }
-                solve();
+                //solve();
                 solve2();
                 mDatabase.removeEventListener(vel);
             }
@@ -75,54 +67,45 @@ public class PointerChart extends AppCompatActivity {
     {
         BarChart lineChart = (BarChart) findViewById(R.id.chart);
         ArrayList<BarEntry> entries = new ArrayList<>();
-        for(int i = 0; i< 8;i++) {
-            String valspi = spi[i];
+        for(int i = 0; i< stats.size();i++) {
+            String valspi = stats.get(i);
             if (valspi.equals("n/a"))
                 valspi = "0";
             entries.add(new BarEntry(Float.parseFloat(valspi), i));
         }
 
-        BarDataSet dataset = new BarDataSet(entries, "Semester");
+        BarDataSet dataset = new BarDataSet(entries, "Year");
 
         ArrayList<String> labels = new ArrayList<String>();
-        labels.add("1");
-        labels.add("2");
-        labels.add("3");
-        labels.add("4");
-        labels.add("5");
-        labels.add("6");
-        labels.add("7");
-        labels.add("8");
-
+        for(int i = 0;i < stats.size();i++) {
+            String tmp = Integer.toString(i+1);
+            labels.add(tmp);
+        }
         BarData data = new BarData(labels, dataset);
         dataset.setColors(ColorTemplate.COLORFUL_COLORS); //
         dataset.setHighlightEnabled(true);
-
-        lineChart.setData(data);
-        lineChart.animateY(2000);
     }
     public void solve2()
     {
         LineChart lineChart = (LineChart) findViewById(R.id.chart2);
-        ArrayList<Entry> entries = new ArrayList<>();
-        for(int i = 0; i< 8;i++) {
-            String valspi = spi[i];
+        ArrayList<Entry> entries = new ArrayList<Entry>();
+        for(int i = 0; i< stats.size();i++) {
+            String valspi = stats.get(i);
             if (valspi.equals("n/a"))
                 valspi = "0";
-            entries.add(new Entry(Float.parseFloat(valspi), i));
+            else if(valspi.equals(""))
+                valspi = "0";
+            else
+                entries.add(new Entry(Float.parseFloat(valspi), i));
         }
 
-        LineDataSet dataset = new LineDataSet(entries, "Semester");
+        LineDataSet dataset = new LineDataSet(entries, "Year");
 
         ArrayList<String> labels = new ArrayList<String>();
-        labels.add("1");
-        labels.add("2");
-        labels.add("3");
-        labels.add("4");
-        labels.add("5");
-        labels.add("6");
-        labels.add("7");
-        labels.add("8");
+        for(int i = 0;i < stats.size();i++)
+        {
+            labels.add(branch.get(i));
+        }
 
         LineData data = new LineData(labels, dataset);
         dataset.setColors(ColorTemplate.COLORFUL_COLORS); //
@@ -135,3 +118,4 @@ public class PointerChart extends AppCompatActivity {
     }
 
 }
+

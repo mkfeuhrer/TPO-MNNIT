@@ -59,7 +59,10 @@
         <activity android:name=".tpo.MessageTpo" />
         <activity android:name=".tpo.ManageStudents" />
         <activity android:name=".charts.PointerChart" />
-        <activity android:name=".tpo.UpdateCompany"></activity>
+        <activity android:name=".messenger.chat" />
+        <activity android:name=".messenger.ChatUser" />
+        <activity android:name=".charts.PlacementStat" />
+        <activity android:name=".messenger.SendMessage"></activity>
     </application>
 
 </manifest>

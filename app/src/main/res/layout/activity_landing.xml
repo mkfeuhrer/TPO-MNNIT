@@ -49,7 +49,18 @@
             style="@style/Widget.AppCompat.Button.Colored"
             android:textColor="#000000"
             android:background="#f4a302"
-            android:text="Login as TpoAdmin"/>
+            android:text="Login as TpoAdmin"
+            android:layout_marginBottom="20dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/placementstat"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:textColor="#000000"
+            android:background="#f4a302"
+            android:text="Placement Statistics"/>
+
     </LinearLayout>
 
 </LinearLayout>

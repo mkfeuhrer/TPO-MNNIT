@@ -8,8 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.mohit.tpomnnit.charts.PlacementStat;
 import com.example.mohit.tpomnnit.login_signup.Login;
 import com.example.mohit.tpomnnit.login_signup.TpoLogin;
+import com.example.mohit.tpomnnit.login_signup.TpoSignup;
+import com.example.mohit.tpomnnit.messenger.chat;
 import com.example.mohit.tpomnnit.services.NotificationService;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Landing extends AppCompatActivity {
 
-    private Button tpoadmin,student;
+    private Button tpoadmin,student,placementstat;
     private ImageView imageView;
     private FirebaseDatabase mFirebaseInstance;
     @Override
@@ -59,6 +62,7 @@ public class Landing extends AppCompatActivity {
 
         tpoadmin = (Button)findViewById(R.id.tpoadmin);
         student  = (Button)findViewById(R.id.student);
+        placementstat = (Button)findViewById(R.id.placementstat);
 
         tpoadmin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +77,14 @@ public class Landing extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Landing.this, Login.class);
+                startActivity(i);
+            }
+        });
+
+        placementstat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Landing.this,PlacementStat.class);
                 startActivity(i);
             }
         });
