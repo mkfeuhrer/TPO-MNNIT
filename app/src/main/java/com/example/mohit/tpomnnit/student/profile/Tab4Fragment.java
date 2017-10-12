@@ -145,11 +145,17 @@ public class Tab4Fragment extends Fragment {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    final ProgressDialog progressDialog=new ProgressDialog(getActivity());
+                    progressDialog.setCancelable(false);
+                    progressDialog.setMessage("Uploading resume please wait");
+                    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    progressDialog.show();
                     final File finalLocalFile = localFile;
                     final StorageReference childref=storageref1.child(registrationnum+".pdf");
                     childref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
+                            progressDialog.dismiss();
                             Intent intent = new Intent();
                             intent.setAction(Intent.ACTION_VIEW);
                             intent.addCategory(Intent.CATEGORY_BROWSABLE);
