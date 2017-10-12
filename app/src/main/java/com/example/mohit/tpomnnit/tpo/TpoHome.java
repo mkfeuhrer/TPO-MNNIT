@@ -32,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mohit.tpomnnit.R;
+import com.example.mohit.tpomnnit.contactUs;
 import com.example.mohit.tpomnnit.login_signup.TpoLogin;
 import com.example.mohit.tpomnnit.student.StudentProfile;
 import com.example.mohit.tpomnnit.student.profile.UserData;
@@ -177,20 +178,6 @@ public class TpoHome extends AppCompatActivity
     @Override
     public void onBackPressed()
     {
-        new AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Closing App")
-                .setMessage("Are you sure you want to exit?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-
-                })
-                .setNegativeButton("No", null)
-                .show();
     }
 
     @Override
@@ -264,10 +251,26 @@ public class TpoHome extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
+            Intent i = new Intent(TpoHome.this,contactUs.class);
+            startActivity(i);
 
         } else if (id == R.id.nav_send) {
 
         } else if (id == R.id.logout){
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("Logging Off")
+                    .setMessage("Are you sure you want to logout?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
             SQLiteDatabase data = openOrCreateDatabase("login", MODE_PRIVATE, null);
             data.execSQL("drop table if exists tpo");
             Intent i = new Intent(TpoHome.this, TpoLogin.class);

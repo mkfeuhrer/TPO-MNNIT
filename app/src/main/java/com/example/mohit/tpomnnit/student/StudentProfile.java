@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -28,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mohit.tpomnnit.charts.PointerChart;
+import com.example.mohit.tpomnnit.contactUs;
 import com.example.mohit.tpomnnit.messenger.chat;
 import com.example.mohit.tpomnnit.services.NotificationService;
 import com.example.mohit.tpomnnit.student.InterviewExperience.interviewexperience;
@@ -188,20 +190,7 @@ public class StudentProfile extends AppCompatActivity
     @Override
     public void onBackPressed()
     {
-        new AlertDialog.Builder(this)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Closing App")
-                .setMessage("Are you sure you want to exit?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
 
-                })
-                .setNegativeButton("No", null)
-                .show();
     }
 
     @Override
@@ -256,9 +245,33 @@ public class StudentProfile extends AppCompatActivity
 
         } else if (id == R.id.contact) {
 
+            Intent i = new Intent(StudentProfile.this,contactUs.class);
+            startActivity(i);
+
         } else if (id == R.id.rate) {
 
+//            Intent intent = new Intent(Intent.ACTION_VIEW);
+//            Try Google play
+//            intent.setData(Uri.parse("market://details?id=[Id]"));
+//            intent.setData(Uri.parse("https://play.google.com/store/apps/details?[Id]"));
+
         } else if( id == R.id.logout) {
+
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle("Logging Off")
+                    .setMessage("Are you sure you want to logout?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+
             SQLiteDatabase data = openOrCreateDatabase("login", MODE_PRIVATE, null);
             data.execSQL("drop table if exists student");
             int flag= NotificationService.flag;

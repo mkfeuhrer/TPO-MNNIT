@@ -62,7 +62,8 @@
         <activity android:name=".messenger.chat" />
         <activity android:name=".messenger.ChatUser" />
         <activity android:name=".charts.PlacementStat" />
-        <activity android:name=".messenger.SendMessage"></activity>
+        <activity android:name=".messenger.SendMessage" />
+        <activity android:name=".contactUs"></activity>
     </application>
 
 </manifest>
