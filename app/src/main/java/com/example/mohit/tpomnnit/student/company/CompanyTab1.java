@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mohit.tpomnnit.R;
+import com.example.mohit.tpomnnit.student.StudentProfile;
 import com.example.mohit.tpomnnit.student.profile.MyProfile;
 import com.example.mohit.tpomnnit.student.profile.UserData;
 import com.example.mohit.tpomnnit.tpo.VerifyUser;
@@ -185,10 +186,20 @@ public class CompanyTab1 extends Fragment {
             @Override
             public void onClick(View v) {
                 //Perfome Action
-
-                registerCompanyToUser(regis.getText().toString().trim(),curreg);
-                dialog.dismiss();
-                Toast.makeText(dialog.getContext(),"Company Registered",Toast.LENGTH_LONG).show();
+                if(StudentProfile.verification==0) {
+                    dialog.dismiss();
+                    Toast.makeText(dialog.getContext(), "Account not verified", Toast.LENGTH_LONG).show();
+                }
+                else if(!StudentProfile.cmpny.equals("n/a"))
+                {
+                    dialog.dismiss();
+                    Toast.makeText(dialog.getContext(), "Internship or Placement already offered", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    registerCompanyToUser(regis.getText().toString().trim(), curreg);
+                    dialog.dismiss();
+                    Toast.makeText(dialog.getContext(), "Company Registered", Toast.LENGTH_LONG).show();
+                }
             }
         });
 

@@ -30,6 +30,7 @@ public class    Tab2Fragment extends Fragment {
     Button save;
     ValueEventListener vel;
     private DatabaseReference mDatabase;
+    int isverified1;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -64,6 +65,7 @@ public class    Tab2Fragment extends Fragment {
                     System.out.println(userDetails.child("regnum").getValue().toString());
                     if (registrationnum.equals(userDetails.child("regnum").getValue().toString())) {
                         System.out.println("in in in ini ni nin in in ");
+                        isverified1=Integer.parseInt(userDetails.child("isverified").getValue().toString());
                         school10.setText(userDetails.child("school10").getValue().toString());
                         board10.setText(userDetails.child("board10").getValue().toString());
                         year10.setText(userDetails.child("year10").getValue().toString());
@@ -89,6 +91,7 @@ public class    Tab2Fragment extends Fragment {
 //                            Log.d("valueuserid:", userDetails.child("studentid").getValue().toString());
 //                            Log.d("password:", userDetails.child("password").getValue().toString());
                 }
+                setVerification(isverified1);
                 //mDatabase.removeEventListener(vel);
             }
 
@@ -130,5 +133,30 @@ public class    Tab2Fragment extends Fragment {
             }
         });
         return view;
+    }
+    private void setVerification(int ver)
+    {
+        if(ver==1)
+        {
+            school10.setFocusable(false);
+            board10.setFocusable(false);
+            year10.setFocusable(false);
+            percentage10.setFocusable(false);
+            school12.setFocusable(false);
+            board12.setFocusable(false);
+            year12.setFocusable(false);
+            percentage12.setFocusable(false);
+            spi1.setFocusable(false);
+            spi2.setFocusable(false);
+            spi3.setFocusable(false);
+            spi4.setFocusable(false);
+            spi5.setFocusable(false);
+            spi6.setFocusable(false);
+            spi7.setFocusable(false);
+            spi8.setFocusable(false);
+            cpi.setFocusable(false);
+            save.setVisibility(View.GONE);
+
+        }
     }
 }

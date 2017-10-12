@@ -26,6 +26,7 @@ import android.widget.TimePicker;
 
 import com.example.mohit.tpomnnit.R;
 import com.example.mohit.tpomnnit.login_signup.TpoSignup;
+import com.example.mohit.tpomnnit.student.StudentProfile;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -57,6 +58,7 @@ public class    Tab1Fragment extends Fragment {
     private DatabaseReference mDatabase;
     Spinner spinnerbranch,spinnercourse;
     private RadioGroup radioSexGroup,phyradiogroup;
+    int isverified1;
 
     @Nullable
     @Override
@@ -136,11 +138,13 @@ public class    Tab1Fragment extends Fragment {
                         parentcontact.setText(userDetails.child("guardianmobile").getValue().toString());
                         personalcontact.setText(userDetails.child("mobileno").getValue().toString());
                         marital.setText(userDetails.child("maritalstatus").getValue().toString());
+                        isverified1=Integer.parseInt(userDetails.child("isverified").getValue().toString());
                         key=userDetails.getKey();
                         //Access all data
 
                     }
                 }
+                setVerification(isverified1);
                 //mDatabase.removeEventListener(vel);
             }
 
@@ -179,6 +183,41 @@ public class    Tab1Fragment extends Fragment {
         return view;
     }
 
+    private void setVerification(int ver)
+    {
+        if(ver==1)
+        {
+            regno.setFocusable(false);
+            name.setFocusable(false);
+            dob.setFocusable(false);
+            email.setFocusable(false);
+            skype.setFocusable(false);
+            linkedin.setFocusable(false);
+//        gender = (EditText) view.findViewById(R.id.gender);
+            category.setFocusable(false);
+//        pwd = (EditText) view.findViewById(R.id.pwd);
+            residential.setFocusable(false);
+            guardian.setFocusable(false);
+            presentaddress.setFocusable(false);
+            permanentaddress.setFocusable(false);
+            marital.setFocusable(false);
+            state.setFocusable(false);
+            country.setFocusable(false);
+            parentcontact.setFocusable(false);
+            personalcontact.setFocusable(false);
+            save.setFocusable(false);
+            save.setVisibility(View.GONE);
+            regno.setEnabled(false);
+            name.setEnabled(false);
+            /*spinnerbranch = (Spinner) view.findViewById(R.id.spinnerbranch);
+            spinnercourse = (Spinner) view.findViewById(R.id.spinnercourse);
+            datetime      = (EditText) view.findViewById(R.id.dob);
+            radioSexGroup = (RadioGroup) view.findViewById(R.id.radioSex);
+            phyradiogroup = (RadioGroup) view.findViewById(R.id.radiophy);*/
+            dob.setFocusable(false);
+
+        }
+    }
     private void branchspinner()
     {
 

@@ -59,6 +59,7 @@ public class StudentProfile extends AppCompatActivity
     private StorageReference storage,imageref;
     private ImageView imageview,verified;
     public static int verification;
+    public static String cmpny;
     Button charts;
     String nameuser;
     ValueEventListener vel;
@@ -157,6 +158,7 @@ public class StudentProfile extends AppCompatActivity
                         }
                         else
                         {
+                            cmpny=userDetails.child("company").getValue().toString();
                             company.setText(userDetails.child("company").getValue().toString());
                         }
                         int val=Integer.parseInt(userDetails.child("isverified").getValue().toString());
