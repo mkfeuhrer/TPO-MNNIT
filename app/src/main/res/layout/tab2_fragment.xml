@@ -7,16 +7,18 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:weightSum="100"
-        android:layout_margin="10dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="@drawable/rounded_border"
+            android:layout_margin="10dp"
             android:padding="5dp"
-            android:layout_margin="5dp"
-            android:elevation="5dp">
+            android:elevation="10dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -133,9 +135,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@drawable/rounded_border"
-        android:padding="5dp"
-        android:layout_margin="5dp"
-        android:elevation="5dp">
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:elevation="10dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -246,9 +248,9 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="@drawable/rounded_border"
+            android:layout_margin="10dp"
             android:padding="5dp"
-            android:layout_margin="5dp"
-            android:elevation="5dp">
+            android:elevation="10dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -431,14 +433,16 @@
                         android:layout_height="match_parent"
                         android:layout_weight="7.5"/>
 
-                    <EditText                     android:inputType="text"
+                    <EditText
+                        android:inputType="text"
                         android:id="@+id/spi7"
                         android:textSize="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="7.5"/>
 
-                    <EditText                     android:inputType="text"
+                    <EditText
+                        android:inputType="text"
                         android:id="@+id/spi8"
                         android:textSize="20dp"
                         android:layout_width="match_parent"
@@ -450,7 +454,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="@drawable/rounded_border"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:elevation="10dp">
 
 
             <Button
@@ -460,7 +468,6 @@
                 android:background="#f4a302"
                 android:layout_weight="1"
                 android:padding="5dp"
-                android:layout_margin="10dp"
                 android:text="Save and Continue" />
         </LinearLayout>
 

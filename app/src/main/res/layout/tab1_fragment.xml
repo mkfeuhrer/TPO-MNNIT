@@ -650,6 +650,7 @@
             android:layout_weight="10"
             android:padding="5dp"
             android:elevation="15dp"
+            android:background="@drawable/rounded_border"
             android:layout_margin="10dp">
 
 

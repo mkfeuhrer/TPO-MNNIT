@@ -1,13 +1,19 @@
 package com.example.mohit.tpomnnit.student.profile;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,6 +21,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.example.mohit.tpomnnit.R;
 import com.example.mohit.tpomnnit.login_signup.TpoSignup;
@@ -30,6 +38,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import static com.example.mohit.tpomnnit.R.id.date;
+
 /**
  * Created by User on 2/28/2017.
  */
@@ -41,6 +51,8 @@ public class    Tab1Fragment extends Fragment {
             marital,state,country,parentcontact,personalcontact,datetime;
     Button save;
     ValueEventListener vel;
+    private int Year, month, day,hours,minutes;
+    Calendar calendar;
     private String registrationnum,userId,key,branchselected="n/a",courseselected="n/a",genderstr="n/a",pwd="n/a";
     private DatabaseReference mDatabase;
     Spinner spinnerbranch,spinnercourse;
@@ -52,8 +64,6 @@ public class    Tab1Fragment extends Fragment {
         View view = inflater.inflate(R.layout.tab1_fragment, container, false);
         regno = (EditText) view.findViewById(R.id.location);
         name = (EditText) view.findViewById(R.id.name);
-//        course = (EditText) view.findViewById(R.id.course);
-//        branch = (EditText) view.findViewById(R.id.branch);
         dob = (EditText) view.findViewById(R.id.dob);
         email = (EditText) view.findViewById(R.id.email);
         skype = (EditText) view.findViewById(R.id.skypeid);
@@ -82,9 +92,18 @@ public class    Tab1Fragment extends Fragment {
         datetime      = (EditText) view.findViewById(R.id.dob);
         radioSexGroup = (RadioGroup) view.findViewById(R.id.radioSex);
         phyradiogroup = (RadioGroup) view.findViewById(R.id.radiophy);
+        dob.setFocusable(false);
+
+        dob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //setDate(v);
+                DialogFragment newFragment = new SelectDateFragment();
+                newFragment.show(getFragmentManager(), "DatePicker");
+            }
+        });
         branchspinner();
         coursespinner();
-        datetime();
         gender();
         physicallychallenged();
 
@@ -132,14 +151,7 @@ public class    Tab1Fragment extends Fragment {
         };
         mDatabase.addListenerForSingleValueEvent(vel);
 
-  /*      btnTEST = (Button) view.findViewById(R.id.btnTEST);
 
-        btnTEST.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getActivity(), "TESTING BUTTON CLICK 1",Toast.LENGTH_SHORT).show();
-            }
-        });*/
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -246,41 +258,6 @@ public class    Tab1Fragment extends Fragment {
             }
         });
     }
-
-    private void datetime()
-    {
-        final Calendar myCalendar = Calendar.getInstance();
-        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                  int dayOfMonth) {
-                // TODO Auto-generated method stub
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, monthOfYear);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateLabel(myCalendar);
-            }
-
-        };
-
-        datetime.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                new DatePickerDialog(getActivity(), date, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
-    }
-    private void updateLabel(final Calendar myCalendar) {
-        String myFormat = "mm/dd/yy"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-        datetime.setText(sdf.format(myCalendar.getTime()));
-    }
-
     private void gender()
     {
         radioSexGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
@@ -321,4 +298,44 @@ public class    Tab1Fragment extends Fragment {
             }
         });
     }
+/*    @SuppressWarnings("deprecation")
+    public void setDate(View view) {
+        /*final Dialog dialog = new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.
+        dialog.setContentView(R.layout.custom_dialog);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.onBackPressed();
+        getActivity().showDialog(999);
+    }
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        // TODO Auto-generated method stub
+        if (id == 999) {
+            MyProfile myProfile = (MyProfile) getActivity();
+            return new DatePickerDialog(MyProfile.getContextOfApplication(),
+                    myDateListener, Year, month, day);
+        }
+        else if(id == 998)
+        {
+            //return new TimePickerDialog(this,myTimeListener,hours,minutes,false);
+        }
+        return null;
+    }
+
+
+    private DatePickerDialog.OnDateSetListener myDateListener = new
+            DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker arg0,
+                                      int arg1, int arg2, int arg3) {
+                    showDate(arg1, arg2+1, arg3);
+                }
+            };
+
+    private void showDate(int year, int month, int day) {
+        dob.setText(new StringBuilder().append(day).append("/")
+                .append(month).append("/").append(year));
+    }*/
 }

@@ -7,16 +7,18 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="25dp">
+        android:paddingTop="10dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
 
         <LinearLayout
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:background="@drawable/rounded_border"
-            android:elevation="10dp"
+            android:padding="5dp"
             android:layout_margin="10dp"
-            android:padding="10dp">
+            android:elevation="10dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -96,16 +98,24 @@
 
             </LinearLayout>
         </LinearLayout>
-        <Button
-            android:id="@+id/save"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:background="#f4a302"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="30"
-            android:text="Change Password" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:elevation="10dp"
+            android:padding="5dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/rounded_border">
+
+
+            <Button
+                android:id="@+id/save"
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f4a302"
+                android:text="Save and Continue" />
+        </LinearLayout>
 
     </LinearLayout>
 

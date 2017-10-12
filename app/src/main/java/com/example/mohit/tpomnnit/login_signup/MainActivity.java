@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                     if (TextUtils.isEmpty(userId)) {
                     }
                     else
-                        createUser(name.getText().toString().trim(), year.getText().toString().trim(), regnum.getText().toString().trim(), password.getText().toString().trim(), userId);
+                        createUser(nam,years,s1,s2,mob, userId);
 
                     finish();
                     Intent i = new Intent(MainActivity.this, Login.class);
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Creating new user node under 'users'
      */
-    private void createUser(String name, String year,String regnum,String password,String userid) {
+    private void createUser(String name, String year,String regnum,String password,String mobileno,String userid) {
         // TODO
         // In real apps this userId should be fetched
         // by implementing firebase auth
@@ -93,7 +93,8 @@ public class MainActivity extends AppCompatActivity {
 //            userId = mDatabase.push().getKey();
         }
         Users user = new Users(name, year,regnum,password,userid);
-        UserData userData1 = new UserData(regnum,name,"n/a","n/a",year,"n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a",10,0,1);
+        UserData userData1 = new UserData(regnum,name,"n/a",year,"n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a","n/a",10,0,1);
+        userData1.setMobileno(mobileno);
         ArrayList<String> companies = new ArrayList<String>();
         companies.add("Temp");
         userData1.setCompanies(companies);
