@@ -114,7 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#f4a302"
-                android:text="Save and Continue" />
+                android:text="Save" />
         </LinearLayout>
 
     </LinearLayout>

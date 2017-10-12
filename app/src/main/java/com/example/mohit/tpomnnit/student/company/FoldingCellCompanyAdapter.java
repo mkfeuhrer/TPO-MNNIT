@@ -76,6 +76,7 @@ public class FoldingCellCompanyAdapter extends ArrayAdapter<Companies> {
             viewHolder.cpi = (TextView) cell.findViewById(R.id.cpi);
             viewHolder.class10 = (TextView) cell.findViewById(R.id.class10);
             viewHolder.class12 = (TextView) cell.findViewById(R.id.class12);
+            viewHolder.branch=(TextView)cell.findViewById(R.id.branch);
             viewHolder.title=(RelativeLayout)cell.findViewById(R.id.relativeTitle);
             viewHolder.button=(TextView)cell.findViewById(R.id.content_request_btn);
 
@@ -100,11 +101,18 @@ public class FoldingCellCompanyAdapter extends ArrayAdapter<Companies> {
         viewHolder.location1.setText(item.getLocation());
         viewHolder.year.setText(item.getYear());
         viewHolder.ctc.setText(item.getCtc());
+        viewHolder.cpi.setText(item.getCpi());
+        viewHolder.class10.setText(item.getClass10());
+        viewHolder.branch.setText(item.getBranch());
+        viewHolder.class12.setText(item.getClass12());
         viewHolder.profile.setText(item.getProfile());
         viewHolder.profile1.setText(item.getProfile());
         viewHolder.ppo.setText(item.getPpo());
+        viewHolder.note.setText(item.getNote());
+        //viewHolder.updates.setText(item.getUpdate());
         viewHolder.deadline.setText(item.getDeadline());
         viewHolder.deadline1.setText(item.getDeadline());
+
        /* colors.add("#62BD18");
         colors.add("#EF3E5B");
         colors.add("#6F5495");
@@ -130,13 +138,10 @@ public class FoldingCellCompanyAdapter extends ArrayAdapter<Companies> {
         if(flag==1) {
             viewHolder.button.setText("Add Update Message");
         }
+        if(flag==2) {
+            viewHolder.button.setText("View Updates");
+        }
         viewHolder.button.setOnClickListener(defaultRequestBtnClickListener);
-        //viewHolder.link.setText(item.getLink());
-        /*viewHolder.note.setText(item.getPermanentadd());
-        viewHolder.updates.setText(item.getMobileno());
-        viewHolder.class10.setText(item.getGuardianmobile());
-        viewHolder.class12.setText(item.getProject());
-        viewHolder.cpi.setText(item.);*/
         return cell;
     }
 
@@ -168,7 +173,7 @@ public class FoldingCellCompanyAdapter extends ArrayAdapter<Companies> {
     // View lookup cache
     private static class ViewHolder {
        // ImageView dp;
-        TextView name,name1,ctc,location,location1,profile,profile1,year,
+        TextView name,name1,ctc,location,location1,profile,profile1,year,branch,
                ppo,deadline,deadline1,link,note,updates,cpi,class10,class12,button;
         RelativeLayout title;
         CircularTextView nameini;

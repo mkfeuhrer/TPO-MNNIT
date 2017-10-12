@@ -57,6 +57,11 @@ public class UpdateCompany extends AppCompatActivity {
                     companies.setCompanyid(userDetails.child("companyid").getValue().toString());
                     companies.setDeadline(userDetails.child("deadline").getValue().toString());
                     companies.setLink(userDetails.child("link").getValue().toString());
+                    companies.setBranch(userDetails.child("branch").getValue().toString());
+                    companies.setCpi(userDetails.child("cpi").getValue().toString());
+                    companies.setClass10(userDetails.child("class10").getValue().toString());
+                    companies.setClass12(userDetails.child("class12").getValue().toString());
+                    companies.setNote(userDetails.child("note").getValue().toString());
                     companiesList.add(companies);
                 }
                 addCompany();

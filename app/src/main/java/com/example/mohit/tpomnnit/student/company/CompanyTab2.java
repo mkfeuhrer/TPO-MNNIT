@@ -1,5 +1,7 @@
 package com.example.mohit.tpomnnit.student.company;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,8 +10,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mohit.tpomnnit.R;
 import com.example.mohit.tpomnnit.student.profile.UserData;
@@ -33,6 +40,7 @@ public class CompanyTab2 extends Fragment {
     String companyId;
     String regnum;
     static String currsel;
+    int curindex=0;
     View view1;
     ValueEventListener vel,vel1;
     CompanyStudent companyStudent=(CompanyStudent)getActivity();
@@ -83,6 +91,12 @@ public class CompanyTab2 extends Fragment {
                             companies.setCompanyid(userDetails.child("companyid").getValue().toString());
                             companies.setDeadline(userDetails.child("deadline").getValue().toString());
                             companies.setLink(userDetails.child("link").getValue().toString());
+                            companies.setBranch(userDetails.child("branch").getValue().toString());
+                            companies.setCpi(userDetails.child("cpi").getValue().toString());
+                            companies.setClass10(userDetails.child("class10").getValue().toString());
+                            companies.setClass12(userDetails.child("class12").getValue().toString());
+                            companies.setNote(userDetails.child("note").getValue().toString());
+                            companies.setUpdate(userDetails.child("update").getValue().toString());
                             //ArrayList<String> branch=new ArrayList<String>();
                             System.out.println("branch "+userDetails.child("branch").getValue());
                             //companies.setBranch(userDetails.child("branch").getValue().toString());
@@ -119,7 +133,15 @@ public class CompanyTab2 extends Fragment {
     void addCompany()
     {
         ListView theListView = (ListView) view1.findViewById(R.id.mainListView);
-        final FoldingCellCompanyAdapter adapter= new FoldingCellCompanyAdapter(getContext(),companiesList,0);
+        final FoldingCellCompanyAdapter adapter= new FoldingCellCompanyAdapter(getContext(),companiesList,2);
+        adapter.setDefaultRequestBtnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog(getActivity(), currsel);
+
+            }
+        });
+
         theListView.setAdapter(adapter);
 
         // set on click event listener to list view
@@ -129,11 +151,39 @@ public class CompanyTab2 extends Fragment {
                 // toggle clicked cell state
                 System.out.println("toggle");
                 currsel=companiesList.get(pos).getName().toString();
+                curindex=pos;
                 ((FoldingCell) view).toggle(false);
                 // register in adapter that state for selected cell is toggled
                 adapter.registerToggle(pos);
             }
         });
+    }
+    public void showDialog(Activity activity, final String curreg) {
+
+        final Dialog dialog = new Dialog(activity);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(R.layout.update_company_dialog);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.onBackPressed();
+        TextView lable=(TextView)dialog.findViewById(R.id.text_dialog_feedback);
+        TextView msg = (TextView) dialog.findViewById(R.id.regis);
+        Button register = (Button) dialog.findViewById(R.id.register);
+        register.setText("Close");
+        lable.setText("        Update Message        ");
+        msg.setText(companiesList.get(curindex).getUpdate());
+        register.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //Perfome Action
+                dialog.dismiss();
+
+            }
+        });
+
+        dialog.show();
+
     }
 
 }

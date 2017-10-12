@@ -8,10 +8,34 @@ import java.util.ArrayList;
 
 public class Companies {
 
-    public String name,ctc,location,profile,year,ppo,companyid,deadline,link,branch,update,note;
+    public String name,ctc,location,profile,year,ppo,companyid,deadline,link,branch,update,note,class10,class12,cpi;
     ArrayList<String> registeredstudents = new ArrayList<String>();
     ArrayList<String> selectedstudents = new ArrayList<String>();
     public Companies(){
+    }
+
+    public String getCpi() {
+        return cpi;
+    }
+
+    public void setCpi(String cpi) {
+        this.cpi = cpi;
+    }
+
+    public String getClass10() {
+        return class10;
+    }
+
+    public void setClass10(String class10) {
+        this.class10 = class10;
+    }
+
+    public String getClass12() {
+        return class12;
+    }
+
+    public void setClass12(String class12) {
+        this.class12 = class12;
     }
 
     public String getUpdate() {

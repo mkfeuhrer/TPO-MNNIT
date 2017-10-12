@@ -468,7 +468,7 @@
                 android:background="#f4a302"
                 android:layout_weight="1"
                 android:padding="5dp"
-                android:text="Save and Continue" />
+                android:text="Save" />
         </LinearLayout>
 
     </LinearLayout>

@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.mohit.tpomnnit.R;
 import com.example.mohit.tpomnnit.student.company.Companies;
@@ -34,7 +35,8 @@ public class AddCompany extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private String companyId;
     private Button addcompany;
-    private EditText year,ctc,location,name,time,date,ppo,profile,link,note;
+    private EditText year,ctc,location,name,time,date,ppo,profile,link,note,cpi,class10,class12;
+    MultiSelectionSpinner branch1;
     private int Year, month, day,hours,minutes;
     Calendar calendar;
     private TextView tvNotificationDetails;
@@ -54,6 +56,10 @@ public class AddCompany extends AppCompatActivity {
         location   = (EditText)findViewById(R.id.location);
         ppo      = (EditText)findViewById(R.id.ppo);
         profile   = (EditText)findViewById(R.id.profile);
+        class10=(EditText)findViewById(R.id.class10);
+        branch1=(MultiSelectionSpinner) findViewById(R.id.input1);
+        class12=(EditText)findViewById(R.id.class12);
+        cpi=(EditText)findViewById(R.id.cpi);
         //link=(EditText)findViewById(R.id.link);
         date = (EditText) findViewById(R.id.textDate);
         time = (EditText) findViewById(R.id.textTime);
@@ -102,16 +108,27 @@ public class AddCompany extends AppCompatActivity {
 
                 // Check for already existed userId
                 if (TextUtils.isEmpty(companyId)) {
+                    //Toast.makeText(AddCompany.this,"branch"+branch1.getSelectedStrings().toString(),Toast.LENGTH_LONG).show();
                 }
                 else
                 {
-                    ArrayList<String> branch = new ArrayList<String>();
+
                     ArrayList<String> registeredstudents = new ArrayList<String>();
+                    registeredstudents.add("n/a");
                     ArrayList<String> selectedstudents = new ArrayList<String>();
+                    selectedstudents.add("n/a");
                     String deadline=time.getText().toString()+" "+date.getText().toString();
-                    Companies company = new Companies(name.getText().toString().trim(),ctc.getText().toString().trim(),location.getText().toString().trim(),profile.getText().toString().trim(),year.getText().toString().trim(),ppo.getText().toString().trim(),companyId,deadline,"www.google.com",null,null,null);
+                    Companies company = new Companies(name.getText().toString().trim(),ctc.getText().toString().trim(),location.getText().toString().trim(),profile.getText().toString().trim(),year.getText().toString().trim(),ppo.getText().toString().trim(),companyId,deadline,"n/a",null,null,null);
                     company.setUpdate("n/a");
+                    company.setNote(note.getText().toString().trim());
+                    company.setCpi(cpi.getText().toString().trim());
+                    company.setClass10(class10.getText().toString().trim());
+                    company.setClass12(class12.getText().toString().trim());
                     company.setNote(note.getText().toString());
+                    company.setBranch(branch1.getSelectedItemsAsString().toString());
+                    company.setSelectedstudents(selectedstudents);
+                    company.setRegisteredstudents(registeredstudents);
+
                     addCompanyChangeListener(company);
                 }
                     //createCompany(name.getText().toString().trim(), year.getText().toString().trim(), ctc.getText().toString().trim(), location.getText().toString().trim(),companyId);

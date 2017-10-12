@@ -661,7 +661,7 @@
                 android:layout_height="wrap_content"
                 android:background="#f4a302"
                 android:layout_weight="1"
-                android:text="Save and Continue" />
+                android:text="Save" />
         </LinearLayout>
 
     </LinearLayout>

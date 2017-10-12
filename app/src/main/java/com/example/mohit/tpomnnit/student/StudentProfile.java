@@ -58,6 +58,7 @@ public class StudentProfile extends AppCompatActivity
     private DatabaseReference mDatabase;
     private StorageReference storage,imageref;
     private ImageView imageview,verified;
+    public static int verification;
     Button charts;
     String nameuser;
     ValueEventListener vel;
@@ -150,6 +151,7 @@ public class StudentProfile extends AppCompatActivity
                         branch.setText(userDetails.child("branch").getValue().toString());
                         regnum.setText(registrationnum);
                         tpocredit.setText(userDetails.child("tpocredit").getValue().toString());
+                        verification=Integer.parseInt(userDetails.child("isverified").getValue().toString());
                         if(userDetails.child("company").getValue().toString().length() == 0) {
                             company.setText("N/A");
                         }

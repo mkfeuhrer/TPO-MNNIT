@@ -26,6 +26,7 @@ import android.widget.Toast;
 import android.content.Context;
 
 import com.example.mohit.tpomnnit.R;
+import com.example.mohit.tpomnnit.login_signup.TpoSignup;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
@@ -170,6 +171,11 @@ public class Tab4Fragment extends Fragment {
             public void onClick(View view) {
                 if(filePath!=null)
                 {
+                    final ProgressDialog progressDialog=new ProgressDialog(getActivity());
+                    progressDialog.setCancelable(false);
+                    progressDialog.setMessage("Uploading image please wait");
+                    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    progressDialog.show();
                     String regnum ;
                     MyProfile obj = (MyProfile)getActivity();
                     regnum = obj.getRegno();
@@ -179,12 +185,14 @@ public class Tab4Fragment extends Fragment {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             Context applicationContext = MyProfile.getContextOfApplication();
+                            progressDialog.dismiss();
                             Toast.makeText(applicationContext, "Upload Successful", Toast.LENGTH_LONG).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Context applicationContext = MyProfile.getContextOfApplication();
+                            progressDialog.dismiss();
                             Toast.makeText(applicationContext, "Upload fail -> "+e, Toast.LENGTH_LONG).show();
                         }
                     });
@@ -210,6 +218,11 @@ public class Tab4Fragment extends Fragment {
             public void onClick(View view) {
                 if(filePath!=null)
                 {
+                    final ProgressDialog progressDialog=new ProgressDialog(getActivity());
+                    progressDialog.setCancelable(false);
+                    progressDialog.setMessage("Uploading resume please wait");
+                    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    progressDialog.show();
                     String regnum ;
                     MyProfile obj = (MyProfile)getActivity();
                     regnum = obj.getRegno();
@@ -219,12 +232,14 @@ public class Tab4Fragment extends Fragment {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             Context applicationContext = MyProfile.getContextOfApplication();
+                            progressDialog.dismiss();
                             Toast.makeText(applicationContext, "Upload Successful", Toast.LENGTH_LONG).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Context applicationContext = MyProfile.getContextOfApplication();
+                            progressDialog.dismiss();
                             Toast.makeText(applicationContext, "Upload fail -> "+e, Toast.LENGTH_LONG).show();
                         }
                     });
