@@ -11,4 +11,9 @@
         android:orderInCategory="100"
         android:title="Branch Wise Stats"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_settings2"
+        android:orderInCategory="100"
+        android:title="Any Problem..!!! Contact admin"
+        app:showAsAction="never" />
 </menu>

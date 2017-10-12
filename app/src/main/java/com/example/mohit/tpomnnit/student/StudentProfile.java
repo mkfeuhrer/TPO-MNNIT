@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -18,6 +19,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -77,7 +79,7 @@ public class StudentProfile extends AppCompatActivity
     HashMap<String,Float> branchdata;
     int tcc,cc,k=0;
     Button charts;
-    String nameuser;
+    String nameuser,emailformail="";
     ValueEventListener vel,vel1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,6 +164,7 @@ public class StudentProfile extends AppCompatActivity
                         View h1 = navigationView.getHeaderView(0);
                         TextView nav_user = h1.findViewById(R.id.name);
                         TextView nav_email = h1.findViewById(R.id.email);
+                        emailformail=userDetails.child("email").getValue().toString();
                         //Toast.makeText(StudentProfile.this,""+userDetails.child("name").getValue().toString(),Toast.LENGTH_LONG).show();
                         nav_user.setText( "\t  "+userDetails.child("name").getValue().toString());
                         nav_email.setText("\t  "+userDetails.child("email").getValue().toString());
@@ -354,6 +357,54 @@ public class StudentProfile extends AppCompatActivity
                 }
             };
             mDatabase1.addListenerForSingleValueEvent(vel1);
+        }
+        if (id == R.id.action_settings2) {
+            final Dialog dialog = new Dialog(StudentProfile.this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(false);
+            dialog.setContentView(R.layout.custom_dialog);
+            dialog.setCanceledOnTouchOutside(true);
+            dialog.onBackPressed();
+            TextView text = (TextView) dialog.findViewById(R.id.text_dialog_feedback);
+            text.setText("E-mail your problem to Admin");
+            Button register = (Button) dialog.findViewById(R.id.register);
+            final EditText regis = (EditText) dialog.findViewById(R.id.regis);
+            final EditText pass = (EditText) dialog.findViewById(R.id.pass);
+            regis.setHint("Enter the subject");
+            regis.setInputType(InputType.TYPE_CLASS_TEXT);
+            pass.setHint("Enter the message");
+            register.setText("Send");
+
+            register.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    //Perfome Action
+                    String[] TO = {"neerajverma.mnnit@gmail.com"};
+                    String[] CC = {"xyz@gmail.com"};
+                    CC[0]=emailformail;
+                    Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                    emailIntent.setData(Uri.parse("mailto:"));
+                    emailIntent.setType("text/plain");
+                    emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+                    emailIntent.putExtra(Intent.EXTRA_CC, CC);
+                    emailIntent.putExtra(Intent.EXTRA_SUBJECT, regis.getText());
+                    emailIntent.putExtra(Intent.EXTRA_TEXT, pass.getText());
+
+                    try {
+                        startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+                        finish();
+                        Log.i("Finished sending email...", "");
+                    } catch (android.content.ActivityNotFoundException ex) {
+                        Toast.makeText(StudentProfile.this,
+                                "There is no email client installed.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+            dialog.show();
+
+
         }
 
         return super.onOptionsItemSelected(item);

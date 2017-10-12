@@ -13,5 +13,6 @@ public class SendMessage extends AppCompatActivity {
         setContentView(R.layout.activity_send_message);
 
 
+
     }
 }
