@@ -85,19 +85,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Cutoff CPI"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:id="@+id/cpi" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Cutoff class 10 (%)"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:id="@+id/class10" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Cutoff class 12 (%)"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:id="@+id/class12" />
 
             <EditText

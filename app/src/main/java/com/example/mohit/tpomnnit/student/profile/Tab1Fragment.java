@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -23,6 +24,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.mohit.tpomnnit.R;
 import com.example.mohit.tpomnnit.login_signup.TpoSignup;
@@ -139,6 +141,7 @@ public class    Tab1Fragment extends Fragment {
                         personalcontact.setText(userDetails.child("mobileno").getValue().toString());
                         marital.setText(userDetails.child("maritalstatus").getValue().toString());
                         isverified1=Integer.parseInt(userDetails.child("isverified").getValue().toString());
+
                         key=userDetails.getKey();
                         //Access all data
 
@@ -177,6 +180,8 @@ public class    Tab1Fragment extends Fragment {
                 mDatabase.child(key).child("country").setValue(country.getText().toString().trim());
                 mDatabase.child(key).child("mobileno").setValue(personalcontact.getText().toString().trim());
                 mDatabase.child(key).child("guardianmobile").setValue(parentcontact.getText().toString().trim());
+                Context applicationContext = MyProfile.getContextOfApplication();
+                Toast.makeText(applicationContext, "Saved", Toast.LENGTH_LONG).show();
                // mDatabase.child(key).child("state").setValue(state.getText().toString().trim());
             }
         });
@@ -337,44 +342,5 @@ public class    Tab1Fragment extends Fragment {
             }
         });
     }
-/*    @SuppressWarnings("deprecation")
-    public void setDate(View view) {
-        /*final Dialog dialog = new Dialog(getActivity());
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false);
-        dialog.
-        dialog.setContentView(R.layout.custom_dialog);
-        dialog.setCanceledOnTouchOutside(true);
-        dialog.onBackPressed();
-        getActivity().showDialog(999);
-    }
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        // TODO Auto-generated method stub
-        if (id == 999) {
-            MyProfile myProfile = (MyProfile) getActivity();
-            return new DatePickerDialog(MyProfile.getContextOfApplication(),
-                    myDateListener, Year, month, day);
-        }
-        else if(id == 998)
-        {
-            //return new TimePickerDialog(this,myTimeListener,hours,minutes,false);
-        }
-        return null;
-    }
 
-
-    private DatePickerDialog.OnDateSetListener myDateListener = new
-            DatePickerDialog.OnDateSetListener() {
-                @Override
-                public void onDateSet(DatePicker arg0,
-                                      int arg1, int arg2, int arg3) {
-                    showDate(arg1, arg2+1, arg3);
-                }
-            };
-
-    private void showDate(int year, int month, int day) {
-        dob.setText(new StringBuilder().append(day).append("/")
-                .append(month).append("/").append(year));
-    }*/
 }

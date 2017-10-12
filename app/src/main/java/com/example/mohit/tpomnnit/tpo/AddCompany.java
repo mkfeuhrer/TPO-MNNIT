@@ -157,6 +157,7 @@ public class AddCompany extends AppCompatActivity {
                 }
                 final String companyId = mDatabase.push().getKey();
                 mDatabase.child(companyId).setValue(company1);
+                Toast.makeText(AddCompany.this,"Company Added",Toast.LENGTH_LONG).show();
                 Log.e(TAG, "User data is changed!" + company1.name + ", " + company1.year);
             }
 

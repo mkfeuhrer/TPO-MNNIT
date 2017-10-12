@@ -46,19 +46,19 @@ public class Login extends AppCompatActivity {
         password = (EditText)findViewById(R.id.loginpassword);
         signin = (Button)findViewById(R.id.signin);
         signup = (TextView)findViewById(R.id.signup);
-        SQLiteDatabase data = openOrCreateDatabase("login", MODE_PRIVATE, null); //nobody other can access
-        data.execSQL("create table if not exists student (regno varchar, password varchar);");
-        String s = "select * from student";
-        Cursor cursor = data.rawQuery(s, null); // whatever query i run i can store something in cursor it is a class
-        if (cursor.getCount()==1) {
-            cursor.moveToFirst();
+            SQLiteDatabase data = openOrCreateDatabase("login", MODE_PRIVATE, null); //nobody other can access
+            data.execSQL("create table if not exists student (regno varchar, password varchar);");
+            String s = "select * from student";
+            Cursor cursor = data.rawQuery(s, null); // whatever query i run i can store something in cursor it is a class
+            if (cursor.getCount()==1) {
+                cursor.moveToFirst();
 
-            Intent i = new Intent(Login.this,StudentProfile.class);
-            i.putExtra("reg",cursor.getString(cursor.getColumnIndex("regno")));
-            startActivity(i);
-            finish();
+                Intent i = new Intent(Login.this,StudentProfile.class);
+                i.putExtra("reg",cursor.getString(cursor.getColumnIndex("regno")));
+                startActivity(i);
+                finish();
 
-        }
+            }
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -16,13 +16,14 @@ import com.example.mohit.tpomnnit.student.company.CompanyStudent;
  */
 
 public class NotificationHandler {
-    public static void showNotification(Context context, int icon, String title, String text) {
+    public static void showNotification(Context context, int icon, String title, String text,String regno) {
         NotificationCompat.Builder nBuilder
                 = new NotificationCompat.Builder(context)
                 .setSmallIcon(icon)
                 .setContentTitle(title)
                 .setContentText(text);
         Intent intent = new Intent(context, CompanyStudent.class);
+        intent.putExtra("reg","20154076");
         TaskStackBuilder taskStackBuilder = TaskStackBuilder.create(context);
         taskStackBuilder.addParentStack(CompanyStudent.class);
         taskStackBuilder.addNextIntent(intent);

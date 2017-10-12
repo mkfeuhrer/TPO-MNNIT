@@ -31,6 +31,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mohit.tpomnnit.Landing;
 import com.example.mohit.tpomnnit.R;
 import com.example.mohit.tpomnnit.contactUs;
 import com.example.mohit.tpomnnit.login_signup.TpoLogin;
@@ -178,6 +179,8 @@ public class TpoHome extends AppCompatActivity
     @Override
     public void onBackPressed()
     {
+        Intent i=new Intent(TpoHome.this,Landing.class);
+        startActivity(i);
     }
 
     @Override

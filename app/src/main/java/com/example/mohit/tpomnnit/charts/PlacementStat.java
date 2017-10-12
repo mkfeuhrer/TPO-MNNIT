@@ -49,7 +49,6 @@ public class PlacementStat extends AppCompatActivity {
                         branch.add(userDetails.getKey().toString());
                         stats.add(userDetails.getValue().toString());
                 }
-                //solve();
                 solve2();
                 mDatabase.removeEventListener(vel);
             }
@@ -61,7 +60,7 @@ public class PlacementStat extends AppCompatActivity {
 
             }
         };
-        mDatabase.addValueEventListener(vel);
+        mDatabase.addListenerForSingleValueEvent(vel);
     }
     public void solve()
     {

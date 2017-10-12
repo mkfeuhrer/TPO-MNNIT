@@ -14,10 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mohit.tpomnnit.R;
-import com.example.mohit.tpomnnit.messenger.ChatData;
-import com.example.mohit.tpomnnit.messenger.Messages;
 import com.example.mohit.tpomnnit.student.profile.UserData;
 import com.example.mohit.tpomnnit.student.profile.Users;
+import com.example.mohit.tpomnnit.tpo.VerifyUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private Button register;
     private EditText year,password,regnum,name,confirmpassword,mobile;
-    private DatabaseReference mDatabase,mDatabase2,mDatabase3;
-    private String userId,userId2,userId3;
-
+    private DatabaseReference mDatabase,mDatabase2;
+    private String userId,userId2;
+    int flag=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -46,8 +45,6 @@ public class MainActivity extends AppCompatActivity {
         userId = mDatabase.push().getKey();
         mDatabase2 = FirebaseDatabase.getInstance().getReference("userdata");
         userId2 = mDatabase2.push().getKey();
-        mDatabase3=FirebaseDatabase.getInstance().getReference("messagess");
-        userId3 = mDatabase3.push().getKey();
         register   = (Button)findViewById(R.id.register);
         regnum     = (EditText)findViewById(R.id.regnum);
         name       = (EditText)findViewById(username);
@@ -59,12 +56,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String s1 = regnum.getText().toString().trim();
-                String s2 = password.getText().toString().trim();
-                String nam = name.getText().toString().trim();
-                String confirmpass = confirmpassword.getText().toString().trim();
-                String mob  = mobile.getText().toString().trim();
-                String years = year.getText().toString().trim();
+                final String s1 = regnum.getText().toString().trim();
+                final String s2 = password.getText().toString().trim();
+                final String nam = name.getText().toString().trim();
+                final String confirmpass = confirmpassword.getText().toString().trim();
+                final String mob  = mobile.getText().toString().trim();
+                final String years = year.getText().toString().trim();
                 Log.e("regnum",s1+"adf");
                 Log.e("year",years);
                 if(confirmpass.length() == 0 || mob.length() == 0 || years.length() == 0 || s1.length() == 0 || s2.length() == 0 || nam.length() == 0)
@@ -75,12 +72,42 @@ public class MainActivity extends AppCompatActivity {
                 {
                     if (TextUtils.isEmpty(userId)) {
                     }
-                    else
-                        createUser(nam,years,s1,s2,mob, userId);
+                    else {
+                        flag=0;
+                        final DatabaseReference mDatabase1 = FirebaseDatabase.getInstance().getReference("users");
+                        ValueEventListener vel1=new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for(DataSnapshot userDetails:dataSnapshot.getChildren())
+                                {
+                                    if(userDetails.child("studentid").getValue().toString().equals(regnum.getText().toString()))
+                                    {
+                                        flag=1;
+                                        break;
+                                        //Toast.makeText(MainActivity.this,"User already registered",Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                                if(flag==1)
+                                {
+                                    Toast.makeText(MainActivity.this,"User already registered",Toast.LENGTH_LONG).show();
+                                }
+                                else
+                                {
+                                    createUser(nam, years, s1, s2, mob, userId);
+                                    finish();
+                                    Intent i = new Intent(MainActivity.this, Login.class);
+                                    startActivity(i);
+                                }
+                            }
 
-                    finish();
-                    Intent i = new Intent(MainActivity.this, Login.class);
-                    startActivity(i);
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        };
+                        mDatabase1.addListenerForSingleValueEvent(vel1);
+                        //createUser(nam, years, s1, s2, mob, userId);
+                    }
                 }
             }
         });
@@ -104,45 +131,6 @@ public class MainActivity extends AppCompatActivity {
         userData1.setCompanies(companies);
         addUserChangeListener(user);
         addUserDataChangeListener(userData1);
-
-        ArrayList<String> arr = new ArrayList<String>();
-        ArrayList<Integer> ari = new ArrayList<Integer>();
-
-        ChatData chatdata = new ChatData();
-        chatdata.setOtheruser("tmp");
-        arr.add("tmp");
-        ari.add(-1);
-        chatdata.setChat(arr);
-        chatdata.setFlag(ari);
-
-        Messages message = new Messages();
-        message.setChatdata(chatdata);
-        message.setUsers(regnum);
-        addCompanyChangeListener(message);
-    }
-    void addCompanyChangeListener(final Messages messages)
-    {
-        mDatabase3.child(userId3).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Messages messages1 = messages;
-                // Check for null
-                if (messages1 == null) {
-                    Log.e(TAG, "User data is null!");
-                    return;
-                }
-                final String userId1 = mDatabase3.push().getKey();
-                mDatabase3.child(userId3).setValue(messages1);
-                Log.e(TAG, "User Message list data is changed!");
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.e(TAG, "Failed to read user", error.toException());
-            }
-        });
-
     }
     private void addUserChangeListener(final Users user) {
         // User data change listener

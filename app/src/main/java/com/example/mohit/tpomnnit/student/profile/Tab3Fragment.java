@@ -1,6 +1,7 @@
 package com.example.mohit.tpomnnit.student.profile;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.mohit.tpomnnit.R;
 import com.google.firebase.database.DataSnapshot;
@@ -73,6 +75,8 @@ public class Tab3Fragment extends Fragment {
             public void onClick(View view) {
                 mDatabase.child(key).child("project").setValue(project.getText().toString().trim());
                 mDatabase.child(key).child("internship").setValue(internship.getText().toString().trim());
+                Context applicationContext = MyProfile.getContextOfApplication();
+                Toast.makeText(applicationContext, "Saved", Toast.LENGTH_LONG).show();
                 // mDatabase.child(key).child("state").setValue(state.getText().toString().trim());
             }
         });

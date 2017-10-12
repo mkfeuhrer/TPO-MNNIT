@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -28,8 +27,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mohit.tpomnnit.Landing;
 import com.example.mohit.tpomnnit.charts.PointerChart;
-import com.example.mohit.tpomnnit.contactUs;
 import com.example.mohit.tpomnnit.messenger.chat;
 import com.example.mohit.tpomnnit.services.NotificationService;
 import com.example.mohit.tpomnnit.student.InterviewExperience.interviewexperience;
@@ -190,7 +189,9 @@ public class StudentProfile extends AppCompatActivity
     @Override
     public void onBackPressed()
     {
-
+        Intent i = new Intent(StudentProfile.this, Landing.class);
+        startActivity(i);
+        finish();
     }
 
     @Override
@@ -245,18 +246,9 @@ public class StudentProfile extends AppCompatActivity
 
         } else if (id == R.id.contact) {
 
-            Intent i = new Intent(StudentProfile.this,contactUs.class);
-            startActivity(i);
-
         } else if (id == R.id.rate) {
 
-//            Intent intent = new Intent(Intent.ACTION_VIEW);
-//            Try Google play
-//            intent.setData(Uri.parse("market://details?id=[Id]"));
-//            intent.setData(Uri.parse("https://play.google.com/store/apps/details?[Id]"));
-
         } else if( id == R.id.logout) {
-
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Logging Off")
@@ -271,15 +263,8 @@ public class StudentProfile extends AppCompatActivity
                     })
                     .setNegativeButton("No", null)
                     .show();
-
             SQLiteDatabase data = openOrCreateDatabase("login", MODE_PRIVATE, null);
             data.execSQL("drop table if exists student");
-            int flag= NotificationService.flag;
-            System.out.println("flag : "+flag);
-            if(flag==2) {
-                Intent serviceIntent = new Intent(StudentProfile.this, NotificationService.class);
-                stopService(serviceIntent);
-            }
             Intent i = new Intent(StudentProfile.this, Login.class);
             startActivity(i);
             finish();

@@ -3,6 +3,8 @@ package com.example.mohit.tpomnnit.services;
 import android.app.IntentService;
 import android.app.Service;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -10,7 +12,9 @@ import android.widget.Toast;
 
 import com.example.mohit.tpomnnit.Landing;
 import com.example.mohit.tpomnnit.R;
+import com.example.mohit.tpomnnit.login_signup.Login;
 import com.example.mohit.tpomnnit.notification.NotificationHandler;
+import com.example.mohit.tpomnnit.student.StudentProfile;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +29,6 @@ public class NotificationService extends Service {
     DatabaseReference mDatabase;
     String companyId;
     int n,i=-10;
-    Thread t;
     public static int flag=-1;
 
     @Nullable
@@ -47,48 +50,58 @@ public class NotificationService extends Service {
 
         Runnable r = new Runnable() {
             public void run() {
+
                 mDatabase= FirebaseDatabase.getInstance().getReference("companies");
                 companyId=mDatabase.push().getKey();
                 //System.out.println("in onHandler called");
                 while(true)
                 {
                     Log.i("service", "In while");
-
-                    ValueEventListener vel = new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            n= (int) dataSnapshot.getChildrenCount();
-                            if(i==-10)
-                            {
-                                i=n;
+                    SQLiteDatabase data = openOrCreateDatabase("login", MODE_PRIVATE, null); //nobody other can access
+                    data.execSQL("create table if not exists student (regno varchar, password varchar);");
+                    String s = "select * from student";
+                    Cursor cursor = data.rawQuery(s, null); // whatever query i run i can store something in cursor it is a class
+                    if (cursor.getCount()==1) {
+                        cursor.moveToFirst();
+                        String regno= cursor.getString(cursor.getColumnIndex("regno"));
+                        ValueEventListener vel = new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                n= (int) dataSnapshot.getChildrenCount();
+                                if(i==-10)
+                                {
+                                    i=n;
+                                }
                             }
-                        }
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
 
-                        }
-                    };
-                    mDatabase.addListenerForSingleValueEvent(vel);
+                            }
+                        };
+                        mDatabase.addListenerForSingleValueEvent(vel);
 
-                    if(i!=n&&i!=-10)
-                    {
-                        Log.i("service", "In while loop");
-                        i=n;
-                        System.out.println("new company added");
-                        NotificationHandler.showNotification(NotificationService.this, R.drawable.company4, "Company added","a new company is added click here to check");
+                        if(i!=n&&i!=-10)
+                        {
+                            Log.i("service", "In while loop");
+                            i=n;
+                            System.out.println("new company added");
+                            NotificationHandler.showNotification(NotificationService.this, R.drawable.company4, "Company added","a new company is added click here to check",regno);
+                        }
+
                     }
                     try {
-                        Thread.sleep(10000);
+                        Thread.sleep(3000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+
 
                 }
 
             }
         };
 
-        t = new Thread(r);
+        Thread t = new Thread(r);
         t.start();
         return Service.START_STICKY;
     }

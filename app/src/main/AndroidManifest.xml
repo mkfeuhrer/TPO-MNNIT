@@ -47,6 +47,7 @@
         <activity android:name=".student.profile.Tab1Fragment" />
         <activity android:name=".student.profile.Tab2Fragment" />
         <activity android:name=".student.profile.Tab3Fragment" />
+        <activity android:name=".tpo.UpdateCompany"/>
         <activity android:name=".tpo.AddCompany" />
         <activity
             android:name=".student.company.CompanyStudent"

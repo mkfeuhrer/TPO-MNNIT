@@ -8,28 +8,41 @@
     android:orientation="vertical"
     android:background="@drawable/land1"
     android:weightSum="100">
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="MNNIT RECRUITS"
+            android:textColor="@android:color/white"
+            android:textSize="60dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_weight="50"
-        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_marginBottom="30dp">
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/landingimage"/>
+            android:id="@+id/landingimage"
+            android:layout_width="200dp"
+            android:layout_gravity="center"
+            android:layout_height="200dp" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="50dp"
-        android:layout_weight="50"
+        android:layout_marginTop="10dp"
         android:weightSum="100">
 
         <Button
@@ -38,6 +51,9 @@
             style="@style/Widget.AppCompat.Button.Colored"
             android:textColor="#000000"
             android:id="@+id/student"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"
             android:text="Login As Student"
             android:background="#f4a302"
             android:layout_marginBottom="20dp"/>
@@ -46,6 +62,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tpoadmin"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"
             style="@style/Widget.AppCompat.Button.Colored"
             android:textColor="#000000"
             android:background="#f4a302"
@@ -53,13 +72,13 @@
             android:layout_marginBottom="20dp"/>
 
         <Button
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/placementstat"
             style="@style/Widget.AppCompat.Button.Colored"
             android:textColor="#000000"
-            android:background="#f4a302"
-            android:text="Placement Statistics"/>
+            android:layout_gravity="center"
+            android:background="@drawable/barchart" />
 
     </LinearLayout>
 

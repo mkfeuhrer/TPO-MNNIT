@@ -1,12 +1,14 @@
 package com.example.mohit.tpomnnit;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.mohit.tpomnnit.charts.PlacementStat;
 import com.example.mohit.tpomnnit.login_signup.Login;
@@ -28,7 +30,15 @@ public class Landing extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
-
+        TextView textView=(TextView)findViewById(R.id.textView);
+        int flag= NotificationService.flag;
+        System.out.println("flag : "+flag);
+        if(flag!=2) {
+            Intent serviceIntent = new Intent(Landing.this, NotificationService.class);
+            startService(serviceIntent);
+        }
+        Typeface tf = Typeface.createFromAsset(this.getAssets(),"bst.ttf");
+        textView.setTypeface(tf);
         mFirebaseInstance = FirebaseDatabase.getInstance();
         mFirebaseInstance.getReference("app_title").setValue("TPO MNNIT");
 
