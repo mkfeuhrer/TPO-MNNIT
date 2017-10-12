@@ -147,7 +147,7 @@ public class Tab4Fragment extends Fragment {
                     }
                     final ProgressDialog progressDialog=new ProgressDialog(getActivity());
                     progressDialog.setCancelable(false);
-                    progressDialog.setMessage("Uploading resume please wait");
+                    progressDialog.setMessage("Downloading resume please wait");
                     progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                     progressDialog.show();
                     final File finalLocalFile = localFile;
