@@ -6,4 +6,9 @@
         android:orderInCategory="100"
         android:title="Placement Stats"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_settings1"
+        android:orderInCategory="100"
+        android:title="Branch Wise Stats"
+        app:showAsAction="never" />
 </menu>

@@ -40,6 +40,12 @@ import com.example.mohit.tpomnnit.student.profile.MyProfile;
 import com.example.mohit.tpomnnit.R;
 import com.example.mohit.tpomnnit.student.profile.UserData;
 import com.example.mohit.tpomnnit.login_signup.Login;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -54,6 +60,9 @@ import com.google.firebase.storage.StorageReference;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class StudentProfile extends AppCompatActivity
@@ -65,7 +74,8 @@ public class StudentProfile extends AppCompatActivity
     private ImageView imageview,verified;
     public static int verification;
     public static String cmpny;
-    int tcc,cc;
+    HashMap<String,Float> branchdata;
+    int tcc,cc,k=0;
     Button charts;
     String nameuser;
     ValueEventListener vel,vel1;
@@ -75,7 +85,7 @@ public class StudentProfile extends AppCompatActivity
         setContentView(R.layout.activity_student_profile);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        branchdata=new HashMap<String,Float>();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -232,27 +242,109 @@ public class StudentProfile extends AppCompatActivity
                     final Dialog dialog = new Dialog(StudentProfile.this);
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dialog.setCancelable(false);
-                    dialog.setContentView(R.layout.custom_dialog);
+                    dialog.setContentView(R.layout.chart_dialog);
                     dialog.setCanceledOnTouchOutside(true);
                     dialog.onBackPressed();
-                    TextView text = (TextView) dialog.findViewById(R.id.text_dialog_feedback);
-                    text.setText("  Placement Statistics  ");
-                    Button register = (Button) dialog.findViewById(R.id.register);
-                    final EditText regis = (EditText) dialog.findViewById(R.id.regis);
-                    final EditText pass = (EditText) dialog.findViewById(R.id.pass);
-                    register.setText("Close");
-                    regis.setText("Total Student count: "+tcc);
-                    pass.setText("Placed Student count: "+cc);
 
-                    register.setOnClickListener(new View.OnClickListener() {
+                    PieChart pieChart ;
+                    ArrayList<Entry> entries;
+                    ArrayList<BarEntry> entries_bar;
+                    ArrayList<String> PieEntryLabels,BarEntryLables ;
+                    PieDataSet pieDataSet;
+                    PieData pieData ;
 
-                        @Override
-                        public void onClick(View v) {
-                            //Perfome Action
-                            dialog.dismiss();
+                    pieChart = (PieChart) dialog.findViewById(R.id.chart1);
+                    entries = new ArrayList<>();
+                    entries.add(new Entry(cc,0));
+                    entries.add(new Entry(tcc-cc,1));
+                    PieDataSet dataSet = new PieDataSet(entries,"Placement Stats");
+                    ArrayList<String> labels = new ArrayList<String>();
+                    labels.add("Placed");
+                    labels.add("UnPlaced");
+                    PieData data = new PieData(labels, dataSet);
+                    pieChart.setData(data);
+                    dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                    pieChart.animateY(3000);
+                    dialog.show();
+
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            };
+            mDatabase1.addListenerForSingleValueEvent(vel1);
+        }
+        if (id == R.id.action_settings1) {
+            /*Intent i = new Intent(StudentProfile.this,chat.class);
+            i.putExtra("reg",registrationnum);
+            startActivity(i);*/
+            branchdata=new HashMap<String,Float>();
+            branchdata.put("CSE",0.0f);
+            branchdata.put("IT",0.0f);
+            branchdata.put("ECE",0.0f);
+            branchdata.put("EE",0.0f);
+            branchdata.put("ME",0.0f);
+            branchdata.put("PIE",0.0f);
+            branchdata.put("CHE",0.0f);
+            branchdata.put("BIO",0.0f);
+            branchdata.put("CIVIL",0.0f);
+
+            mDatabase1 = FirebaseDatabase.getInstance().getReference("userdata");
+            vel1 = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for(DataSnapshot userDetails : dataSnapshot.getChildren()) {
+                        //UserData userData=new UserData(userDetails.child("regnum").getValue().toString(),userDetails.child("name").getValue().toString(),userDetails.child("branch").getValue().toString(),userDetails.child("batch").getValue().toString(),userDetails.child("course").getValue().toString(),userDetails.child("dob").getValue().toString(),userDetails.child("email").getValue().toString(),userDetails.child("skypeid").getValue().toString(),userDetails.child("linkedinid").getValue().toString(),userDetails.child("gender").getValue().toString(),userDetails.child("category").getValue().toString(),userDetails.child("phychal").getValue().toString(),null,userDetails.child("guardian").getValue().toString(),userDetails.child("presentadd").getValue().toString(),userDetails.child("permanentadd").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),userDetails.child("mobileno").getValue().toString(),0,0,0);
+                        String str=userDetails.child("company").getValue().toString();
+                        String brnch = userDetails.child("branch").getValue().toString();
+                        if(!str.equals("n/a")&&!brnch.equals("n/a")) {
+                            if (!branchdata.containsKey(brnch)) {
+                                branchdata.put(brnch, 1f);
+                            } else {
+                                branchdata.put(brnch,branchdata.get(brnch)+1f);
+                            }
                         }
-                    });
+                    }
+                    final Dialog dialog = new Dialog(StudentProfile.this);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setCancelable(false);
+                    dialog.setContentView(R.layout.chart_dialog);
+                    dialog.setCanceledOnTouchOutside(true);
+                    dialog.onBackPressed();
+                    PieChart pieChart ;
+                    ArrayList<Entry> entries;
+                    ArrayList<BarEntry> entries_bar;
+                    ArrayList<String> PieEntryLabels,BarEntryLables ;
+                    PieDataSet pieDataSet;
+                    PieData pieData ;
 
+                    pieChart = (PieChart) dialog.findViewById(R.id.chart1);
+                    entries = new ArrayList<>();
+                    entries.add(new Entry(branchdata.get("CSE"),0));
+                    entries.add(new Entry(branchdata.get("IT"),1));
+                    entries.add(new Entry(branchdata.get("ECE"),2));
+                    entries.add(new Entry(branchdata.get("EE"),3));
+                    entries.add(new Entry(branchdata.get("ME"),4));
+                    entries.add(new Entry(branchdata.get("PIE"),5));
+                    entries.add(new Entry(branchdata.get("CHE"),6));
+                    entries.add(new Entry(branchdata.get("BIO"),7));
+                    entries.add(new Entry(branchdata.get("CIVIL"),8));
+                    PieDataSet dataSet = new PieDataSet(entries,"Placement Stats");
+                    ArrayList<String> labels = new ArrayList<String>();
+                    labels.add("CSE");
+                    labels.add("IT");
+                    labels.add("ECE");
+                    labels.add("EE");
+                    labels.add("ME");
+                    labels.add("PIE");
+                    labels.add("CHE");
+                    labels.add("BIO");
+                    labels.add("CIVIL");
+                    PieData data = new PieData(labels, dataSet);
+                    pieChart.setData(data);
+                    dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                    pieChart.animateY(3000);
                     dialog.show();
 
                 }
