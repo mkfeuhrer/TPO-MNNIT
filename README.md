@@ -29,7 +29,7 @@ App focuses on proper communication between TPO and Students , with company upda
 <li>All Suggestions are welcome.</li>
 <li>Fork repository and Contribute.</li>
 </ul>
-<br>![alt tag](https://github.com/mkfeuhrer/TPO-MNNIT/blob/master/Screenshots/home.png)<br>
-<br>![alt tag](https://github.com/mkfeuhrer/TPO-MNNIT/blob/master/Screenshots/Screenshot_20171013-011252.png)<br>
-<br>![alt tag](https://github.com/mkfeuhrer/TPO-MNNIT/blob/master/Screenshots/Screenshot_20171013-011259.png)<br>
-<br>![alt tag](https://github.com/mkfeuhrer/TPO-MNNIT/blob/master/Screenshots/Screenshot_20171013-011839.png)<br>
+<br>![Screenshot](https://github.com/mkfeuhrer/TPO-MNNIT/blob/master/Screenshots/home.png)<br>
+<br>![Screenshot](https://github.com/mkfeuhrer/TPO-MNNIT/blob/master/Screenshots/Screenshot_20171013-011252.png)<br>
+<br>![Screenshot](https://github.com/mkfeuhrer/TPO-MNNIT/blob/master/Screenshots/Screenshot_20171013-011259.png)<br>
+<br>![Screenshot](https://github.com/mkfeuhrer/TPO-MNNIT/blob/master/Screenshots/Screenshot_20171013-011839.png)<br>
