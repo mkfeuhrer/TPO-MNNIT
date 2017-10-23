@@ -22,7 +22,7 @@
         android:background="@android:color/transparent"
         android:padding="10dp"
         app:cardCornerRadius="10dp"
-        app:cardElevation="10dp">
+        app:cardElevation="12dp">
 
         <LinearLayout
             android:layout_width="match_parent"
